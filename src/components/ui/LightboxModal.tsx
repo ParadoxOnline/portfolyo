@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Lang } from "@/providers/LangProvider";
 
@@ -23,9 +24,15 @@ export default function LightboxModal({
   lang,
   accentColor = "#38bdf8",
 }: LightboxModalProps) {
-  // initialIndex veya isOpen değiştiğinde key prop'u ile sıfırlanabilmesi için state
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [currentIndex, setCurrentIndex] = useState(
+    Math.min(Math.max(0, initialIndex), Math.max(0, shots.length - 1))
+  );
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const count = shots.length;
 
@@ -58,7 +65,7 @@ export default function LightboxModal({
     };
   }, [isOpen, onClose, handlePrev, handleNext]);
 
-  if (!isOpen || shots.length === 0) return null;
+  if (!isOpen || !mounted || shots.length === 0) return null;
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -76,27 +83,29 @@ export default function LightboxModal({
     setTouchStart(null);
   };
 
-  return (
+  const currentImage = shots[currentIndex] || shots[0];
+
+  const modalNode = (
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[1000] flex flex-col items-center justify-between bg-black/92 p-4 backdrop-blur-2xl animate-in fade-in duration-300 md:p-8 select-none"
+      className="fixed inset-0 z-[99999] flex flex-col justify-between bg-black/95 p-3 sm:p-6 backdrop-blur-2xl animate-in fade-in duration-200 select-none touch-none"
       onClick={onClose}
     >
       {/* Üst Bar: Proje Adı, Sayaç ve Kapatma Butonu */}
       <div
-        className="relative z-10 flex w-full max-w-6xl items-center justify-between border-b border-white/10 pb-4 text-white"
+        className="relative z-10 flex w-full items-center justify-between border-b border-white/10 pb-3 text-white"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <span
-            className="h-2 w-2 rounded-full"
+            className="h-2.5 w-2.5 rounded-full"
             style={{ backgroundColor: accentColor, boxShadow: `0 0 10px ${accentColor}` }}
           />
-          <h3 className="font-display text-lg font-bold tracking-tight md:text-xl">
+          <h3 className="font-display text-base font-bold tracking-tight sm:text-xl truncate max-w-[200px] sm:max-w-none">
             {projectName}
           </h3>
-          <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-xs text-white/60">
+          <span className="rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 font-mono text-[11px] text-white/80">
             {currentIndex + 1} / {count}
           </span>
         </div>
@@ -104,16 +113,16 @@ export default function LightboxModal({
         <button
           type="button"
           onClick={onClose}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 transition hover:bg-white/15 hover:text-white"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition active:scale-95"
           aria-label={lang === "az" ? "Bağla" : lang === "en" ? "Close" : "Kapat"}
         >
-          <X size={18} />
+          <X size={20} />
         </button>
       </div>
 
-      {/* Ana Görsel ve Sağ-Sol Gezinme */}
+      {/* Ana Görsel Alanı */}
       <div
-        className="relative my-auto flex h-full max-h-[82vh] w-full max-w-6xl items-center justify-center"
+        className="relative my-auto flex h-[72vh] w-full items-center justify-center overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
@@ -122,19 +131,19 @@ export default function LightboxModal({
           <button
             type="button"
             onClick={handlePrev}
-            className="absolute left-2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#080d1a]/85 text-white/80 shadow-2xl backdrop-blur-md transition hover:scale-105 hover:bg-white hover:text-black md:-left-6 md:h-13 md:w-13"
+            className="absolute left-1 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-xl backdrop-blur-md transition active:scale-90 sm:left-4 sm:h-13 sm:w-13"
             aria-label={lang === "az" ? "Əvvəlki" : lang === "en" ? "Previous" : "Önceki"}
           >
             <ChevronLeft size={24} />
           </button>
         )}
 
-        <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl">
+        <div className="relative flex h-full w-full items-center justify-center p-1">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={shots[currentIndex]}
-            alt={`${projectName} görseli ${currentIndex + 1}`}
-            className="max-h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-[0_25px_80px_rgba(0,0,0,0.9)] ring-1 ring-white/10 transition-all duration-300"
+            src={currentImage}
+            alt={`${projectName} ${currentIndex + 1}`}
+            className="max-h-[68vh] w-auto max-w-full rounded-lg object-contain shadow-[0_10px_40px_rgba(0,0,0,0.9)] ring-1 ring-white/15"
             draggable={false}
           />
         </div>
@@ -143,7 +152,7 @@ export default function LightboxModal({
           <button
             type="button"
             onClick={handleNext}
-            className="absolute right-2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#080d1a]/85 text-white/80 shadow-2xl backdrop-blur-md transition hover:scale-105 hover:bg-white hover:text-black md:-right-6 md:h-13 md:w-13"
+            className="absolute right-1 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-xl backdrop-blur-md transition active:scale-90 sm:right-4 sm:h-13 sm:w-13"
             aria-label={lang === "az" ? "Növbəti" : lang === "en" ? "Next" : "Sonraki"}
           >
             <ChevronRight size={24} />
@@ -151,38 +160,42 @@ export default function LightboxModal({
         )}
       </div>
 
-      {/* Alt Küçük Önizleme Şeridi (Thumbnails) */}
+      {/* Alt Küçük Önizleme Şeridi */}
       {count > 1 && (
         <div
-          className="relative z-10 flex max-w-full items-center gap-2 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-2 backdrop-blur-xl"
+          className="relative z-10 flex w-full justify-center overflow-x-auto py-1"
           onClick={(e) => e.stopPropagation()}
         >
-          {shots.map((src, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => setCurrentIndex(idx)}
-              className={`relative h-12 w-20 shrink-0 overflow-hidden rounded-lg border transition-all ${
-                idx === currentIndex
-                  ? "ring-2 scale-105"
-                  : "opacity-50 hover:opacity-100"
-              }`}
-              style={{
-                borderColor: idx === currentIndex ? accentColor : "rgba(255,255,255,0.15)",
-                outlineColor: accentColor,
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt=""
-                className="h-full w-full object-cover"
-                draggable={false}
-              />
-            </button>
-          ))}
+          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1.5 backdrop-blur-xl">
+            {shots.map((src, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentIndex(idx)}
+                className={`relative h-10 w-14 shrink-0 overflow-hidden rounded-md border transition-all ${
+                  idx === currentIndex
+                    ? "ring-2 scale-105"
+                    : "opacity-40 hover:opacity-100"
+                }`}
+                style={{
+                  borderColor: idx === currentIndex ? accentColor : "rgba(255,255,255,0.2)",
+                  outlineColor: accentColor,
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  draggable={false}
+                />
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>
   );
+
+  return createPortal(modalNode, document.body);
 }
