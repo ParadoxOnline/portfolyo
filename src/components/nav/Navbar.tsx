@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FileDown } from "lucide-react";
 import { useLang } from "@/providers/LangProvider";
 import { copy } from "@/data/showcase";
 import { LangToggle } from "@/components/cine/Fx";
@@ -90,8 +91,22 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="rounded-full border border-white/10 bg-[#070b14]/75 p-1 backdrop-blur-xl">
-          <LangToggle />
+        <div className="flex items-center gap-2">
+          <a
+            href="/Sabri_Can_Tutuncu_CV.pdf"
+            download="Sabri_Can_Tutuncu_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3.5 py-1.5 font-mono text-xs font-semibold text-sky-300 backdrop-blur-xl transition hover:border-sky-400 hover:bg-sky-500/20 hover:text-white"
+            title={lang === "az" ? "CV Yüklə (PDF)" : lang === "en" ? "Download CV (PDF)" : "Özgeçmiş İndir (PDF)"}
+          >
+            <FileDown size={14} />
+            <span>CV</span>
+          </a>
+
+          <div className="rounded-full border border-white/10 bg-[#070b14]/75 p-1 backdrop-blur-xl">
+            <LangToggle />
+          </div>
         </div>
       </div>
     </nav>

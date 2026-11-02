@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sabri Can Tütüncü — Özgeçmiş / CV</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm 10mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.38;
+      font-size: 9.8px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 9px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-left h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .header-left .title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    .header-left .subtitle {
+      font-size: 9.5px;
+      color: #64748b;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .contact-info {
+      text-align: right;
+      font-size: 9.2px;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .contact-info a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-info span {
+      color: #64748b;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 9px;
+    }
+
+    .section-title {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0f172a;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #0284c7;
+      border-radius: 2px;
+    }
+
+    /* SUMMARY */
+    .summary-text {
+      color: #334155;
+      font-size: 9.6px;
+      line-height: 1.48;
+      text-align: justify;
+    }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px 12px;
+      font-size: 9.2px;
+    }
+
+    .skill-category {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 4px 7px;
+    }
+
+    .skill-category strong {
+      color: #0f172a;
+      font-size: 9.8px;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    .skill-category span {
+      color: #475569;
+    }
+
+    /* PROJECT CARDS */
+    .project-card {
+      margin-bottom: 6px;
+      padding: 6px 8px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-left: 3px solid #0284c7;
+      border-radius: 4px;
+      page-break-inside: avoid;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .project-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .project-tech {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5px;
+      color: #0284c7;
+      font-weight: 600;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .project-summary {
+      font-size: 9.6px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 3px;
+    }
+
+    .project-breakdown {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5px;
+      font-size: 9.2px;
+      margin-top: 3px;
+      border-top: 1px dashed #e2e8f0;
+      padding-top: 3px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      gap: 5px;
+      line-height: 1.4;
+    }
+
+    .badge-problem {
+      font-weight: 800;
+      color: #e11d48;
+      min-width: 62px;
+      font-size: 8.8px;
+    }
+
+    .badge-solution {
+      font-weight: 800;
+      color: #0284c7;
+      min-width: 62px;
+      font-size: 8.8px;
+    }
+
+    .badge-roi {
+      font-weight: 800;
+      color: #059669;
+      min-width: 62px;
+      font-size: 8.8px;
+    }
+
+    .breakdown-text {
+      color: #334155;
+      flex: 1;
+    }
+
+    .roi-highlight {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: #065f46;
+      font-weight: 600;
+    }
+
+    /* EXPERIENCE & CAREER */
+    .exp-item {
+      margin-bottom: 7px;
+      page-break-inside: avoid;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .exp-role {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .exp-company {
+      font-weight: 600;
+      color: #0284c7;
+    }
+
+    .exp-date {
+      font-size: 9.2px;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+    }
+
+    .exp-bullets {
+      list-style-type: disc;
+      padding-left: 13px;
+      color: #334155;
+      font-size: 9.2px;
+      line-height: 1.42;
+    }
+
+    .exp-bullets li {
+      margin-bottom: 1.5px;
+    }
+
+    /* PAGE BREAK HELPER */
+    .page-break-after {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* FOOTER */
+    .cv-footer {
+      text-align: center;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 8.8px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== SAYFA 1 ===== -->
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <h1>SABRİ CAN TÜTÜNCÜ</h1>
+        <div class="title">Full-Stack Yazılım Mühendisi &amp; Sistem Geliştirici</div>
+        <div class="subtitle">Next.js · TypeScript · .NET 8 · Clean Architecture · Otonom Sistemler &amp; Programatik SEO</div>
+      </div>
+      <div class="contact-info">
+        <div>📍 Balıkesir / İstanbul, Türkiye <span>(Remote / Hibrit)</span></div>
+        <div>✉️ <a href="mailto:sabricantutuncu@gmail.com">sabricantutuncu@gmail.com</a></div>
+        <div>📱 +90 (551) 023 56 48</div>
+        <div>🌐 Portfolyo: <a href="https://portfolyo-beta-two.vercel.app">portfolyo-beta-two.vercel.app</a></div>
+        <div>💻 GitHub: <a href="https://github.com/ParadoxOnline">github.com/ParadoxOnline</a></div>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="section">
+      <div class="section-title">Profesyonel Özet &amp; Mühendislik Yaklaşımı</div>
+      <p class="summary-text">
+        <strong>3+ yıldır</strong> uçtan uca modern web uygulamaları, otonom arka plan veri hatları ve programatik SEO mimarileri geliştiren Full-Stack Mühendis. Yalnızca kod yazmanın ötesinde, projelerin gerçek dünyadaki tıkanıklıklarını (maliyet tasarrufu, dönüşüm artışı, manuel iş yükünü sıfırlama) analiz ederek doğrudan <strong>ölçülebilir ticari getiri (ROI)</strong> üreten sistemler tasarlar. Clean Architecture, CQRS, Next.js, TypeScript, .NET, PostgreSQL, Docker ve asenkron kuyruk yapılarında yetkin; 6 aylık dijital ajans müşteri operasyonları tecrübesine ve tek başına mimariden canlıya alınmış 7 amiral gemisi SaaS platformuna sahiptir.
+      </p>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <div class="section-title">Teknik Yetkinlikler &amp; Teknoloji Yığını</div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <strong>Frontend Geliştirme</strong>
+          <span>Next.js 15/16 (App Router, SSR, SSG), React 19, TypeScript, Tailwind CSS, Three.js (WebGL 3D), MediaPipe Pose, HTML5/CSS3</span>
+        </div>
+        <div class="skill-category">
+          <strong>Backend &amp; API Mimarisi</strong>
+          <span>C# / .NET 8 (Clean Architecture, CQRS, MediatR), Node.js, PHP, RESTful APIs, BullMQ Asenkron Kuyruk</span>
+        </div>
+        <div class="skill-category">
+          <strong>Veritabanı &amp; Arama Sistemleri</strong>
+          <span>PostgreSQL, Prisma ORM, Redis (Önbellekleme &amp; Kuyruk), Qdrant (Vektör DB), MySQL, Veri Modelleme</span>
+        </div>
+        <div class="skill-category">
+          <strong>Mimari, DevOps &amp; Otomasyon</strong>
+          <span>Turborepo (Monorepo), Docker Compose, Redpanda / Kafka (Olay Akışı), Git, PM2, VDS Linux Deployment, Programmatic SEO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLAGSHIP PROJECTS (SAYFA 1'DEKİLER: 1, 2, 3, 4) -->
+    <section class="section">
+      <div class="section-title">Öne Çıkan Mühendislik Projeleri (Problem ➔ Mimari Çözüm ➔ Somut ROI)</div>
+
+      <!-- LIOS -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">1. LIOS — Otonom Yerel SEO ve İçerik Üretim Motoru</span>
+          <span class="project-tech">.NET 8 · Clean Architecture · CQRS · Google Indexing API · Next.js</span>
+        </div>
+        <div class="project-summary">Yerel işletmeleri (hizmet sektörleri, klinikler) Google aramalarında otomatik 1. sıraya çıkaran otonom SEO motoru.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">İşletmeler aylık on binlerce lira SEO ajanslarına ve reklamlara bağımlıydı; manuel içerik yazımı aylar sürüyor ve yüzlerce alt hizmet/semt kombinasyonunda ölçeklenemiyordu.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">4 katmanlı Clean Architecture ve 25 entegre mikroservis ile sektörel grafiği analiz eden, binlerce optimize açılış sayfasını insan eli değmeden üreten ve Google Indexing API ile doğrudan Google'a fırlatan otonom altyapı kurdum.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">Ajansların 6 ayda yapacağı içerik ve sıralama operasyonunu dakikalara indirdi; reklam masraflarını %80+ düşürerek işletmelere sürekli ve ücretsiz organik müşteri akışı sağladı.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SentioPulse -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">2. SentioPulse — Yapay Zeka Destekli Pazar Araştırma Radarı</span>
+          <span class="project-tech">Next.js 16 · Qdrant (Vector DB) · BullMQ · Redpanda (Kafka) · Playwright</span>
+        </div>
+        <div class="project-summary">Sosyal medyadan ve forumlardan binlerce kullanıcı şikayetini 7/24 tarayıp doğrudan para kazandıracak ürün fikirlerine dönüştüren veri radarı.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">Şirketler müşterinin gerçekte neye para ödeyeceğini bilmedikleri için tutmayan projelere milyonlar harcıyor; klasik anket ve pazar araştırmaları $50.000+ maliyetle aylar sürüyordu.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">Reddit ve Twitter'daki ham kullanıcı şikayetlerini Playwright ile çeken, 6 ticari boyutta puanlayan, Qdrant vektör yerleştirmeleriyle semantik kümeleyen ve satın almaya hazır kitleyi raporlayan 4 katmanlı boru hattı geliştirdim.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">Danışmanlık ve anket masraflarını sıfırladı; tek bir satır kod yazmadan önce gerçek pazar talebini ve satın alma isteğini doğrulayarak hatalı ürün yatırımlarını önledi.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VeloDrape 3D -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">3. VeloDrape 3D — Tarayıcı İçi 3D Sanal Deneme Kabini</span>
+          <span class="project-tech">Next.js · Three.js · MediaPipe Pose · WebGL · Client-Side AI</span>
+        </div>
+        <div class="project-summary">E-ticaret moda markaları için, müşterilerin web kamerasıyla kıyafeti kendi üzerlerinde 3D görmesini sağlayan yapay zeka kabini.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">E-ticarette satılan her 100 giysiden 35'i beden uyumsuzluğu sebebiyle iade ediliyor; bu durum markalara çift taraflı kargo masrafı ve devasa kâr marjı kaybı oluşturuyordu.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">Uygulama indirme zorunluluğunu kaldırarak doğrudan web tarayıcısında çalışan; MediaPipe ile kameradan vücut iskeletini çıkaran ve 3D giysileri WebGL ile kullanıcının üzerine sıfır sunucu GPU maliyetiyle giydiren istemci motoru yazdım.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">E-ticaret iade oranlarını %40+ düşürdü; kararsız müşterilerin satın alma dönüşüm oranını (conversion rate) 2 katına çıkararak doğrudan ciro artışı sağladı.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SearchGrid -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">4. SearchGrid — Milisaniyelik Kurumsal Arama Altyapısı</span>
+          <span class="project-tech">Turborepo (Monorepo) · Next.js · Prisma ORM · Edge Caching</span>
+        </div>
+        <div class="project-summary">Milyonlarca ürün ve veri barındıran platformlar için 10 milisaniye altında anlık arama ve filtreleme altyapısı.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">2-3 saniye geciken arama sonuçları müşterilerin %50'sinin siteyi terk etmesine yol açıyor, klasik veritabanları milyonlarca satırda kilitlenerek bulut faturalarını katlıyordu.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">Turborepo altında bağımsız paketlenen arama çekirdekleri, optimize Prisma indekslemeleri ve hafif önbellekleme katmanıyla karmaşık sorguları 10ms altında ana veritabanını yormadan döndüren bir altyapı tasarladım.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">Arama kaynaklı sepet terk etme oranını %45 azalttı, arama yapan kullanıcıların satın alma oranını %30 artırdı ve bulut sunucu sorgu maliyetlerini %70 düşürdü.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAYFA 1 BİTİŞİ -->
+    <div class="page-break-after"></div>
+
+    <!-- ===== SAYFA 2 ===== -->
+
+    <!-- PROJELER DEVAMI (SAYFA 2: 5, 6, 7) -->
+    <section class="section" style="margin-top: 4px;">
+      <div class="section-title">Mühendislik Projeleri (Devamı)</div>
+
+      <!-- ChronoPost -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">5. ChronoPost — Otonom Sosyal Medya Dağıtım Robotu</span>
+          <span class="project-tech">PHP · Dağıtık Kuyruk · Asenkron Workers · Cron Runners · REST APIs</span>
+        </div>
+        <div class="project-summary">Ajansların onlarca sosyal medya hesabını tek ekrandan 7/24 kesintisiz, otomatik paylaşan otonom içerik dağıtım robotu.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">Ajanslar onlarca marka hesabı için her gün saatlerce manuel paylaşım yapmak, saat kurmak ve API hız sınırlarıyla boğuşmak zorundaydı; personel maliyeti aşırı yüksekti.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">Asenkron çalışan işçiler (workers) ve akıllı kuyruk mimarisi kurdum. Gönderiler topluca planlanır, medya formatları platforma göre otomatik dönüştürülür, API tokenleri sessizce yenilenir ve sıfır personelle tam vaktinde yayınlanır.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">1 personelin yönetebileceği hesap kapasitesini 3'ten 50'ye çıkararak ajans iş gücü maliyetini 5 kat azalttı; haftalık 20+ saatlik manuel operasyon yükünü sıfırladı.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- StaticForge -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">6. StaticForge — Programatik Statik Web Sitesi Fabrikası</span>
+          <span class="project-tech">PHP · Programmatic SEO · JSON Driver · 100/100 Lighthouse</span>
+        </div>
+        <div class="project-summary">Yüzlerce farklı sektör ve semt için saniyeler içinde Google'da ışık hızında açılan, sıfır sunucu maliyetli profesyonel web siteleri üreten otomatik site fabrikası.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">Yüzlerce yerel işletme için tek tek site kodlamak veya WordPress kurmak aylar sürer; veritabanı çökmeleri ve yüksek sunucu faturaları projeleri aşırı maliyetli kılardı.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">Tek bir JSON varyasyon dosyasından yüzlerce farklı tasarım varyasyonunu derleyen, sıfır veritabanı bağımlılığı olan ve 100/100 Lighthouse puanı alan saf statik HTML dosyaları çıkartan motor geliştirdim.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">Site üretim süresini haftalardan 5 dakikaya indirdi; sunucu/bakım masraflarını %95 düşürürken anında yüklenen sayfalarla SEO'da rakipleri geride bıraktı.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MaçaGel -->
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">7. MaçaGel — Halı Saha Maç &amp; Oyuncu Pazar Yeri</span>
+          <span class="project-tech">React Native · Expo Router · Firebase Cloud Functions · Firestore Security Rules</span>
+        </div>
+        <div class="project-summary">Halı saha maçlarındaki adam eksikliği ve organizasyon kaosunu bitiren, oyuncularla tesisleri tek tıkla buluşturan pazar yeri mobil uygulaması.</div>
+        <div class="project-breakdown">
+          <div class="breakdown-row">
+            <span class="badge-problem">🔴 PROBLEM:</span>
+            <span class="breakdown-text">WhatsApp gruplarında saatlerce 'kaleci aranıyor' mesajlarıyla vakit kaybediliyor, son dakika iptalleri hem maçı bozuyor hem halı saha tesislerine ciro kaybı yazıyordu.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-solution">🟢 ÇÖZÜM:</span>
+            <span class="breakdown-text">Oyuncuların mevki ve seviyelerine göre açık maçları gördüğü, tek tıkla kadroya girdiği ve eksik çıktığında çevredeki oyunculara anlık push bildirim atan mobil platform geliştirdim.</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="badge-roi">💰 KAZANÇ / ROI:</span>
+            <span class="breakdown-text roi-highlight">Halı saha tesislerinin boş kalan saatlerini doldurarak atıl kapasiteyi %35+ ciroya çevirdi; maç iptallerini önleyerek düzenli rezervasyon komisyon geliri yarattı.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="section">
+      <div class="section-title">İş Deneyimi</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <span class="exp-role">Bağımsız Full-Stack &amp; Sistem Geliştirici</span>
+            <span class="exp-company"> · Bireysel Girişimler &amp; SaaS Projeleri</span>
+          </div>
+          <span class="exp-date">2023 – Günümüz (3+ Yıl)</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Fikirden yayına kadar tüm süreci tek başına yönetti: Sistem mimarisi, veritabanı tasarımı, modern kullanıcı arayüzleri, arka plan otomasyonları ve SEO mühendisliği.</li>
+          <li>Portfolyoda yer alan 7 amiral gemisi platformu sıfırdan kurdu; gerçek pazar problemlerini çözerek ticari getiri (ROI) sağlayan sistemler inşa etti.</li>
+          <li>Google Indexing API, Google Search Console, Qdrant Vektör Arama, BullMQ ve WebGL gibi ileri düzey teknolojileri canlı üretim ortamlarında kullandı.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <span class="exp-role">Web Geliştirici &amp; Dijital Operasyon Uzmanı</span>
+            <span class="exp-company"> · Dijital Ajans</span>
+          </div>
+          <span class="exp-date">6 Ay · Ajans &amp; Ekip Deneyimi</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Gerçek kurumsal müşteriler, sıkı teslim tarihleri ve bütçe baskısı altında web geliştirme ve optimizasyon projelerini yürüttü.</li>
+          <li>Müşteriler için WordPress altyapıları kurdu, özel eklentiler ve tasarım düzenlemeleri yaptı; sitelerin sayfa açılış hızlarını ve Google SEO puanlarını optimize etti.</li>
+          <li>Ekip içi iş birliği, müşteri beklenti yönetimi ve ajans teslim süreçlerinde aktif rol aldı.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTIFICATIONS -->
+    <section class="section">
+      <div class="section-title">Eğitim &amp; Diller</div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <strong>Sürekli Mesleki Gelişim</strong>
+          <span>Yazılım Mimarileri, Clean Code, CQRS &amp; Domain-Driven Design, Modern JavaScript / TypeScript Eko-sistemi, AI &amp; LLM Entegrasyonları</span>
+        </div>
+        <div class="skill-category">
+          <strong>Yabancı Dil Yetkinliği</strong>
+          <span><strong>Türkçe:</strong> Anadil · <strong>İngilizce:</strong> Teknik &amp; Mesleki Dokümantasyon / İleri Seviye Okuma &amp; Yazma · <strong>Azerbaycan Türkçesi:</strong> İleri Seviye</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="cv-footer">
+      Bu özgeçmişte yer alan tüm projeler ve sistemler canlıda test edilebilir durumdadır · Canlı Portfolyo: <strong>portfolyo-beta-two.vercel.app</strong> · İletişim: <strong>sabricantutuncu@gmail.com</strong>
+    </footer>
+
+  </div>
+</body>
+</html>
