@@ -1,0 +1,176 @@
+{
+  "sectorId": "cafe",
+  "businessName": "Deneme",
+  "phone": "1928183172",
+  "whatsapp": "1928183172",
+  "address": "izmir",
+  "workingHours": "09:00-18:00",
+  "primaryColor": "#c97119",
+  "tagline": "Eşsiz Kahve Deneyimi",
+  "heroImage": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1920&q=80",
+  "description": "Özenle seçilmiş çekirdeklerden, ustaca hazırlanmış kahveler.",
+  "aboutText": "Kahve tutkusuyla yola çıktığımız günden bu yana, en kaliteli çekirdekleri özenle seçiyor ve her fincanda mükemmel lezzeti sunuyoruz. Sıcak atmosferimiz ve uzman baristalarımızla, size unutulmaz bir kahve deneyimi yaşatmak için buradayız.",
+  "services": [
+    {
+      "name": "Filtre Kahve",
+      "description": "Günlük taze çekilmiş özel harman kahveler"
+    },
+    {
+      "name": "Espresso Çeşitleri",
+      "description": "Latte, cappuccino, americano ve daha fazlası"
+    },
+    {
+      "name": "Soğuk İçecekler",
+      "description": "Ice latte, cold brew, frappe çeşitleri"
+    },
+    {
+      "name": "Taze Pastane",
+      "description": "Günlük yapılan taze pasta ve tatlılar"
+    },
+    {
+      "name": "Kahvaltı Menüsü",
+      "description": "Hafif atıştırmalıklar ve kahvaltı seçenekleri"
+    },
+    {
+      "name": "Özel Harmanlar",
+      "description": "Dünya kahvelerinden seçme özel harmanlar"
+    }
+  ],
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800",
+      "alt": "Kahve hazırlama"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
+      "alt": "Latte art"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800",
+      "alt": "Kafe ortamı"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800",
+      "alt": "Kahve çekirdekleri"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800",
+      "alt": "Sıcak kahve"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800",
+      "alt": "Pastane ürünleri"
+    }
+  ],
+  "layoutConfig": {
+    "hero": "hero-10",
+    "services": "services-10",
+    "gallery": "gallery-3",
+    "about": "about-5",
+    "contact": "contact-2",
+    "header": "header-1",
+    "footer": "footer-1"
+  },
+  "sector": {
+    "id": "cafe",
+    "name": "Kafe & Kahve Dükkanı",
+    "colors": {
+      "primary": "#c97119",
+      "secondary": "#ffffff",
+      "accent": "#f4a460",
+      "background": "#fff8f0",
+      "text": "#2c1810",
+      "textLight": "#5C4033"
+    },
+    "fonts": {
+      "heading": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "heroStyle": "centered",
+    "heroOverlay": "rgba(44, 24, 16, 0.6)",
+    "sectionOrder": [
+      "hero",
+      "about",
+      "services",
+      "gallery",
+      "contact"
+    ],
+    "defaultTagline": "Eşsiz Kahve Deneyimi",
+    "defaultDescription": "Özenle seçilmiş çekirdeklerden, ustaca hazırlanmış kahveler.",
+    "defaultAbout": "Kahve tutkusuyla yola çıktığımız günden bu yana, en kaliteli çekirdekleri özenle seçiyor ve her fincanda mükemmel lezzeti sunuyoruz. Sıcak atmosferimiz ve uzman baristalarımızla, size unutulmaz bir kahve deneyimi yaşatmak için buradayız.",
+    "serviceIcon": "coffee",
+    "defaultServices": [
+      {
+        "name": "Filtre Kahve",
+        "description": "Günlük taze çekilmiş özel harman kahveler"
+      },
+      {
+        "name": "Espresso Çeşitleri",
+        "description": "Latte, cappuccino, americano ve daha fazlası"
+      },
+      {
+        "name": "Soğuk İçecekler",
+        "description": "Ice latte, cold brew, frappe çeşitleri"
+      },
+      {
+        "name": "Taze Pastane",
+        "description": "Günlük yapılan taze pasta ve tatlılar"
+      },
+      {
+        "name": "Kahvaltı Menüsü",
+        "description": "Hafif atıştırmalıklar ve kahvaltı seçenekleri"
+      },
+      {
+        "name": "Özel Harmanlar",
+        "description": "Dünya kahvelerinden seçme özel harmanlar"
+      }
+    ],
+    "defaultGallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800",
+        "alt": "Kahve hazırlama"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
+        "alt": "Latte art"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800",
+        "alt": "Kafe ortamı"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800",
+        "alt": "Kahve çekirdekleri"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800",
+        "alt": "Sıcak kahve"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800",
+        "alt": "Pastane ürünleri"
+      }
+    ],
+    "defaultHeroImage": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1920&q=80",
+    "visualStyle": {
+      "borderRadius": "12px",
+      "cardShadow": "0 8px 32px rgba(139, 69, 19, 0.15)",
+      "buttonStyle": "rounded",
+      "sectionSpacing": "100px"
+    }
+  },
+  "htmlBlocks": {
+    "services": "\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Filtre Kahve</h3>\n                        <p>Günlük taze çekilmiş özel harman kahveler</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Espresso Çeşitleri</h3>\n                        <p>Latte, cappuccino, americano ve daha fazlası</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Soğuk İçecekler</h3>\n                        <p>Ice latte, cold brew, frappe çeşitleri</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Taze Pastane</h3>\n                        <p>Günlük yapılan taze pasta ve tatlılar</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Kahvaltı Menüsü</h3>\n                        <p>Hafif atıştırmalıklar ve kahvaltı seçenekleri</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Özel Harmanlar</h3>\n                        <p>Dünya kahvelerinden seçme özel harmanlar</p>\n                    </div>\n                </div>\n            ",
+    "gallery": "\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800\" alt=\"Kahve hazırlama\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800\" alt=\"Latte art\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800\" alt=\"Kafe ortamı\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800\" alt=\"Kahve çekirdekleri\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800\" alt=\"Sıcak kahve\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800\" alt=\"Pastane ürünleri\" loading=\"lazy\">\n                </div>\n            ",
+    "workingHours": "\n            <div class=\"contact-item\">\n                <div class=\"contact-icon\"><svg class=\"contact-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg></div>\n                <div class=\"contact-details\">\n                    <h4>Çalışma Saatleri</h4>\n                    <p>09:00-18:00</p>\n                </div>\n            </div>\n        "
+  },
+  "slug": "deneme",
+  "edits": {
+    "texts": {
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(3)>p:nth-child(1)": "sdssaçdü",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(3)>div:nth-child(1)>h1:nth-child(1)": "Deneme"
+    },
+    "images": [],
+    "dimensions": []
+  }
+}

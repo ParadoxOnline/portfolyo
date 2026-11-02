@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>\n
+        <script>
+          // DEMO MODE MOCK INJECTED BY PORTFOLIO SYNC
+          console.log("[Demo Mode] Initializing Service Mocking...");
+          const originalFetch = window.fetch;
+          window.fetch = async function(...args) {
+            const url = typeof args[0] === 'string' ? args[0] : args[0].url;
+            
+            // Eğer bir API isteği ise, sahte (mock) veri döndür.
+            if (url.includes('/api/') || url.includes('localhost') || url.includes('.php')) {
+              console.log("[Demo Mode] Intercepted API request to: ", url);
+              
+              // Projeye göre otomatik sahte yanıtlar:
+              let mockData = { success: true, status: 'success', message: 'This is mocked data for the demo.' };
+              
+              if (url.includes('briefing/generate')) {
+                 mockData = {
+                   success: true,
+                   markdown: "### 🤖 AI Executive Briefing (Demo)\n\n**Global Security Status:** Operational\n\n- **Cyber Threats:** Blocked 142 malicious payloads.\n- **OSINT:** 3 critical mentions analyzed in dark web forums.\n- **Conflicts:** Monitoring 2 high-risk zones.\n\n*Note: This is simulated offline data since the portfolio is in static demo mode.*"
+                 };
+              }
+              else if (url.includes('collect') || url.includes('process') || url.includes('analyze')) {
+                 mockData = {
+                   success: true,
+                   results: {
+                     new: 42,
+                     updated: 12,
+                     analyzed: 142,
+                     events_created: 3,
+                     stored: 15,
+                     osintResults: { new: 42 },
+                     disinfoResults: { analyzed: 142 },
+                     conflictResults: { events_created: 3 },
+                     cyberResults: { stored: 15 }
+                   },
+                   message: "Veri toplama ve analiz tamamlandı (Demo)"
+                 };
+              }
+              else if (url.includes('threat') || url.includes('osint') || url.includes('items')) {
+                 mockData = { 
+                   success: true,
+                   items: [
+                     { id: 1, title: "DarkWeb Forum Sızıntısı", title_tr: "Kritik Sızıntı Tespit Edildi", risk_score: 95, sentiment_score: -0.8, collected_at: new Date().toISOString(), source: "DarkWeb", detected_language: "EN" },
+                     { id: 2, title: "DDoS Attack Planned", title_tr: "DDoS Planlaması", risk_score: 80, sentiment_score: -0.5, collected_at: new Date().toISOString(), source: "Telegram", detected_language: "RU" }
+                   ],
+                   threats: [
+                     { id: 1, type: "DDoS", source: "192.168.1.1", status: "Blocked" },
+                     { id: 2, type: "Malware", source: "DarkWeb Node", status: "Analyzed" }
+                   ],
+                   data: [],
+                   systemHealth: "Optimal",
+                   activeNodes: 142
+                 };
+              }
+              else if (url.includes('dashboard') || url.includes('stats')) {
+                 mockData = {
+                    success: true,
+                    stats: { total: 100, active: 50 },
+                    osint_count: 342,
+                    cyber_count: 120,
+                    disinfo_count: 45
+                 };
+              }
+              else if (url.includes('graph')) {
+                 mockData = {
+                    success: true,
+                    nodes: [
+                      { id: 1, label: "OSINT Hub", group: "core", title: "Central Command" },
+                      { id: 2, label: "DDoS Activity", group: "type", title: "Cyber Threat" },
+                      { id: 3, label: "DarkWeb Forum", group: "source", title: "Source Node" },
+                      { id: 4, label: "Malware Payload", group: "keyword", title: "Suspicious Payload" },
+                      { id: 5, label: "Botnet C&C", group: "source", title: "Command Server" },
+                      { id: 6, label: "192.168.x.x", group: "default", title: "Attacker IP" }
+                    ],
+                    edges: [
+                      { from: 1, to: 2 },
+                      { from: 1, to: 3 },
+                      { from: 2, to: 6 },
+                      { from: 3, to: 4 },
+                      { from: 3, to: 5 },
+                      { from: 5, to: 6, dashes: true }
+                    ]
+                 };
+              }
+              
+              return new Response(JSON.stringify(mockData), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' }
+              });
+            }
+            // Normal (statik dosya) istekleri için orijinal fetch'i kullan
+            return originalFetch.apply(this, args);
+          };
+        </script>
+      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Intelligence Platform | Savunma İstihbarat Merkezi</title>
+    <meta name="description"
+        content="Real-time OSINT intelligence gathering, disinformation detection, conflict tracking, and cyber threat monitoring platform.">
+
+    <!-- Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Leaflet Heat plugin -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/dashboard.css?v=2">
+    <style>
+        /* Cyber Attack Pew-Pew Map Animations */
+        .attack-arc {
+            stroke-dasharray: 6 12;
+            animation: attackFlow 0.5s linear infinite;
+        }
+
+        @keyframes attackFlow {
+            from {
+                stroke-dashoffset: 0;
+            }
+
+            to {
+                stroke-dashoffset: -18;
+            }
+        }
+
+        .map-target-pulse {
+            background: #00f2fe;
+            border-radius: 50%;
+            animation: pulseNode 2s infinite;
+            box-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe;
+        }
+
+        @keyframes pulseNode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                    </svg>
+                </div>
+                <span class="logo-text">OSINT<span class="accent">Platform</span></span>
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item active" data-section="overview">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    <span>Genel Bakış</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="osint">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <span>OSINT İstihbarat</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="disinfo">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    <span>Dezenformasyon</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="conflicts">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                        <line x1="12" y1="22" x2="12" y2="15.5" />
+                        <polyline points="22 8.5 12 15.5 2 8.5" />
+                    </svg>
+                    <span>Çatışma Haritası</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="cyber">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="8" rx="2" />
+                        <rect x="2" y="14" width="20" height="8" rx="2" />
+                        <line x1="6" y1="6" x2="6.01" y2="6" />
+                        <line x1="6" y1="18" x2="6.01" y2="18" />
+                    </svg>
+                    <span>Siber Tehdit</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="alerts">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    <span>Bildirimler</span>
+                    <span class="badge" id="alertBadge" style="display:none">0</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="search">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Gelişmiş Arama</span>
+                </a>
+            </li>
+            <li class="nav-item" data-section="network">
+                <a href="#" class="nav-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    <span>Bağlantı Ağ Haritası</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <button class="btn-collect" id="btnCollectAll" title="Tüm verileri topla">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="1 4 1 10 7 10" />
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                </svg>
+                <span>Veri Topla</span>
+            </button>
+            <div class="sidebar-actions">
+                <button class="btn-icon" onclick="downloadReport('pdf')" title="PDF Rapor İndir">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                    </svg>
+                </button>
+                <button class="btn-icon" onclick="downloadReport('csv')" title="CSV İndir">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="btn-menu" id="btnToggleSidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <h1 class="page-title" id="pageTitle">Genel Bakış</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="status-indicator" id="statusIndicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Aktif</span>
+                </div>
+                <div class="clock" id="clock"></div>
+            </div>
+        </header>
+
+        <!-- ═══ OVERVIEW SECTION ═══ -->
+        <section class="section active" id="sectionOverview">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin:0; font-size: 1.5rem;">Sistem Durumu</h2>
+                <button class="btn-primary" onclick="generateExecutiveBriefing()"
+                    style="background: #8b5cf6; border-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"
+                        style="margin-right: 8px;">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    Yapay Zeka Yönetici Özeti Hazırla
+                </button>
+            </div>
+
+            <div id="aiBriefingCard" class="chart-card wide"
+                style="display: none; margin-bottom: 25px; border-left: 4px solid #8b5cf6;">
+                <h3
+                    style="display: flex; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-top: 0; margin-bottom: 15px; color: #e2e8f0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" width="22" height="22"
+                        style="margin-right: 10px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Günlük İstihbarat Yönetici Özeti (AI)
+                </h3>
+                <div id="aiBriefingContent"
+                    style="line-height: 1.6; font-size: 15px; color: #cbd5e1; white-space: pre-wrap; margin-bottom: 15px;">
+                </div>
+                <div id="aiBriefingActions"
+                    style="display: none; justify-content: flex-end; padding-top: 10px; border-top: 1px solid var(--border);">
+                    <button class="btn-secondary" onclick="exportBriefingPDF()"
+                        style="border-color: #8b5cf6; color: #8b5cf6;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"
+                            height="16" style="margin-right: 8px;">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        PDF Olarak İndir
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card osint">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statOsintTotal">0</span>
+                        <span class="stat-label">OSINT Veri</span>
+                    </div>
+                    <span class="stat-sub" id="statOsintToday">Bugün: 0</span>
+                </div>
+                <div class="stat-card risk">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statHighRisk">0</span>
+                        <span class="stat-label">Yüksek Risk</span>
+                    </div>
+                    <span class="stat-sub" id="statPropaganda">Propaganda: 0</span>
+                </div>
+                <div class="stat-card conflict">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statConflicts">0</span>
+                        <span class="stat-label">Çatışma Olayı</span>
+                    </div>
+                    <span class="stat-sub" id="statConflictCountries">Ülke: 0</span>
+                </div>
+                <div class="stat-card cyber">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="8" rx="2" />
+                            <rect x="2" y="14" width="20" height="8" rx="2" />
+                            <line x1="6" y1="6" x2="6.01" y2="6" />
+                            <line x1="6" y1="18" x2="6.01" y2="18" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statCyber">0</span>
+                        <span class="stat-label">Siber Tehdit</span>
+                    </div>
+                    <span class="stat-sub" id="statCyberToday">Bugün: 0</span>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card wide">
+                    <h3>İstihbarat Toplama Trendi (7 Gün)</h3>
+                    <canvas id="trendChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Kaynak Dağılımı</h3>
+                    <canvas id="sourceChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Risk Dağılımı</h3>
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Quick Map Preview -->
+            <div class="map-preview">
+                <h3>Dünya Durumu</h3>
+                <div id="overviewMap" class="map-container"></div>
+            </div>
+        </section>
+
+        <!-- ═══ OSINT SECTION ═══ -->
+        <section class="section" id="sectionOsint">
+            <div class="section-header">
+                <h2>OSINT İstihbarat Verileri</h2>
+                <div class="section-controls">
+                    <select id="osintSourceFilter" class="filter-select">
+                        <option value="">Tüm Kaynaklar</option>
+                        <option value="rss">RSS</option>
+                        <option value="newsapi">NewsAPI</option>
+                        <option value="reddit">Reddit</option>
+                        <option value="scraper">Web Scraper</option>
+                    </select>
+                    <input type="text" id="osintKeywordFilter" class="filter-input" placeholder="Anahtar kelime ara...">
+                    <button class="btn-primary" onclick="triggerOsintCollection()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"
+                            height="16">
+                            <polyline points="1 4 1 10 7 10" />
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                        </svg>
+                        Topla
+                    </button>
+                </div>
+            </div>
+            <div class="data-table-wrapper">
+                <table class="data-table" id="osintTable">
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Kaynak</th>
+                            <th>Başlık</th>
+                            <th>Duygu</th>
+                            <th>Tarih</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="osintTableBody">
+                        <tr>
+                            <td colspan="6" class="loading">Veri yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ═══ DISINFO SECTION ═══ -->
+        <section class="section" id="sectionDisinfo">
+            <div class="section-header">
+                <h2>Dezenformasyon / Propaganda Tespiti</h2>
+                <div class="section-controls">
+                    <select id="disinfoRiskFilter" class="filter-select">
+                        <option value="">Tüm Seviyeler</option>
+                        <option value="critical">Kritik</option>
+                        <option value="high">Yüksek</option>
+                        <option value="medium">Orta</option>
+                        <option value="low">Düşük</option>
+                    </select>
+                    <button class="btn-primary" onclick="triggerDisinfoAnalysis()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"
+                            height="16">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                        Analiz Et
+                    </button>
+                </div>
+            </div>
+
+            <div class="disinfo-stats-bar">
+                <div class="disinfo-stat">
+                    <span class="disinfo-stat-value" id="disinfoTotal">0</span>
+                    <span class="disinfo-stat-label">Analiz Edilen</span>
+                </div>
+                <div class="disinfo-stat warning">
+                    <span class="disinfo-stat-value" id="disinfoPropaganda">0</span>
+                    <span class="disinfo-stat-label">Propaganda</span>
+                </div>
+                <div class="disinfo-stat danger">
+                    <span class="disinfo-stat-value" id="disinfoBots">0</span>
+                    <span class="disinfo-stat-label">Bot Hesap</span>
+                </div>
+                <div class="disinfo-stat info">
+                    <span class="disinfo-stat-value" id="disinfoCoord">0</span>
+                    <span class="disinfo-stat-label">Koordineli</span>
+                </div>
+            </div>
+
+            <!-- Custom text analysis -->
+            <div class="analyze-box">
+                <h4>Metin Analizi</h4>
+                <textarea id="analyzeText" placeholder="Analiz edilecek metni buraya yazın..." rows="3"></textarea>
+                <button class="btn-primary" onclick="analyzeCustomText()">Analiz Et</button>
+                <div id="analysisResult" class="analysis-result" style="display:none"></div>
+            </div>
+
+            <div class="data-table-wrapper">
+                <table class="data-table" id="disinfoTable">
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Seviye</th>
+                            <th>İçerik</th>
+                            <th>Propaganda</th>
+                            <th>Bot</th>
+                            <th>Sebepler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="disinfoTableBody">
+                        <tr>
+                            <td colspan="6" class="loading">Veri yükleniyor...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ═══ CONFLICTS SECTION ═══ -->
+        <section class="section" id="sectionConflicts">
+            <div class="section-header">
+                <h2>Küresel Çatışma Haritası</h2>
+                <div class="section-controls">
+                    <select id="conflictTypeFilter" class="filter-select">
+                        <option value="">Tüm Türler</option>
+                        <option value="armed_conflict">Silahlı Çatışma</option>
+                        <option value="terrorism">Terör</option>
+                        <option value="air_strike">Hava Saldırısı</option>
+                        <option value="military_movement">Askeri Hareket</option>
+                        <option value="protest">Protesto</option>
+                        <option value="political_unrest">Politik Kriz</option>
+                        <option value="humanitarian_crisis">İnsani Kriz</option>
+                    </select>
+                    <button class="btn-secondary" id="btnConflictGeoFence" onclick="toggleGeoFence('conflict')"
+                        style="border-color:#64748b;">🎯 Radar (Aç)</button>
+                    <button class="btn-primary" onclick="triggerConflictProcess()">Güncelle</button>
+                </div>
+            </div>
+            <div id="conflictMap" class="map-container large"></div>
+
+            <div class="charts-grid">
+                <div class="chart-card wide">
+                    <h3>Olay Zaman Serisi</h3>
+                    <canvas id="conflictTimelineChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Olay Türleri</h3>
+                    <canvas id="conflictTypeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="hotspots-grid" id="hotspotsGrid">
+                <!-- Filled by JS -->
+            </div>
+        </section>
+
+        <!-- ═══ CYBER SECTION ═══ -->
+        <section class="section" id="sectionCyber">
+            <div class="section-header">
+                <h2>Siber Tehdit İstihbarat Haritası</h2>
+                <div class="section-controls">
+                    <select id="cyberTypeFilter" class="filter-select">
+                        <option value="">Tüm Türler</option>
+                        <option value="malware">Malware</option>
+                        <option value="phishing">Phishing</option>
+                        <option value="botnet">Botnet</option>
+                        <option value="ransomware">Ransomware</option>
+                        <option value="ddos">DDoS</option>
+                        <option value="brute_force">Brute Force</option>
+                        <option value="exploit">Exploit</option>
+                    </select>
+                    <select id="cyberCountryFilter" class="filter-select">
+                        <option value="">Tüm Ülkeler</option>
+                    </select>
+                    <button class="btn-secondary" id="btnCyberGeoFence" onclick="toggleGeoFence('cyber')"
+                        style="border-color:#64748b;">🎯 Radar (Aç)</button>
+                    <button class="btn-primary" onclick="triggerCyberCollection()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"
+                            height="16">
+                            <polyline points="1 4 1 10 7 10" />
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                        </svg>
+                        Topla
+                    </button>
+                </div>
+            </div>
+            <div id="cyberMap" class="map-container large"></div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>En Çok Saldıran Ülkeler</h3>
+                    <canvas id="cyberCountryChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Saldırı Türleri</h3>
+                    <canvas id="cyberAttackTypeChart"></canvas>
+                </div>
+                <div class="chart-card wide">
+                    <h3>Siber Tehdit Trendi (7 Gün)</h3>
+                    <canvas id="cyberTrendChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ALERTS SECTION ═══ -->
+        <section class="section" id="sectionAlerts">
+            <div class="section-header">
+                <h2>Uyarılar ve Bildirimler</h2>
+                <div class="section-controls">
+                    <button class="btn-secondary" onclick="markAllRead()">Tümünü Okundu İşaretle</button>
+                </div>
+            </div>
+            <div class="alerts-list" id="alertsList">
+                <div class="loading">Uyarılar yükleniyor...</div>
+            </div>
+        </section>
+
+        <!-- ═══ SEARCH SECTION ═══ -->
+        <section class="section" id="sectionSearch">
+            <div class="section-header">
+                <h2>Gelişmiş FTS Arama</h2>
+                <p style="color:var(--text-muted); margin-top:8px; font-size:13px">OSINT İstihbaratları içinde
+                    milisaniye hızında Full-Text Search motoru ile arama yapın.</p>
+            </div>
+
+            <div class="card" style="margin-bottom: 20px;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="advancedSearchInput"
+                        style="flex: 1; padding: 12px; background:var(--bg-primary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:var(--radius-md); font-size: 15px;"
+                        placeholder="Anahtar kelime, kişi, yer, örgüt ara (örn: 'füze', 'propaganda AND rusya')..."
+                        onkeypress="if(event.key === 'Enter') executeAdvancedSearch()">
+                    <button class="btn-primary" style="padding: 12px 24px;" onclick="executeAdvancedSearch()">Hızlı
+                        Ara</button>
+                </div>
+                <div id="searchStats"
+                    style="margin-top: 15px; font-size: 13px; color: var(--accent-cyan); display: none;">
+                    <span id="searchResultCount">0</span> sonuç bulundu.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th width="15%">Kaynak</th>
+                                <th width="50%">Eşleşen Metin (FTS Snippet)</th>
+                                <th width="15%">Risk & Duygu</th>
+                                <th width="10%">Tarih</th>
+                                <th width="10%">Aksiyon</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchResultsTable">
+                            <tr>
+                                <td colspan="5" style="text-align:center; padding: 40px; color: var(--text-muted);">
+                                    Arama yapmak için yukarıdaki kutuyu kullanın.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ NETWORK GRAPH SECTION ═══ -->
+        <section class="section" id="sectionNetwork">
+            <div class="section-header">
+                <h2>Bağlantı Ağ Haritası (Link Analysis)</h2>
+                <p style="color:var(--text-muted); margin-top:8px; font-size:13px">Olaylar, kaynaklar ve varlıklar arası
+                    organik ilişkiler ağı.</p>
+            </div>
+            <div class="card" style="height: 700px; padding: 0; overflow: hidden; position: relative;">
+                <div id="loadingGraph"
+                    style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+                    <div class="spinner"
+                        style="width:40px;height:40px;border-width:3px;margin:auto;margin-bottom:10px;"></div>
+                    <span style="color:var(--text-muted)">Ağ oluşturuluyor...</span>
+                </div>
+                <div id="visNetworkContainer" style="width: 100%; height: 100%;"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display:none">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <span>Veriler Toplanıyor...</span>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="detail-modal-overlay" id="detailModal" style="display:none" onclick="closeDetailModal(event)">
+        <div class="detail-modal">
+            <div class="detail-modal-header">
+                <h3 id="detailModalTitle">Detay</h3>
+                <button class="detail-modal-close"
+                    onclick="document.getElementById('detailModal').style.display='none'">&times;</button>
+            </div>
+            <div class="detail-modal-body" id="detailModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/app.js?v=2"></script>
+    <script src="js/maps.js?v=2"></script>
+    <script src="js/charts.js?v=2"></script>
+    <script src="js/reports.js?v=2"></script>
+</body>
+
+</html>

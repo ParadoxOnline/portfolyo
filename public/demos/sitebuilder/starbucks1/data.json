@@ -1,0 +1,291 @@
+{
+  "sectorId": "cafe",
+  "businessName": "StarBucks1",
+  "phone": "05510235648",
+  "whatsapp": "05510235648",
+  "address": "5307 Sokak no:35 1/A İzmir, Ballıkuyu",
+  "workingHours": "09:00-18:00",
+  "primaryColor": "#7d1587",
+  "tagline": "Eşsiz Kahve Deneyimi",
+  "heroImage": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1920&q=80",
+  "description": "Özenle seçilmiş çekirdeklerden, ustaca hazırlanmış kahveler.",
+  "aboutText": "Kahve tutkusuyla yola çıktığımız günden bu yana, en kaliteli çekirdekleri özenle seçiyor ve her fincanda mükemmel lezzeti sunuyoruz. Sıcak atmosferimiz ve uzman baristalarımızla, size unutulmaz bir kahve deneyimi yaşatmak için buradayız.",
+  "services": [
+    {
+      "name": "Filtre Kahve",
+      "description": "Günlük taze çekilmiş özel harman kahveler"
+    },
+    {
+      "name": "Espresso Çeşitleri",
+      "description": "Latte, cappuccino, americano ve daha fazlası"
+    },
+    {
+      "name": "Soğuk İçecekler",
+      "description": "Ice latte, cold brew, frappe çeşitleri"
+    },
+    {
+      "name": "Taze Pastane",
+      "description": "Günlük yapılan taze pasta ve tatlılar"
+    },
+    {
+      "name": "Kahvaltı Menüsü",
+      "description": "Hafif atıştırmalıklar ve kahvaltı seçenekleri"
+    },
+    {
+      "name": "Özel Harmanlar",
+      "description": "Dünya kahvelerinden seçme özel harmanlar"
+    }
+  ],
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800",
+      "alt": "Kahve hazırlama"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
+      "alt": "Latte art"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800",
+      "alt": "Kafe ortamı"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800",
+      "alt": "Kahve çekirdekleri"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800",
+      "alt": "Sıcak kahve"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800",
+      "alt": "Pastane ürünleri"
+    }
+  ],
+  "layoutConfig": {
+    "hero": "hero-17",
+    "services": "services-2",
+    "gallery": "gallery-9",
+    "about": "about-1",
+    "contact": "contact-2",
+    "header": "header-1",
+    "footer": "footer-1",
+    "animations": true
+  },
+  "sector": {
+    "id": "cafe",
+    "name": "Kafe & Kahve Dükkanı",
+    "colors": {
+      "primary": "#7d1587",
+      "secondary": "#2a5eb2",
+      "accent": "#ffffff",
+      "background": "#688d85",
+      "text": "#000000",
+      "textLight": "#5C4033"
+    },
+    "fonts": {
+      "heading": "'Inter', sans-serif",
+      "body": "'Inter', sans-serif"
+    },
+    "heroStyle": "centered",
+    "heroOverlay": "rgba(44, 24, 16, 0.6)",
+    "sectionOrder": [
+      "hero",
+      "about",
+      "services",
+      "gallery",
+      "contact"
+    ],
+    "defaultTagline": "Eşsiz Kahve Deneyimi",
+    "defaultDescription": "Özenle seçilmiş çekirdeklerden, ustaca hazırlanmış kahveler.",
+    "defaultAbout": "Kahve tutkusuyla yola çıktığımız günden bu yana, en kaliteli çekirdekleri özenle seçiyor ve her fincanda mükemmel lezzeti sunuyoruz. Sıcak atmosferimiz ve uzman baristalarımızla, size unutulmaz bir kahve deneyimi yaşatmak için buradayız.",
+    "serviceIcon": "coffee",
+    "defaultServices": [
+      {
+        "name": "Filtre Kahve",
+        "description": "Günlük taze çekilmiş özel harman kahveler"
+      },
+      {
+        "name": "Espresso Çeşitleri",
+        "description": "Latte, cappuccino, americano ve daha fazlası"
+      },
+      {
+        "name": "Soğuk İçecekler",
+        "description": "Ice latte, cold brew, frappe çeşitleri"
+      },
+      {
+        "name": "Taze Pastane",
+        "description": "Günlük yapılan taze pasta ve tatlılar"
+      },
+      {
+        "name": "Kahvaltı Menüsü",
+        "description": "Hafif atıştırmalıklar ve kahvaltı seçenekleri"
+      },
+      {
+        "name": "Özel Harmanlar",
+        "description": "Dünya kahvelerinden seçme özel harmanlar"
+      }
+    ],
+    "defaultGallery": [
+      {
+        "url": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800",
+        "alt": "Kahve hazırlama"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800",
+        "alt": "Latte art"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800",
+        "alt": "Kafe ortamı"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800",
+        "alt": "Kahve çekirdekleri"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800",
+        "alt": "Sıcak kahve"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800",
+        "alt": "Pastane ürünleri"
+      }
+    ],
+    "defaultHeroImage": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1920&q=80",
+    "visualStyle": {
+      "borderRadius": "12px",
+      "cardShadow": "0 8px 32px rgba(139, 69, 19, 0.15)",
+      "buttonStyle": "rounded",
+      "sectionSpacing": "100px"
+    }
+  },
+  "htmlBlocks": {
+    "services": "\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Filtre Kahve</h3>\n                        <p>Günlük taze çekilmiş özel harman kahveler</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Espresso Çeşitleri</h3>\n                        <p>Latte, cappuccino, americano ve daha fazlası</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Soğuk İçecekler</h3>\n                        <p>Ice latte, cold brew, frappe çeşitleri</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Taze Pastane</h3>\n                        <p>Günlük yapılan taze pasta ve tatlılar</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Kahvaltı Menüsü</h3>\n                        <p>Hafif atıştırmalıklar ve kahvaltı seçenekleri</p>\n                    </div>\n                </div>\n            \n\n                <div class=\"service-card\">\n                    <div class=\"service-icon\"><svg class=\"service-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 8h1a4 4 0 1 1 0 8h-1\"/><path d=\"M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z\"/><line x1=\"6\" x2=\"6\" y1=\"2\" y2=\"4\"/><line x1=\"10\" x2=\"10\" y1=\"2\" y2=\"4\"/><line x1=\"14\" x2=\"14\" y1=\"2\" y2=\"4\"/></svg></div>\n                    <div class=\"service-content\">\n                        <h3>Özel Harmanlar</h3>\n                        <p>Dünya kahvelerinden seçme özel harmanlar</p>\n                    </div>\n                </div>\n            ",
+    "gallery": "\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800\" alt=\"Kahve hazırlama\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800\" alt=\"Latte art\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800\" alt=\"Kafe ortamı\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800\" alt=\"Kahve çekirdekleri\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800\" alt=\"Sıcak kahve\" loading=\"lazy\">\n                </div>\n            \n\n                <div class=\"gallery-item\">\n                    <img src=\"https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=800\" alt=\"Pastane ürünleri\" loading=\"lazy\">\n                </div>\n            ",
+    "workingHours": "\n            <div class=\"contact-item\">\n                <div class=\"contact-icon\"><svg class=\"contact-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg></div>\n                <div class=\"contact-details\">\n                    <h4>Çalışma Saatleri</h4>\n                    <p>09:00-18:00</p>\n                </div>\n            </div>\n        "
+  },
+  "slug": "starbucks1",
+  "edits": {
+    "texts": {
+      "body>div:nth-child(12)>div:nth-child(1)>h3:nth-child(1)": "Site Editörüne Giriş",
+      "body>div:nth-child(6)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>h2:nth-child(1)": "Çalışmalarımız",
+      "#navMenu>ul:nth-child(1)>li:nth-child(2)": "<a href=\"hakkimizda.html\" class=\"{{activeAbout}} editable-text\" contenteditable=\"true\">Hakkımızda</a>",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>h1:nth-child(1)": "StarBucks1",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)": "\n                <span class=\"stat-number counted editable-text\" data-count=\"500\" contenteditable=\"true\">500</span>\n                <span class=\"stat-label editable-text\" contenteditable=\"true\">Mutlu Müşteri</span>\n            ",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)": "\n                <span class=\"stat-number counted editable-text\" data-count=\"5\" contenteditable=\"true\">5</span>\n                <span class=\"stat-label editable-text\" contenteditable=\"true\">Yıllık Deneyim</span>\n            ",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(3)": "\n                <span class=\"stat-number counted editable-text\" data-count=\"1000\" contenteditable=\"true\">1000</span>\n                <span class=\"stat-label editable-text\" contenteditable=\"true\">Tamamlanan Proje</span>\n            ",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(4)": "\n                <span class=\"stat-number counted editable-text\" data-count=\"4.9\" contenteditable=\"true\">4.9</span>\n                <span class=\"stat-label editable-text\" contenteditable=\"true\">Ortalama Puan</span>\n            ",
+      "#wa-popup>div:nth-child(2)>div:nth-child(1)": "\n                    <p contenteditable=\"true\" class=\"editable-text\">Deneme</p>\n                    <div class=\"wa-time-row\">\n                        <span class=\"wa-time editable-text\" contenteditable=\"true\">23:02</span>\n                        <div class=\"wa-ticks\">\n                            <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                                <path d=\"M7 11L12 16L22 6\"></path>\n                                <path d=\"M2 11L7 16L9.5 13.5\"></path>\n                            </svg>\n                        </div>\n                    </div>\n                ",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>h2:nth-child(1)": "sunmadığımız<br><span class=\"text-gradient editable-text\" contenteditable=\"true\">Çözümler</span>",
+      "#navbar>div:nth-child(1)>a:nth-child(1)": "\n            <span class=\"logo-text editable-text\" contenteditable=\"true\">StarBucks</span>\n        ",
+      "#navbar>div:nth-child(1)>a:nth-child(1)>span:nth-child(1)": "StarBucks",
+      "#navToggle>span:nth-child(1)": "",
+      "#navToggle>span:nth-child(2)": "",
+      "#navToggle>span:nth-child(3)": "",
+      "#navMenu>ul:nth-child(1)>li:nth-child(1)": "<a href=\"index.html\" class=\"{{activeHome}} editable-text\" contenteditable=\"true\">Ana Sayfa</a>",
+      "#navMenu>ul:nth-child(1)>li:nth-child(1)>a:nth-child(1)": "Ana Sayfa",
+      "#navMenu>ul:nth-child(1)>li:nth-child(2)>a:nth-child(1)": "Hakkımızda",
+      "#navMenu>ul:nth-child(1)>li:nth-child(3)": "<a href=\"hizmetler.html\" class=\"{{activeServices}} editable-text\" contenteditable=\"true\">Hizmetler</a>",
+      "#navMenu>ul:nth-child(1)>li:nth-child(3)>a:nth-child(1)": "Hizmetler",
+      "#navMenu>ul:nth-child(1)>li:nth-child(4)": "<a href=\"galeri.html\" class=\"{{activeGallery}} editable-text\" contenteditable=\"true\">Galeri</a>",
+      "#navMenu>ul:nth-child(1)>li:nth-child(4)>a:nth-child(1)": "Galeri",
+      "#navMenu>ul:nth-child(1)>li:nth-child(5)": "<a href=\"iletisim.html\" class=\"{{activeContact}} editable-text\" contenteditable=\"true\">İletişim</a>",
+      "#navMenu>ul:nth-child(1)>li:nth-child(5)>a:nth-child(1)": "İletişim",
+      "#navMenu>a:nth-child(1)": "\n                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                    <path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z\"></path>\n                </svg>\n                <span contenteditable=\"true\" class=\"editable-text\">Ara</span>\n            ",
+      "#navMenu>a:nth-child(1)>span:nth-child(1)": "Ara",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>h1:nth-child(1)": "StarBucks",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>p:nth-child(1)": "Eşsiz Kahve Deneyimi",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>a:nth-child(1)": "Randevu Al",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)": "Hizmetlerimiz",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>h2:nth-child(1)": "Kalite ve Tutku ile<br><span class=\"text-gradient editable-text\" contenteditable=\"true\">Hizmetinizdeyiz</span>\n                ",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>h2:nth-child(1)>span:nth-child(1)": "Hizmetinizdeyiz",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>p:nth-child(1)": "Kahve tutkusuyla yola çıktığımız günden bu yana, en kaliteli çekirdekleri özenle seçiyor ve her fincanda mükemmel lezzeti sunuyoruz. Sıcak atmosferimiz ve uzman baristalarımızla, size unutulmaz bir kahve deneyimi yaşatmak için buradayız.",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)>span:nth-child(1)": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                                    <path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path>\n                                    <polyline points=\"22 4 12 14.01 9 11.01\"></polyline>\n                                </svg>",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(1)>span:nth-child(1)": "Kalite Garantisi",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(2)>div:nth-child(1)>span:nth-child(1)": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                                    <path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path>\n                                    <polyline points=\"22 4 12 14.01 9 11.01\"></polyline>\n                                </svg>",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(2)>span:nth-child(1)": "Uzman Ekip",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(3)>div:nth-child(1)>span:nth-child(1)": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                                    <path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path>\n                                    <polyline points=\"22 4 12 14.01 9 11.01\"></polyline>\n                                </svg>",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(3)>span:nth-child(1)": "Müşteri Memnuniyeti",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span:nth-child(1)": "5+",
+      "body>div:nth-child(4)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span:nth-child(2)": "Yıllık Deneyim",
+      "body>div:nth-child(4)>section:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)": "Vizyonumuz",
+      "body>div:nth-child(4)>section:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>h2:nth-child(1)": "Geleceğe <span class=\"text-gradient editable-text\" contenteditable=\"true\">Bakmıyoz</span>",
+      "body>div:nth-child(4)>section:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>h2:nth-child(1)>span:nth-child(1)": "Bakmıyoz",
+      "body>div:nth-child(4)>section:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>p:nth-child(1)": "Kahve tutkusuyla yola çıktığımız günden bu yana, en kaliteli çekirdekleri özenle seçiyor ve her fincanda mükemmel lezzeti sunuyoruz. Sıcak atmosferimiz ve uzman baristalarımızla, size unutulmaz bir kahve deneyimi yaşatmak için buradayız.",
+      "body>div:nth-child(4)>section:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>p:nth-child(2)": "Sektördeki yenilikleri takip ederek, sürekli kendimizi geliştiriyor ve müşterilerimize en modern çözümleri sunuyoruz. Sürdürülebilirlik ve kalite, iş yapış biçimimizin merkezinde yer alıyor.",
+      "body>div:nth-child(4)>section:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>a:nth-child(1)": "Bize ulaşmayın",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)": "Hizmetlerimiz",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>h2:nth-child(1)>span:nth-child(1)": "Hizmetler",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>h3:nth-child(1)": "Filtre Kahve",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>p:nth-child(1)": "Günlük taze çekilmiş özel harman kahveler",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>h3:nth-child(1)": "Espresso Çeşitleri",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>p:nth-child(1)": "Latte, cappuccino, americano ve daha fazlası",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>h3:nth-child(1)": "Soğuk İçecekler",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>p:nth-child(1)": "Ice latte, cold brew, frappe çeşitleri",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(4)>div:nth-child(2)>h3:nth-child(1)": "Taze Pastane",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(4)>div:nth-child(2)>p:nth-child(1)": "Günlük yapılan taze pasta ve tatlılar",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(5)>div:nth-child(2)>h3:nth-child(1)": "Kahvaltı Menüsü",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(5)>div:nth-child(2)>p:nth-child(1)": "Hafif atıştırmalıklar ve kahvaltı seçenekleri",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(6)>div:nth-child(2)>h3:nth-child(1)": "Özel Harmanlar",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(6)>div:nth-child(2)>p:nth-child(1)": "Dünya kahvelerinden seçme özel harmanlar",
+      "body>div:nth-child(6)>section:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)": "Galeri",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>a:nth-child(1)": "\n                    <span class=\"logo-text editable-text\" contenteditable=\"true\">StarBucks1</span>\n                ",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>a:nth-child(1)>span:nth-child(1)": "StarBucks1",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>p:nth-child(1)": "Eşsiz Kahve Deneyimi",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>a:nth-child(1)": "\n                        <svg viewBox=\"0 0 24 24\" fill=\"currentColor\">\n                            <path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"></path>\n                        </svg>\n                    ",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>h4:nth-child(1)": "Hızlı Linkler",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(1)": "<a href=\"index.html\" contenteditable=\"true\" class=\"editable-text\">Ana Sayfa</a>",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(1)>a:nth-child(1)": "Ana Sayfa",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(2)": "<a href=\"hakkimizda.html\" contenteditable=\"true\" class=\"editable-text\">Hakkımızda</a>",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(2)>a:nth-child(1)": "Hakkımızda",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(3)": "<a href=\"hizmetler.html\" contenteditable=\"true\" class=\"editable-text\">Hizmetler</a>",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(3)>a:nth-child(1)": "Hizmetler",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(4)": "<a href=\"galeri.html\" contenteditable=\"true\" class=\"editable-text\">Galeri</a>",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(4)>a:nth-child(1)": "Galeri",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(5)": "<a href=\"iletisim.html\" contenteditable=\"true\" class=\"editable-text\">İletişim</a>",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>ul:nth-child(1)>li:nth-child(5)>a:nth-child(1)": "İletişim",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>h4:nth-child(1)": "İletişim",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>p:nth-child(1)": "5307 Sokak no:35 1/A İzmir, Ballıkuyu",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>p:nth-child(2)": "<a href=\"tel:05510235648\" contenteditable=\"true\" class=\"editable-text\">05510235648</a>",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>p:nth-child(2)>a:nth-child(1)": "05510235648",
+      "body>footer:nth-child(1)>div:nth-child(1)>div:nth-child(2)>p:nth-child(1)": "© 2026 StarBucks1. Tüm hakları saklıdır.",
+      "#wa-popup>div:nth-child(2)>div:nth-child(1)>p:nth-child(1)": "Deneme",
+      "#wa-popup>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span:nth-child(1)": "23:02",
+      "#wa-popup>div:nth-child(3)>a:nth-child(1)": "\n                    <svg viewBox=\"0 0 24 24\">\n                        <path d=\"M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.277l-.582 2.128 2.185-.573c.835.514 1.832.864 2.851.865.001 0 .002 0 .002 0 3.4 0 6.133-2.732 6.134-6.132.001-3.32-2.71-6.131-5.841-6.131zm4.847 8.562c-.149.427-1.127 1.234-1.511 1.354-.464.145-.901.171-2.401-.477-1.498-.646-2.503-2.455-2.592-2.581-.087-.121-.715-.951-.715-1.817 0-.866.455-1.291.616-1.47.161-.179.358-.224.477-.224.12 0 .239 0 .343.005.107.005.248-.042.387.293.14.333.477 1.164.518 1.25.042.085.069.185.012.298-.057.112-.085.185-.171.284-.085.101-.18.224-.256.3-.087.085-.176.177-.076.35.099.172.441.728.948 1.179.654.582 1.205.761 1.377.847.171.086.274.072.375-.045.101-.116.427-.497.542-.667.115-.17.23-.142.388-.085.158.057 1.002.472 1.173.557.171.085.284.128.326.198.042.07.042.405-.107.832z\"></path>\n                    </svg>\n                    Sohbete Başla\n                ",
+      "#site-popup>div:nth-child(1)>div:nth-child(1)>h2:nth-child(1)": "Özel Fırsat!",
+      "#site-popup>div:nth-child(1)>div:nth-child(1)>p:nth-child(1)": "Bize özel kampanyalarımızdan faydalanmak için hemen iletişime geçin.",
+      "#site-popup>div:nth-child(1)>div:nth-child(1)>a:nth-child(1)": "İncele",
+      "body>div:nth-child(10)>div:nth-child(1)>span:nth-child(1)": "✏️ Düzenleme Modu",
+      "#volume-booster-visusalizer>div:nth-child(2)>div:nth-child(1)>span:nth-child(1)": "",
+      "#volume-booster-visusalizer>div:nth-child(2)>div:nth-child(2)>span:nth-child(1)": "",
+      "#volume-booster-visusalizer>div:nth-child(2)>div:nth-child(3)>span:nth-child(1)": "",
+      "#volume-booster-visusalizer>div:nth-child(2)>div:nth-child(4)>span:nth-child(1)": "",
+      "#volume-booster-visusalizer>div:nth-child(2)>div:nth-child(5)>span:nth-child(1)": "",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>p:nth-child(1)": "Eşsiz Kahve Deneyimi",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>span:nth-child(1)": "<span class=\"icon editable-text\" contenteditable=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle></svg></span>",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>span:nth-child(1)>span:nth-child(1)": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle></svg>",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>span:nth-child(2)": "5307 Sokak no:35 1/A İzmir, Ballıkuyu",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>span:nth-child(1)": "<span class=\"icon editable-text\" contenteditable=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path></svg></span>",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>span:nth-child(1)>span:nth-child(1)": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path></svg>",
+      "body>div:nth-child(3)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>span:nth-child(2)": "05510235648",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)": "Neler Sunuyoruz",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>h2:nth-child(1)": "Size Özel<br><span class=\"text-gradient editable-text\" contenteditable=\"true\">Hizmetler</span>",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(1)>h2:nth-child(1)>span:nth-child(1)": "Hizmetler",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>h3:nth-child(1)": "Filtre Kahve",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>p:nth-child(1)": "Günlük taze çekilmiş özel harman kahveler",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>h3:nth-child(1)": "Espresso Çeşitleri",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>div:nth-child(2)>p:nth-child(1)": "Latte, cappuccino, americano ve daha fazlası",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>h3:nth-child(1)": "Soğuk İçecekler",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>p:nth-child(1)": "Ice latte, cold brew, frappe çeşitleri",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(4)>div:nth-child(2)>h3:nth-child(1)": "Taze Pastane",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(4)>div:nth-child(2)>p:nth-child(1)": "Günlük yapılan taze pasta ve tatlılar",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(5)>div:nth-child(2)>h3:nth-child(1)": "Kahvaltı Menüsü",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(5)>div:nth-child(2)>p:nth-child(1)": "Hafif atıştırmalıklar ve kahvaltı seçenekleri",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(6)>div:nth-child(2)>h3:nth-child(1)": "Özel Harmanlar",
+      "body>div:nth-child(5)>section:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(6)>div:nth-child(2)>p:nth-child(1)": "Dünya kahvelerinden seçme özel harmanlar"
+    },
+    "images": [],
+    "dimensions": []
+  }
+}

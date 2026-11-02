@@ -1,0 +1,49 @@
+{
+  "devrim": [
+    "/screens/devrim/kontrol-paneli.png",
+    "/screens/devrim/musteri-ekle.png",
+    "/screens/devrim/takvim.png"
+  ],
+  "farm": [
+    "/screens/farm/1.png"
+  ],
+  "sherlock": [
+    "/screens/sherlock/1.png"
+  ],
+  "sitebuilder": [
+    "/screens/sitebuilder/studio-pro.png",
+    "/screens/sitebuilder/editor-giris.png",
+    "/screens/sitebuilder/canli-duzenleyici.png",
+    "/screens/sitebuilder/yayinlama-aktarma.png"
+  ],
+  "osint-platform": [
+    "/screens/osint-platform/1.png"
+  ],
+  "tekstil": [
+    "/screens/tekstil/aura-stage-korse.png",
+    "/screens/tekstil/aura-stage-sneaker.png",
+    "/screens/tekstil/ar-fit-analizi.png"
+  ],
+  "arama": [
+    "/screens/arama/operasyon-konsol.png",
+    "/screens/arama/bot-builder.png",
+    "/screens/arama/simulator.png"
+  ],
+  "gen": [
+    "/screens/gen/istihbarat-konsolu.png",
+    "/screens/gen/en-iyi-firsatlar.png",
+    "/screens/gen/ag-kumeleri.png",
+    "/screens/gen/ajan-orkestrasyonu.png"
+  ],
+  "lios": [
+    "/screens/lios/izmir-guzellik-landing.png",
+    "/screens/lios/genel-bakis.png",
+    "/screens/lios/isletmeler.png",
+    "/screens/lios/icerik-kutuphanesi.png"
+  ],
+  "macagel": [
+    "/screens/macagel/mac-detayi-kadro.png",
+    "/screens/macagel/hos-geldiniz.png",
+    "/screens/macagel/oyuncu-paneli.png"
+  ]
+}
