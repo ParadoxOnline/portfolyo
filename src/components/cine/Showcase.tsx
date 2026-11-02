@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { useLang } from "@/providers/LangProvider";
 import { copy, describe, flagships, getShots, pick } from "@/data/showcase";
 import type { Project } from "@/data/projects";
@@ -74,7 +74,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
   const phase1 = clamp01((progress - 0.13) / 0.15);
   const phase2 = clamp01((progress - 0.25) / 0.08);
   const phase3 = clamp01((progress - 0.48) / 0.18);
-  const descBox = getTwoAxisBoxState(phase3, 540, 260);
+  const descBox = getTwoAxisBoxState(phase3, 520, 220);
   const phase4 = clamp01((progress - 0.64) / 0.20);
   const phase5 = clamp01((progress - 0.82) / 0.15);
 
@@ -171,25 +171,28 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
         {/* Sol Sütun: Başlık, Mimari Kart, Teknolojiler & Aksiyon */}
         <div className="flex flex-col justify-between space-y-7 lg:col-span-5">
           <div>
-            {/* GÖREV 2: Ana Başlık */}
+            {/* GÖREV 2: Ana Başlık + Ne İşe Yarar Alt Başlığı */}
             <div
               data-build-role="title"
               className="min-h-[1.2em]"
               style={{ opacity: phase2 }}
             >
-              <h3 className="font-display text-[clamp(2.6rem,5vw,4.6rem)] font-bold leading-[1] tracking-[-0.03em] text-white">
+              <h3 className="font-display text-[clamp(2.4rem,4.5vw,4.2rem)] font-bold leading-[1.05] tracking-[-0.03em] text-white">
                 <LiveTypoText
                   text={displayName}
                   typoText={TYPOS[p.slug]}
                   progress={progress}
                 />
               </h3>
+              <p className="mt-2 text-sm sm:text-[14.5px] font-medium leading-relaxed text-sky-200/85">
+                {desc}
+              </p>
             </div>
 
             {/* GÖREV 3: Problem -> Çözüm Mimari Açıklama Kartı (Önce Yatay ↔ Sonra Dikey ↕ Genişletilir!) */}
             <div
               data-build-role="desc"
-              className="relative mt-6"
+              className="relative mt-4"
               style={{
                 opacity: descBox.visible ? 1 : 0,
               }}
@@ -216,7 +219,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
               )}
 
               <div
-                className="rounded-2xl border border-white/10 bg-[#070b14]/90 p-5 md:p-6 backdrop-blur-xl shadow-2xl transition-all"
+                className="rounded-2xl border border-white/10 bg-[#070b14]/90 p-4 sm:p-4.5 backdrop-blur-xl shadow-2xl transition-all"
                 style={{
                   clipPath:
                     phase3 >= 0.95
@@ -225,22 +228,9 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                   boxShadow: isBuilding ? `0 0 0 1px ${color}44` : "0 25px 60px -20px rgba(0,0,0,0.8)",
                 }}
               >
-                {/* En Üstte: Net ve Sade "Gerçekte Ne İşe Yarar?" Özeti */}
-                <div className="mb-4 rounded-xl border border-sky-500/25 bg-sky-950/20 p-3 sm:p-3.5">
-                  <div className="mb-1 flex items-center gap-2">
-                    <span className="flex h-2 w-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
-                    <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-sky-300">
-                      💡 {t.whatItDoes}
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-[13.5px] font-medium leading-relaxed text-slate-100">
-                    {desc}
-                  </p>
-                </div>
-
                 {/* Mod / Sekme Seçici: Akış, Problem, Çözüm, İş Kazancı */}
-                <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
-                  <div className="flex flex-wrap items-center gap-1 rounded-lg border border-white/10 bg-white/[0.03] p-1 font-mono text-[11px]">
+                <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-2.5">
+                  <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/[0.03] p-1 font-mono text-[11px]">
                     <button
                       type="button"
                       onClick={() => setDescTab("flow")}
@@ -288,7 +278,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                         }`}
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                        <span>💰 {lang === "az" ? "Biznes Qazancı" : lang === "en" ? "ROI" : "İş Kazancı"}</span>
+                        <span>💰 {lang === "az" ? "ROI" : lang === "en" ? "ROI" : "İş Kazancı"}</span>
                       </button>
                     )}
                   </div>
@@ -300,108 +290,71 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
 
                 {/* Sekme İçerikleri */}
                 {descTab === "flow" && (
-                  <div className="space-y-3">
-                    {/* 01: Problem Bloğu */}
-                    <div className="relative rounded-xl border border-rose-500/20 bg-rose-950/20 p-3 sm:p-3.5">
-                      <div className="mb-1 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="h-2 w-2 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" />
-                          <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-rose-300">
+                  <div className="space-y-2">
+                    {/* Problem ve Çözüm Yan Yana 2'li Izgara */}
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      {/* 01: Problem Bloğu */}
+                      <div className="rounded-xl border border-rose-500/20 bg-rose-950/20 p-2.5 sm:p-3">
+                        <div className="mb-1 flex items-center gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-rose-500 shadow-[0_0_6px_#f43f5e]" />
+                          <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-rose-300">
                             {t.problemBadge}
                           </span>
                         </div>
-                        <span className="font-mono text-[10px] text-rose-300/60 hidden sm:inline">
-                          {t.problemSubtitle}
-                        </span>
+                        <p className="text-xs leading-relaxed text-slate-300 line-clamp-3">
+                          {problemText}
+                        </p>
                       </div>
-                      <p className="text-xs sm:text-[13px] leading-relaxed text-slate-300">
-                        {problemText}
-                      </p>
-                    </div>
 
-                    {/* Akış Köprüsü 1 */}
-                    <div className="flex items-center justify-center gap-2 py-0.5">
-                      <span className="h-px w-8 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                      <span className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[9.5px] text-white/60">
-                        <span>{lang === "az" ? "Mühəndislik Müdaxiləsi" : lang === "en" ? "System Intervention" : "Mimari Müdahale"}</span>
-                        <ArrowDown size={10} style={{ color }} />
-                      </span>
-                      <span className="h-px w-8 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                    </div>
-
-                    {/* 02: Çözüm Bloğu */}
-                    <div
-                      className="relative rounded-xl border p-3 sm:p-3.5 transition-all"
-                      style={{
-                        borderColor: `${color}35`,
-                        backgroundColor: `${color}0d`,
-                      }}
-                    >
-                      <div className="mb-1 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                      {/* 02: Çözüm Bloğu */}
+                      <div
+                        className="rounded-xl border p-2.5 sm:p-3"
+                        style={{
+                          borderColor: `${color}35`,
+                          backgroundColor: `${color}0d`,
+                        }}
+                      >
+                        <div className="mb-1 flex items-center gap-1.5">
                           <span
-                            className="h-2 w-2 rounded-full"
-                            style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}` }}
+                            className="h-1.5 w-1.5 rounded-full"
+                            style={{ backgroundColor: color, boxShadow: `0 0 6px ${color}` }}
                           />
                           <span
-                            className="font-mono text-[11px] font-semibold uppercase tracking-wider"
+                            className="font-mono text-[10.5px] font-bold uppercase tracking-wider"
                             style={{ color }}
                           >
                             {t.solutionBadge}
                           </span>
                         </div>
-                        <span className="font-mono text-[10px] text-white/50 hidden sm:inline">
-                          {t.solutionSubtitle}
-                        </span>
+                        <p className="text-xs leading-relaxed text-slate-200 line-clamp-3">
+                          {solutionText}
+                        </p>
                       </div>
-                      <p className="text-xs sm:text-[13px] leading-relaxed text-slate-200">
-                        {solutionText}
-                      </p>
                     </div>
 
-                    {/* Akış Köprüsü 2 */}
+                    {/* 03: Somut İş Kazancı & ROI Satırı */}
                     {whyItMattersText && (
-                      <>
-                        <div className="flex items-center justify-center gap-2 py-0.5">
-                          <span className="h-px w-8 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
-                          <span className="flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 font-mono text-[9.5px] text-amber-300">
-                            <span>{lang === "az" ? "Biznes Dəyəri" : lang === "en" ? "Value Realization" : "Ticari Çıktı & Katma Değer"}</span>
-                            <ArrowDown size={10} className="text-amber-400" />
-                          </span>
-                          <span className="h-px w-8 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
-                        </div>
-
-                        {/* 03: Somut İş Kazancı & ROI Bloğu */}
-                        <div className="relative rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-950/25 via-emerald-950/15 to-transparent p-3 sm:p-3.5 shadow-lg">
-                          <div className="mb-1 flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
-                              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-amber-300">
-                                💰 {t.impactBadge}
-                              </span>
-                            </div>
-                            <span className="font-mono text-[10px] text-amber-300/70 hidden sm:inline">
-                              {t.impactSubtitle}
-                            </span>
-                          </div>
-                          <p className="text-xs sm:text-[13px] font-medium leading-relaxed text-amber-100/90">
-                            {whyItMattersText}
-                          </p>
-                        </div>
-                      </>
+                      <div className="flex items-center gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 px-3 py-2 text-xs">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-amber-300 shrink-0">
+                          💰 {t.impactBadge}:
+                        </span>
+                        <p className="text-xs font-medium leading-snug text-amber-100/90 line-clamp-2">
+                          {whyItMattersText}
+                        </p>
+                      </div>
                     )}
                   </div>
                 )}
 
                 {descTab === "problem" && (
-                  <div className="rounded-xl border border-rose-500/25 bg-rose-950/25 p-5 animate-in fade-in duration-200">
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-rose-500 shadow-[0_0_10px_#f43f5e]" />
+                  <div className="rounded-xl border border-rose-500/25 bg-rose-950/25 p-3.5 sm:p-4 animate-in fade-in duration-200">
+                    <div className="mb-1.5 flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" />
                       <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-rose-300">
                         {t.problemBadge} — {t.problemSubtitle}
                       </h4>
                     </div>
-                    <p className="text-sm leading-relaxed text-slate-200 md:text-[15px]">
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-slate-200">
                       {problemText}
                     </p>
                   </div>
@@ -409,16 +362,16 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
 
                 {descTab === "solution" && (
                   <div
-                    className="rounded-xl border p-5 animate-in fade-in duration-200"
+                    className="rounded-xl border p-3.5 sm:p-4 animate-in fade-in duration-200"
                     style={{
                       borderColor: `${color}40`,
                       backgroundColor: `${color}12`,
                     }}
                   >
-                    <div className="mb-2 flex items-center gap-2">
+                    <div className="mb-1.5 flex items-center gap-2">
                       <span
-                        className="h-2.5 w-2.5 rounded-full"
-                        style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}` }}
+                        className="h-2 w-2 rounded-full"
+                        style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}` }}
                       />
                       <h4
                         className="font-mono text-xs font-bold uppercase tracking-wider"
@@ -427,21 +380,21 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                         {t.solutionBadge} — {t.solutionSubtitle}
                       </h4>
                     </div>
-                    <p className="text-sm leading-relaxed text-slate-200 md:text-[15px]">
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-slate-200">
                       {solutionText}
                     </p>
                   </div>
                 )}
 
                 {descTab === "impact" && whyItMattersText && (
-                  <div className="rounded-xl border border-amber-500/30 bg-amber-950/25 p-5 animate-in fade-in duration-200 shadow-xl">
-                    <div className="mb-2 flex items-center gap-2">
-                      <span className="h-2.5 w-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_#f59e0b]" />
+                  <div className="rounded-xl border border-amber-500/30 bg-amber-950/25 p-3.5 sm:p-4 animate-in fade-in duration-200 shadow-xl">
+                    <div className="mb-1.5 flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
                       <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">
                         💰 {t.impactBadge} — {t.impactSubtitle}
                       </h4>
                     </div>
-                    <p className="text-sm font-medium leading-relaxed text-amber-100 md:text-[15px]">
+                    <p className="text-xs sm:text-[13px] font-medium leading-relaxed text-amber-100">
                       {whyItMattersText}
                     </p>
                   </div>

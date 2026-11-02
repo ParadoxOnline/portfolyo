@@ -67,29 +67,64 @@ export function StageSketchArt({
         <circle cx="266" cy="12" r="2.3" stroke="#363028" strokeWidth="1.1" />
       </g>
 
-      {/* 2. SOL ANA BAŞLIK (H1) */}
+      {/* 2. SOL ANA BAŞLIK (H1) + ALT AÇIKLAMA */}
       <g opacity={progress >= 0.24 ? 1 : 0.72}>
-        {done2 && <rect x="7" y="23" width="108" height="24" fill="url(#pencil-hatch)" />}
+        {done2 && <rect x="7" y="21" width="108" height="23" fill="url(#pencil-hatch)" />}
         <path
-          d="M7 23 L 115 23.5 L 114 47 L 6 46.5 Z"
+          d="M7 21 L 115 21.5 L 114 44 L 6 43.5 Z"
           stroke="#363028"
           strokeWidth="1.35"
         />
-        <path d="M12 32 Q 38 29, 72 33 T 98 31" stroke="#2b2620" strokeWidth="2.2" strokeLinecap="round" />
-        <text x="12" y="43" fill="#3b342b" fontSize="7.5" fontFamily="monospace" fontWeight="bold">
-          H1: {shortTitle}
+        <text x="11" y="32" fill="#2b2620" fontSize="8" fontFamily="monospace" fontWeight="bold">
+          {shortTitle}
+        </text>
+        <path d="M11 37 L 102 37.5" stroke="#453e34" strokeWidth="1" strokeLinecap="round" />
+        <text x="11" y="42" fill="#5c5245" fontSize="4.6" fontFamily="monospace">
+          &lt;Problem ➔ Çözüm ➔ ROI&gt;
         </text>
       </g>
 
-      {/* 3. SOL MİMARİ AÇIKLAMA KARTI (Önce Yatay ↔ Sonra Dikey ↕) */}
+      {/* 3. SOL PROBLEM ➔ ÇÖZÜM ➔ KAZANÇ (ROI) KARTI */}
       <g opacity={progress >= 0.46 ? 1 : 0.72}>
-        {done3 && <rect x="7" y="51" width="108" height="39" fill="url(#pencil-hatch)" />}
-        <rect x="7" y="51" width="108" height="39" rx="4" stroke="#363028" strokeWidth="1.25" />
-        <path d="M12 58 L 106 58.5" stroke="#453e34" strokeWidth="1.1" strokeLinecap="round" />
-        <path d="M12 64 L 102 64.5" stroke="#453e34" strokeWidth="1.1" strokeLinecap="round" />
-        <path d="M12 70 L 84 70.5" stroke="#453e34" strokeWidth="1.1" strokeLinecap="round" />
-        <line x1="11" y1="76" x2="109" y2="76" stroke="#5c5245" strokeWidth="0.7" strokeDasharray="2 2" />
-        <path d="M12 82 L 96 82.5" stroke="#5c5245" strokeWidth="0.95" strokeLinecap="round" />
+        {done3 && <rect x="7" y="46" width="108" height="46" fill="url(#pencil-hatch)" />}
+        <rect x="7" y="46" width="108" height="46" rx="4" stroke="#363028" strokeWidth="1.3" />
+
+        {/* Üst Sekmeler: [PROB] [SİSTEM] [ROI] */}
+        <rect x="10" y="49" width="28" height="6.5" rx="2" stroke="#be123c" strokeWidth="0.8" />
+        <text x="12" y="54" fill="#be123c" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
+          PROB
+        </text>
+        <rect x="41" y="49" width="32" height="6.5" rx="2" stroke="#0284c7" strokeWidth="0.8" />
+        <text x="43" y="54" fill="#0284c7" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
+          SİSTEM
+        </text>
+        <rect x="76" y="49" width="26" height="6.5" rx="2" stroke="#059669" strokeWidth="0.8" />
+        <text x="78" y="54" fill="#059669" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
+          ROI
+        </text>
+
+        {/* 01: Problem Bloğu */}
+        <rect x="10" y="58" width="102" height="10" rx="2" stroke="#e11d48" strokeWidth="0.75" />
+        <circle cx="14" cy="63" r="1.5" fill="#e11d48" />
+        <text x="18" y="65" fill="#be123c" fontSize="4.2" fontFamily="monospace">
+          01: Pazar Tıkanıklığı
+        </text>
+
+        {/* Akış Oku */}
+        <path d="M60 69 L 60 71 M58.5 70 L 60 71.5 L 61.5 70" stroke="#363028" strokeWidth="0.8" />
+
+        {/* 02: Mimari Çözüm Bloğu */}
+        <rect x="10" y="73" width="102" height="10" rx="2" stroke="#0284c7" strokeWidth="0.75" />
+        <circle cx="14" cy="78" r="1.5" fill="#0284c7" />
+        <text x="18" y="80" fill="#0284c7" fontSize="4.2" fontFamily="monospace">
+          02: Otonom Mimari
+        </text>
+
+        {/* 03: ROI Şeridi */}
+        <rect x="10" y="85" width="102" height="5.5" rx="2" stroke="#059669" strokeWidth="0.75" fill="#f0fdf4" />
+        <text x="13" y="89.5" fill="#065f46" fontSize="4" fontFamily="monospace" fontWeight="bold">
+          💰 ROI: %80+ Bütçe &amp; Zaman Tasarrufu
+        </text>
       </g>
 
       {/* 5. SOL ALT ÇOĞALTILAN TEKNOLOJİ ROZETLERİ + İNCELE BUTONU + EKRAN SEÇİCİ */}
@@ -282,18 +317,17 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            2. LİOS (İZMİR GÜZELLİK REHBERİ & SAAS) KROKİSİ:
-            Sağ Pencerede Arama Barı + İlçe Filtresi + 3'lü Salon Vitrin Kartları
+            2. LIOS (OTONOM YEREL SEO VE İÇERİK MOTORU) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-lios" && (
           <>
-            {renderProjectLeftColumn("01", "Lios")}
+            {renderProjectLeftColumn("01", "LIOS")}
             <g opacity={progress >= 0.62 ? 1 : 0.75}>
               {done4 && <rect x="122" y="23" width="152" height="103" fill="url(#pencil-hatch)" />}
               <rect x="122" y="23" width="152" height="103" rx="5" stroke="#2b2620" strokeWidth="1.55" />
               <line x1="122" y1="32" x2="274" y2="32" stroke="#363028" strokeWidth="1.1" />
-              <text x="176" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace">
-                lios.app (İzmir)
+              <text x="162" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace" fontWeight="bold">
+                lios.app (SEO Engine)
               </text>
               {/* İç Arayüz: İzmir Güzellik Hero + Arama Çubuğu + 3 Salon Kartı */}
               <path d="M132 42 L 225 42" stroke="#2b2620" strokeWidth="2" strokeLinecap="round" />
@@ -314,18 +348,17 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            3. GEN (PAZAR İSTİHBARAT MOTORU) KROKİSİ:
-            Sağ Pencerede 4 KPI Kutusu + 9 Kademeli Otonom Boru Hattı Kartları
+            3. SENTIOPULSE (PAZAR İSTİHBARAT RADARI) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-gen" && (
           <>
-            {renderProjectLeftColumn("02", "Gen")}
+            {renderProjectLeftColumn("02", "SentioPulse")}
             <g opacity={progress >= 0.62 ? 1 : 0.75}>
               {done4 && <rect x="122" y="23" width="152" height="103" fill="url(#pencil-hatch)" />}
               <rect x="122" y="23" width="152" height="103" rx="5" stroke="#2b2620" strokeWidth="1.55" />
               <line x1="122" y1="32" x2="274" y2="32" stroke="#363028" strokeWidth="1.1" />
-              <text x="174" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace">
-                gen.app (Pipeline)
+              <text x="156" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace" fontWeight="bold">
+                sentiopulse.ai (Pain Radar)
               </text>
               {/* Merkez İstihbarat Başlığı */}
               <path d="M156 41 L 240 41" stroke="#2b2620" strokeWidth="2" strokeLinecap="round" />
@@ -345,7 +378,7 @@ export function StageSketchArt({
               ))}
               {/* Alt 6'lı Otonom Boru Hattı (Pipeline) Kart Dizisi */}
               <text x="130" y="82" fill="#3b342b" fontSize="6" fontFamily="monospace">
-                {lang === "en" ? "9-STAGE PIPELINE:" : lang === "az" ? "9 PİLLƏLİ BORU XƏTTİ:" : "9 KADEMELİ BORU HATTI:"}
+                {lang === "en" ? "VECTOR CLUSTERS:" : lang === "az" ? "VEKTOR KLASTERLƏRİ:" : "VEKTÖR KÜMELERİ:"}
               </text>
               {[0, 1, 2, 3, 4, 5].map((step) => (
                 <rect
@@ -364,8 +397,7 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            4. MAÇAGEL (MOBİL SOSYAL SPOR PLATFORMU) KROKİSİ:
-            Sağda Dikey iPhone Kasası + Futbol Sahası 4-3-3 Kadro Dizilişi
+            4. MAÇAGEL (MOBİL SOSYAL SPOR PLATFORMU) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-macagel" && (
           <>
@@ -411,16 +443,18 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            5. TEKSTİL 3D (WEBGL 3B KONFİGÜRATÖR) KROKİSİ:
-            Sağ Pencerede Sol Araç Barı + Merkez 3D Perspektif Izgara & Mesh Model + Sağ Materyal Paneli
+            5. VELODRAPE 3D (3B SANAL DENEME KABİNİ) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-tekstil" && (
           <>
-            {renderProjectLeftColumn("04", "Tekstil")}
+            {renderProjectLeftColumn("04", "VeloDrape 3D")}
             <g opacity={progress >= 0.62 ? 1 : 0.75}>
               {done4 && <rect x="122" y="23" width="152" height="103" fill="url(#pencil-hatch)" />}
               <rect x="122" y="23" width="152" height="103" rx="5" stroke="#2b2620" strokeWidth="1.55" />
               <line x1="122" y1="32" x2="274" y2="32" stroke="#363028" strokeWidth="1.1" />
+              <text x="156" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace" fontWeight="bold">
+                velodrape3d.com (3D Try-On)
+              </text>
               {/* Sol 3D Araç Çubuğu */}
               <rect x="126" y="36" width="16" height="84" stroke="#363028" strokeWidth="1" />
               {/* Merkez 3D WebGL Sahnesi + Yörünge Halkası + 3B Mesh */}
@@ -445,23 +479,25 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            6. ARAMA AI (SESLİ BOT & ÇAĞRI SİMÜLATÖRÜ) KROKİSİ:
-            Sağ Pencerede Sol Akış Ağacı + Merkez Canlı Ses Dalgası (Waveform) + Sağ Telemetri
+            6. SEARCHGRID (MİLİSANİYELİK KURUMSAL ARAMA) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-arama" && (
           <>
-            {renderProjectLeftColumn("05", "Arama")}
+            {renderProjectLeftColumn("05", "SearchGrid")}
             <g opacity={progress >= 0.62 ? 1 : 0.75}>
               {done4 && <rect x="122" y="23" width="152" height="103" fill="url(#pencil-hatch)" />}
               <rect x="122" y="23" width="152" height="103" rx="5" stroke="#2b2620" strokeWidth="1.55" />
               <line x1="122" y1="32" x2="274" y2="32" stroke="#363028" strokeWidth="1.1" />
-              {/* Sol Bot Diyalog Düğümleri */}
+              <text x="156" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace" fontWeight="bold">
+                searchgrid.io (10ms Search)
+              </text>
+              {/* Sol Turborepo Düğümleri */}
               <rect x="127" y="38" width="32" height="16" rx="3" stroke="#363028" strokeWidth="1.1" />
               <rect x="127" y="62" width="32" height="16" rx="3" stroke="#363028" strokeWidth="1.1" />
               <rect x="127" y="86" width="32" height="16" rx="3" stroke="#363028" strokeWidth="1.1" />
               <line x1="143" y1="54" x2="143" y2="62" stroke="#2b2620" strokeWidth="1.2" />
               <line x1="143" y1="78" x2="143" y2="86" stroke="#2b2620" strokeWidth="1.2" />
-              {/* Merkez Canlı Ses Frekans Dalgası (Audio Waveform) */}
+              {/* Merkez Hızlı İndeks Arama Tablosu */}
               <rect x="165" y="38" width="66" height="46" rx="4" stroke="#2b2620" strokeWidth="1.3" />
               {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((bar) => {
                 const bh = 8 + ((bar * 7) % 22);
@@ -478,10 +514,11 @@ export function StageSketchArt({
                   />
                 );
               })}
-              {/* Alt Çağrı Kontrol Butonları */}
+              {/* Alt Metrikler */}
               <rect x="165" y="90" width="66" height="28" rx="4" stroke="#363028" strokeWidth="1.1" />
-              <circle cx="182" cy="104" r="6" stroke="#2b2620" strokeWidth="1.2" />
-              <circle cx="214" cy="104" r="6" stroke="#2b2620" strokeWidth="1.2" />
+              <text x="170" y="106" fill="#2b2620" fontSize="7" fontFamily="monospace" fontWeight="bold">
+                &lt;10ms Edge
+              </text>
               {/* Sağ Telemetri Sütunu */}
               <rect x="236" y="38" width="33" height="80" rx="3" stroke="#363028" strokeWidth="1.1" />
             </g>
@@ -489,16 +526,18 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            7. DEVRİM (SOSYAL MEDYA & AJANS CRM PANELİ) KROKİSİ:
-            Sağ Pencerede Sol Menü + Üst 3 KPI + İçerik Takvimi Izgarası
+            7. CHRONOPOST (OTONOM SOSYAL MEDYA DAĞITIM ROBOTU) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-devrim" && (
           <>
-            {renderProjectLeftColumn("06", "Devrim")}
+            {renderProjectLeftColumn("06", "ChronoPost")}
             <g opacity={progress >= 0.62 ? 1 : 0.75}>
               {done4 && <rect x="122" y="23" width="152" height="103" fill="url(#pencil-hatch)" />}
               <rect x="122" y="23" width="152" height="103" rx="5" stroke="#2b2620" strokeWidth="1.55" />
               <line x1="122" y1="32" x2="274" y2="32" stroke="#363028" strokeWidth="1.1" />
+              <text x="156" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace" fontWeight="bold">
+                chronopost.io (Social Queue)
+              </text>
               {/* Sol Sidebar */}
               <rect x="126" y="36" width="28" height="85" stroke="#363028" strokeWidth="1.1" />
               <line x1="130" y1="45" x2="150" y2="45" stroke="#2b2620" strokeWidth="1.2" />
@@ -519,16 +558,18 @@ export function StageSketchArt({
         )}
 
         {/* ═══════════════════════════════════════════════════════════════════
-            8. SITEBUILDER / STATICFORGE (GÖRSEL SİTE ÜRETİCİ) KROKİSİ:
-            Sağ Pencerede Sol Blok Paleti + Merkez WYSIWYG Tuvali + Sağ CSS Denetçisi
+            8. STATICFORGE (STATİK SİTE FABRİKASI) KROKİSİ
            ═══════════════════════════════════════════════════════════════════ */}
         {stageId === "project-sitebuilder" && (
           <>
-            {renderProjectLeftColumn("07", "Forge")}
+            {renderProjectLeftColumn("07", "StaticForge")}
             <g opacity={progress >= 0.62 ? 1 : 0.75}>
               {done4 && <rect x="122" y="23" width="152" height="103" fill="url(#pencil-hatch)" />}
               <rect x="122" y="23" width="152" height="103" rx="5" stroke="#2b2620" strokeWidth="1.55" />
               <line x1="122" y1="32" x2="274" y2="32" stroke="#363028" strokeWidth="1.1" />
+              <text x="154" y="29.5" fill="#3b342b" fontSize="6" fontFamily="monospace" fontWeight="bold">
+                staticforge.dev (Static Site)
+              </text>
               {/* Sol Bileşen Paleti (2x3 İkon Kutuları) */}
               <rect x="126" y="36" width="30" height="85" stroke="#363028" strokeWidth="1.1" />
               <rect x="129" y="40" width="10" height="10" stroke="#2b2620" strokeWidth="1" />
@@ -547,7 +588,7 @@ export function StageSketchArt({
                 strokeDasharray="3 2"
               />
               <text x="172" y="65" fill="#2b2620" fontSize="6.5" fontFamily="monospace">
-                &lt;Section/&gt;
+                &lt;100/100 HTML&gt;
               </text>
               {/* Sağ CSS / Props Denetçisi */}
               <rect x="240" y="36" width="30" height="85" stroke="#363028" strokeWidth="1.1" />
