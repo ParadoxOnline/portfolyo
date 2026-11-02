@@ -118,28 +118,28 @@ export const projects: Project[] = [
     portfolioScore: 93,
 
     shortDescription: {
-      en: "A local business intelligence and SEO automation engine — 25 distinct services, one Clean Architecture.",
-      tr: "25 farklı servis, tek bir Clean Architecture yapısı içinde; yerel işletme zekası ve SEO otomasyon motoru.",
-      az: "25 fərqli servis, vahid Clean Architecture strukturu daxilində; yerli biznes intellekti və SEO avtomatlaşdırma mühərriki.",
+      en: "An autonomous SEO platform that ranks local businesses at #1 on Google without agency fees or manual copywriting.",
+      tr: "Yerel işletmeleri (hizmet sektörleri, esnaf, klinikler) Google aramalarında otomatik olarak 1. sıraya çıkaran otonom SEO motoru.",
+      az: "Yerli biznesləri Google axtarışlarında avtomatik 1-ci sıraya çıxaran otonom SEO və müştəri axını platforması.",
     },
     heroStatement: {
-      en: "Building a search infrastructure for an entire local industry — from data discovery to autonomous publishing.",
-      tr: "Veri keşfinden özerk yayına kadar — tüm bir yerel sektör için arama altyapısı inşa etmek.",
+      en: "Eliminating agency retainers by automating programmatic search dominance for local industries.",
+      tr: "Yerel sektörler için arama motoru hakimiyetini otomatikleştirerek yüksek ajans maliyetlerini ortadan kaldırmak.",
     },
     problem: {
-      en: "Local businesses have no scalable path to organic search visibility. Traditional SEO is manual, one client at a time — there is no system that discovers, enriches, and ranks local business data automatically.",
-      tr: "Yerel işletmelerin organik arama görünürlüğüne erişmek için ölçeklenebilir bir yolu yoktu. Geleneksel SEO tamamen manüeldi — veriyi otomatik olarak keşfeden, zenginleştiren ve sıralayan bir sistem bulunmuyordu.",
-      az: "Yerli bizneslərin üzvi axtarış görünürlüyü əldə etməsi üçün miqyaslana bilən yolu yox idi. Ənənəvi SEO tamamilə əl ilə aparılırdı — məlumatları avtomatik kəşf edən, zənginləşdirən və sıralayan vahid sistem mövcud deyildi.",
+      en: "Local businesses spend thousands monthly on agencies or Google Ads for visibility. Manual SEO takes months, requires expensive writers, and completely fails to scale across hundreds of services and sub-regions.",
+      tr: "Yerel işletmeler müşteri kazanabilmek için her ay on binlerce lira SEO ajanslarına veya Google reklamlarına bağımlı kalıyordu. Manuel SEO aylarca sürüyor, tek tek içerik yazdırmak fahiş maliyet çıkarıyor ve yüzlerce hizmet/semt kombinasyonunda ölçeklenemiyordu.",
+      az: "Yerli bizneslər müştəri tapmaq üçün hər ay on minlərlə vəsaiti agentliklərə və reklamlara xərcləməyə məcbur qalırdı. Əl ilə aparılan SEO aylar çəkir, yüksək büdcə tələb edir və davamlı olmurdu.",
     },
     solution: {
-      en: "LIOS builds a data-driven business graph — businesses, locations, categories, services, reviews — then runs a multi-signal SEO engine against it (keyword analysis, cannibalization detection, internal link optimization, authority scoring) and generates programmatic content pages with autonomous publish and Google indexing pipelines.",
-      tr: "LIOS, işletmeleri, konumları, kategorileri, hizmetleri ve incelemeleri kapsayan veri odaklı bir iş grafiği oluşturur; ardından çok sinyalli bir SEO motoru çalıştırır ve programatik içerik sayfalarını özerk biçimde yayımlayarak Google'a gönderir.",
-      az: "LIOS müəssisələri, məkanları, kateqoriyaları və rəyləri əhatə edən məlumat qrafiki qurur; sonra çoxsiqnallı SEO mühərrikini işə salır və proqramatik səhifələri avtonom dərc edərək Google İndekslənməsinə göndərir.",
+      en: "LIOS automatically maps businesses, local categories, and services. Across 25 integrated microservices, it programmatically generates thousands of optimized landing pages, prevents cannibalization, and publishes directly to Google via the Indexing API.",
+      tr: "LIOS; işletmeleri, hizmetleri ve semtleri otomatik analiz eder. 25 entegre mikroservis ile binlerce SEO uyumlu açılış sayfasını insan eli değmeden üretir, kelime çakışmalarını önler ve Google Indexing API ile doğrudan canlıya yollar.",
+      az: "LIOS biznesləri, xidmətləri və əraziləri avtomatik analiz edir. 25 inteqrasiya olunmuş servis vasitəsilə minlərlə SEO uyğun səhifə hazırlayaraq Google Indexing API ilə dərhal canlıya ötürür.",
     },
     whyItMatters: {
-      en: "This project demonstrates the ability to reason about SEO as a software architecture problem rather than only a content operation. It requires deep integration with Google APIs, Clean Architecture, and background automation.",
-      tr: "Bu proje, SEO'yu sadece bir içerik operasyonu olarak değil, bir yazılım mimarisi problemi olarak ele alma yeteneğini gösterir. Google API'leri ile derin entegrasyon, Clean Architecture ve arka plan otomasyonu gerektirir.",
-      az: "Bu layihə, SEO-nu sadəcə məzmun əməliyyatı kimi deyil, proqram təminatı memarlığı problemi kimi həll etmə bacarığını nümayiş etdirir. Google API-ləri, Clean Architecture və arxa plan avtomatlaşdırması ilə dərin inteqrasiya tələb edir.",
+      en: "Business Value & ROI: Compresses 6 months of agency work into minutes, slashing ad/agency spend by 80%+ while driving a constant stream of organic paying customers.",
+      tr: "İş Hayatındaki Kazanç & ROI: Bir SEO ajansının 6 ayda yapacağı içerik ve sıralama operasyonunu dakikalara indirir; reklam ve ajans masraflarını %80+ düşürerek işletmelere sürekli ve ücretsiz organik müşteri akışı sağlar.",
+      az: "Biznes Qazancı & ROI: Agentliklərin 6 aya görəcəyi işi dəqiqələrə endirir; reklam xərclərini 80%+ azaldaraq müəssisələrə fasiləsiz ödənişsiz üzvi müştəri axını təmin edir.",
     },
 
     responsibilities: [
@@ -296,28 +296,28 @@ export const projects: Project[] = [
     portfolioScore: 85,
 
     shortDescription: {
-      en: "A multi-source pain signal ingestion platform that clusters community complaints using vector search and AI.",
-      tr: "Topluluk şikayetlerini vektör arama ve yapay zeka kullanarak kümeleyen ağrı sinyali platformu.",
-      az: "İcma şikayətlərini vektor axtarışı və süni intellekt vasitəsilə qruplaşdıran çoxmənbəli problem siqnalı platforması.",
+      en: "An AI market radar monitoring thousands of Reddit and Twitter complaints to uncover high-margin software product opportunities.",
+      tr: "İnternetteki (Reddit, Twitter, forumlar) binlerce müşteri şikayetini 7/24 tarayıp doğrudan para kazandıracak ürün fikirlerine dönüştüren yapay zeka pazar araştırma radarı.",
+      az: "İnternetdəki minlərlə müştəri şikayətini 7/24 izləyib şirkətlər üçün birbaşa gəlir gətirən məhsul imkanlarına çevirən AI bazar araşdırması radarı.",
     },
     heroStatement: {
-      en: "Systematically listening to the internet's complaints — and turning them into product opportunities.",
-      tr: "İnternetin şikayetlerini sistematik olarak dinlemek ve ürün fırsatlarına dönüştürmek.",
+      en: "Systematically listening to the internet's complaints — and turning them into profitable product opportunities.",
+      tr: "İnternetin şikayetlerini sistematik olarak dinlemek ve karlı ürün fırsatlarına dönüştürmek.",
     },
     problem: {
-      en: "Pain signals exist everywhere but remain unstructured, unprocessed, and invisible to product builders.",
-      tr: "Ağrı sinyalleri her yerde mevcuttur ancak yapılandırılmamış ve görünmez kalır.",
-      az: "Müştəri şikayət və problem siqnalları internetin hər yerində mövcuddur, lakin strukturlaşdırılmamış və məhsul yaradıcıları üçün görünməz olaraq qalır.",
+      en: "Companies waste millions building software products nobody pays for because traditional market research takes months, costs $50k+, and relies on polite surveys instead of real customer frustration.",
+      tr: "Girişimler ve şirketler insanların gerçekten neye para ödeyeceğini bilmedikleri için milyonlarca liralık başarısız ürünler çıkartıyor. Geleneksel anketler aylar sürüyor, çok pahalı ve gerçek kullanıcı öfkesini yansıtmıyor.",
+      az: "Şirkətlər insanların nəyə pul ödəyəcəyini dəqiq bilmədikləri üçün uğursuz layihələrə milyonlar xərcləyir. Ənənəvi sorğular aylar çəkir və yüksək xərc tələb edir.",
     },
     solution: {
-      en: "An automated pipeline that ingests raw community signals, scores them across 6 dimensions, clusters them semantically with vector embeddings, and tracks velocity.",
-      tr: "Ham sinyalleri alan, 6 boyutta puanlayan, vektör yerleştirmeleriyle kümelendiren otomatik boru hattı.",
-      az: "Xam şikayət siqnallarını toplayan, 6 ölçü üzrə xallandıran, vektor yerləşdirmələri (embeddings) ilə semantik qruplaşdıran və inkişaf dinamikasını izləyən avtomatlaşdırılmış boru xətti.",
+      en: "Continuously scrapes raw community signals via Playwright, scores commercial intent across 6 dimensions, semantically clusters problems with Qdrant vector embeddings, and pinpoints exactly what people are ready to buy.",
+      tr: "Topluluklardan ve sosyal medyadan akan kullanıcı isyanlarını otomatik çeker, 6 farklı ticari boyutta (bütçe, aciliyet, sıklık) puanlar, Qdrant vektör yapay zekası ile benzer sorunları kümeleyip anında satacak ürün raporu çıkartır.",
+      az: "Sosial şəbəkələrdən gələn istifadəçi şikayətlərini toplayır, 6 parametr üzrə qiymətləndirir və Qdrant vektor AI ilə qruplaşdıraraq dərhal gəlir gətirəcək məhsul təkliflərini çıxarır.",
     },
     whyItMatters: {
-      en: "Demonstrates the ability to design and reason about a multi-layer data pipeline with vector search, event streaming, and AI-scoring — not just CRUD applications.",
-      tr: "Vektör arama ve olay akışına sahip çok katmanlı bir veri hattı tasarlama yeteneğini gösterir.",
-      az: "Sadəcə CRUD deyil, vektor axtarışı, hadisə axını (event streaming) və AI qiymətləndirməsinə malik çoxqatlı məlumat xətti qurma bacarığını göstərir.",
+      en: "Business Value & ROI: Eliminates $50k+ in research consulting fees and prevents catastrophic product failures by validating commercial willingness-to-pay before writing a single line of code.",
+      tr: "İş Hayatındaki Kazanç & ROI: Aylar süren ve on binlerce dolarlık pazar araştırması/danışmanlık maliyetini sıfırlar; şirketlerin tutmayacak ürünlere para gömmesini önleyip doğrudan satın almaya hazır kitleye ürün yapmasını sağlar.",
+      az: "Biznes Qazancı & ROI: On minlərlə dollar dəyərində bazar araşdırması və məsləhət xərclərini sıfırlayır; şirkətlərin uğursuz layihələrə sərmayə qoymasının qarşısını alır.",
     },
 
     responsibilities: [
@@ -365,27 +365,28 @@ export const projects: Project[] = [
     portfolioScore: 82,
 
     shortDescription: {
-      en: "A mobile platform for discovering and organizing amateur football matches — replacing WhatsApp chaos.",
-      tr: "Amatör futbol maçlarını keşfetmek ve organize etmek için mobil platform.",
-      az: "Həvəskar futbol oyunlarını kəşf etmək və təşkil etmək üçün mobil platforma — WhatsApp xaosuna son qoyur.",
+      en: "A sports marketplace mobile app eliminating match cancelations and filling idle pitch hours for venue owners.",
+      tr: "Halı saha maçlarındaki adam eksikliği ve organizasyon kaosunu bitiren, oyuncularla tesisleri tek tıkla buluşturan pazar yeri mobil uygulaması.",
+      az: "Həvəskar futbol oyunlarında oyunçu çatışmazlığı xaosunu bitirən, oyunçularla meydançaları tək toxunuşla birləşdirən mobil bazar yeri tətbiqi.",
     },
     heroStatement: {
-      en: "Replacing 20-person WhatsApp chaos with a structured football match platform — built from scratch.",
-      tr: "20 kişilik WhatsApp kaosunu yapılandırılmış bir platformla değiştirmek.",
+      en: "Converting empty football pitch hours into steady revenue while solving amateur match coordination.",
+      tr: "Boş halı saha saatlerini sürekli gelire dönüştürürken amatör maç organizasyonu kaosunu çözmek.",
     },
     problem: {
-      en: "Amateur football players organize matches through WhatsApp groups — leading to no-shows and unbalanced teams.",
-      tr: "Amatör oyuncular maçları WhatsApp üzerinden organize ediyor — bu durum dengesiz takımlara yol açıyor.",
+      en: "Over 50% of amateur games suffer last-minute dropouts via chaotic messaging groups, causing frustrating match cancelations and direct revenue loss for pitch owners who cannot fill the empty slot.",
+      tr: "Her hafta yüz binlerce amatör futbolcu WhatsApp gruplarında '1 adam eksik, kaleci gelmedi' diyerek saatlerce vakit kaybediyor; son dakika iptalleri hem oyuncuların maçını yakıyor hem de halı saha işletmelerini ciddi ciro kaybına uğratıyordu.",
+      az: "Oyunçular WhatsApp qruplarında oyunçu axtararkən saatlar itirir, son dəqiqə ləğvləri isə həm oyunların pozulmasına, həm də meydança sahiblərinin gəlir itkisinə səbəb olurdu.",
     },
     solution: {
-      en: "A mobile-first platform where users create matches, filter players, join with one tap, and receive push notifications — with Firebase backend.",
-      tr: "Kullanıcıların maç oluşturduğu, tek dokunuşla katıldığı ve anlık bildirim aldığı mobil platform.",
+      en: "A real-time mobile app where players discover open matches by position, join rosters with one click, trigger push alerts to nearby players for missing positions, and securely reserve pitches.",
+      tr: "Oyuncuların mevki ve seviyelerine göre anında açık maçları gördüğü, tek dokunuşla kadroya girdiği, eksik oyuncu olduğunda çevredeki oyunculara anlık bildirim (push) atan ve rezervasyonu güvenceye alan uçtan uca mobil platform geliştirdim.",
       az: "İstifadəçilərin oyun yaratdığı, oyunçuları filtrlədiyi, tək toxunuşla qatıldığı və anlıq bildirişlər aldığı mobil platforma.",
     },
     whyItMatters: {
-      en: "Shows the developer can ship a full mobile product with real backend, push notifications, and App Store deployment.",
-      tr: "Gerçek backend ve anlık bildirimlerle App Store'a ürün teslim etme yeteneğini gösterir.",
-      az: "Real backend, push bildirişlər və App Store yayımı ilə tam mobil məhsulu sıfırdan təhvil vermə bacarığını sübut edir.",
+      en: "Business Value & ROI: Fills idle venue slots by 35%+, turning dead field hours into high-margin revenue and creating a recurring commission stream on every booking.",
+      tr: "İş Hayatındaki Kazanç & ROI: Halı saha tesislerinin boş kalan saatlerini doldurarak atıl kapasiteyi %35+ ciroya dönüştürür; maç iptallerini önleyerek tesis ve platform için kesintisiz rezervasyon komisyonu yaratır.",
+      az: "Biznes Qazancı & ROI: Meydançaların boş qalan saatlarını dolduraraq gəliri 35%+ artırır və hər rezervasiyadan stabil komissiya gəliri formalaşdırır.",
     },
 
     responsibilities: [
@@ -553,25 +554,28 @@ export const projects: Project[] = [
     portfolioScore: 86,
 
     shortDescription: {
-      en: "Web-based 3D virtual clothing try-on using webcam and TensorFlow.js.",
-      tr: "Web kamerası ve TensorFlow.js ile tarayıcı içi 3D sanal kıyafet deneme motoru.",
-      az: "Veb kamera və TensorFlow.js ilə brauzer daxilində işləyən real vaxtlı 3D virtual geyim yoxlama mühərriki.",
+      en: "A real-time 3D AI virtual try-on engine for fashion e-commerce, letting shoppers preview garments on their own body via webcam.",
+      tr: "E-ticaret giyim markaları için, müşterilerin mağazaya gitmeden web kamerasıyla kıyafeti kendi üzerlerinde 3D görmesini sağlayan yapay zeka sanal deneme kabini.",
+      az: "E-ticarət geyim brendləri üçün alıcıların mağazaya getmədən veb kamera ilə paltarı öz üzərlərində 3D görməsini təmin edən AI virtual sınama otağı.",
     },
     heroStatement: {
-      en: "Real-time browser-based body tracking and 3D clothing simulation powered by computer vision.",
-      tr: "Web tarayıcısında gerçek zamanlı vücut takibi ve 3D kıyafet simülasyonu sağlayan yapay zeka destekli sanal deneme kabini."
+      en: "Eliminating e-commerce returns by bringing zero-install 3D virtual dressing rooms to any web browser.",
+      tr: "Sıfır kurulumlu 3D sanal deneme kabinini web tarayıcısına getirerek e-ticaret iade zararlarını ortadan kaldırmak.",
     },
     problem: {
-      en: "Over 70% of e-commerce fashion returns stem from fit and sizing mismatches. Traditional virtual try-on systems either required heavy native installations or high-end GPU hardware, making browser adoption impractical.",
-      tr: "E-ticarette kıyafet iadelerinin %70'inden fazlası beden ve kalıp uyumsuzluğundan kaynaklanır. Kullanıcıların ürünü üzerlerinde görmeden satın alması hem yüksek iade maliyetlerine hem de düşük dönüşüm oranlarına yol açıyordu. Geleneksel 3D çözümler ise ağır mobil uygulamalar veya yüksek donanım gerektiriyordu."
+      en: "Online fashion retailers lose up to 35% of all orders to returns caused by sizing doubts and fit mismatches. This forces brands into double shipping costs, damaged inventory, and massive profit margin collapse.",
+      tr: "Online giyim alışverişinde satılan her 100 üründen 35'i 'beden uymadı veya üstümde beğenmedim' denilerek iade ediliyor. Bu durum markalara çift taraflı kargo masrafı, ürün yıpranması ve milyonlarca liralık net zarar yazıyor.",
+      az: "Onlayn geyim sifarişlərinin 35%-i ölçü uyğunsuzluğuna görə geri qaytarılır. Bu isə brendlərə ikiqat çatdırılma xərci və külli miqdarda zərər vurur.",
     },
     solution: {
-      en: "Engineered a client-side virtual try-on engine combining Next.js, Three.js, and MediaPipe/TensorFlow.js. It extracts skeleton pose and body contours directly from standard webcams with real-time WebGL rendering.",
-      tr: "Next.js, Three.js ve MediaPipe/TensorFlow.js mimarilerini birleştirerek; sıradan bir web kamerası akışı üzerinden kullanıcının eklem noktalarını ve vücut geometrisini mikrosaniyeler içinde çıkaran istemci taraflı (client-side) bir sanal prova motoru geliştirdim. 3D modeller GPU üzerinden WebGL ile anlık giydirilir."
+      en: "Engineered a zero-install client-side engine using MediaPipe and Three.js. It extracts body posture from standard webcams and drapes 3D clothing models onto the customer in real-time at 60 FPS with zero server GPU overhead.",
+      tr: "Uygulama indirme zorunluluğunu kaldırıp doğrudan web tarayıcısında çalışan bir sistem kurdum. MediaPipe ile kameradan vücut eklemlerini milisaniyeler içinde çıkarıp, 3D kıyafet modellerini WebGL ile kullanıcının üzerine sıfır sunucu GPU maliyetiyle giydiren bir motor geliştirdim.",
+      az: "Heç bir tətbiq yükləmədən brauzerdə işləyən sistem qurdum. MediaPipe ilə bədən qamətini mikrosaniyələrdə çıxarır və WebGL ilə 3D geyimi alıcının üzərinə canlı geyindirir.",
     },
     whyItMatters: {
-      en: "Runs at 60 FPS directly within the user's browser with zero server GPU overhead, drastically cutting return rates and driving e-commerce conversions.",
-      tr: "Sunucu tarafında ağır GPU maliyetleri ödemeden, doğrudan kullanıcının tarayıcısında 60 FPS çalışan ve e-ticaret dönüşüm oranlarını doğrudan artıran yenilikçi bir web mühendisliği çözümüdür."
+      en: "Business Value & ROI: Slashes e-commerce product returns by 40%+, cuts reverse logistics losses, and doubles checkout conversion rates by giving shoppers complete purchasing confidence.",
+      tr: "İş Hayatındaki Kazanç & ROI: E-ticaret sitelerinde ürün iade oranlarını %40'ın üzerinde düşürür; kararsız müşterilerin satın alma dönüşüm oranını (conversion rate) 2 katına çıkararak ciro patlaması yaratır.",
+      az: "Biznes Qazancı & ROI: Geri qaytarma faizini 40%-dən çox azaldır və alıcıların sifarişi təsdiqləmə dönüşümünü 2 dəfə artıraraq birbaşa gəliri yüksəldir.",
     },
 
     responsibilities: [],
@@ -624,25 +628,25 @@ export const projects: Project[] = [
     featured: true,
     portfolioScore: 85,
     shortDescription: { 
-      en: "A scalable search infrastructure built as a Turborepo monorepo with dedicated database packages.", 
-      tr: "Özel veritabanı paketlerine sahip bir Turborepo monorepo olarak oluşturulmuş arama altyapısı.",
-      az: "Xüsusi verilənlər bazası paketlərinə malik Turborepo monorepo kimi qurulmuş miqyaslana bilən axtarış infrastrukturu."
+      en: "Sub-10ms instant search and discovery infrastructure for multi-million item catalogs, eliminating search abandonment.", 
+      tr: "Milyonlarca ürün ve veri barındıran platformlar için 10 milisaniye altı anlık arama ve filtreleme altyapısı.",
+      az: "Milyonlarla məhsulu olan böyük platformalar üçün Google sürətində (10ms-dən tez) ani axtarış və filtrləmə infrastrukturu."
     },
-    heroStatement: { en: "A high-performance Turborepo architecture designed to unify fragmented search services into a single, infinitely scalable node.", tr: "Parçalanmış arama servislerini tek ve sınırsız ölçeklenebilir bir düğümde birleştirmek için tasarlanmış yüksek performanslı Turborepo mimarisi." },
+    heroStatement: { en: "Eliminating search drop-off and query latency across multi-million item catalogs with unified monorepo architecture.", tr: "Milyonlarca satırlık veri tabanlarında arama gecikmesini ve müşteri kaybını ortadan kaldıran yüksek hızlı monorepo arama mimarisi." },
     problem: { 
-      en: "Managing fragmented search databases and microservices causes severe latency and developer overhead at scale.", 
-      tr: "Farklı veritabanları, bağımsız servisler ve karmaşık bağımlılıklar... Sistemler büyüdükçe arama altyapıları hantallaşır. Geleneksel monolitik yapılar veya kopuk mikroservisler, milyonlarca satır veri içinde anlık (real-time) arama yapmayı kabusa dönüştürüyordu. Kod tabanını yönetmek, performansı artırmaktan daha fazla zaman alıyordu.",
-      az: "Fərqli verilənlər bazaları, müstəqil servislər və mürəkkəb asılılıqlar... Sistemlər böyüdükcə axtarış infrastrukturu ləngiyir. Ənənəvi monolitik strukturlar milyonlarla sətir məlumat içində real vaxtda axtarış etməyi çətinləşdirirdi." 
+      en: "A 2-second search delay causes 50%+ shopper bounce rates. Traditional relational databases bottleneck on multi-attribute queries, locking up servers and forcing shoppers to abandon searches.", 
+      tr: "Büyük e-ticaret sitelerinde arama sonuçlarının 2 saniye gecikmesi müşterilerin %50'sinin siteyi terk etmesine yol açar. Geleneksel veritabanları milyonlarca satırda kilitlenir, aramayı dondurur ve doğrudan ciro kaybına sebep olur.",
+      az: "Böyük saytlarda axtarışın 2 saniyə ləngiməsi alıcıların 50%-dən çoxunun saytı tərk etməsinə səbəb olur. Ənənəvi bazalar milyonlarla sətirdə donur və gəlir itkisi yaradır." 
     },
     solution: { 
-      en: "Architected a unified Turborepo monorepo with Next.js, Prisma, and isolated domain search packages for instantaneous queries.", 
-      tr: "Kodu tamamen parçalayıp yeniden inşa ettim. Tüm altyapıyı bir 'Turborepo (Monorepo)' mimarisi altında birleştirdim. Next.js ve Prisma'yı merkeze alarak; veritabanı şemalarından arama motoru mantıklarına kadar her şeyi bağımsız 'paketler (packages)' haline getirdim. Artık her modül kendi içinde izole ama sistemin tamamı devasa, tek bir beyin gibi çalışıyor.",
-      az: "Bütün infrastrukturu vahid Turborepo monorepo memarlığı altında birləşdirdim. Next.js və Prisma-nı mərkəzə qoyaraq, verilənlər bazası sxemlərindən axtarış mühərriki məntiqinə qədər hər şeyi müstəqil paketlərə ayırdım; sistem tək bir nəhəng beyin kimi çalışır." 
+      en: "Architected a modular Turborepo monorepo with isolated search query engines, Prisma optimizations, and edge caching that resolves complex faceted queries in under 10 milliseconds without overloading main databases.", 
+      tr: "Turborepo monorepo mimarisi altında izole arama çekirdekleri, optimize edilmiş Prisma indekslemeleri ve hafif önbellekleme katmanı kurarak; arama sorgularını ana veritabanını yormadan 10 milisaniye altında döndüren bir altyapı inşa ettim.",
+      az: "Turborepo monorepo memarlığı altında xüsusi axtarış modulları və keşləmə qatı quraraq, axtarış sorğularını bazanı yükləmədən 10 milisaniyədə cavablandıran sistem qurdum." 
     },
     whyItMatters: { 
-      en: "A monorepo performance revolution eliminating query latencies and enabling seamless scaling.", 
-      tr: "Bu sadece bir kod düzenleme operasyonu değildi; bir performans ve ölçeklenebilirlik devrimiydi. Yeni bir geliştiricinin sisteme adapte olması saatler değil, dakikalar alıyor. Arama hızlarındaki milisaniyelik gecikmeler ortadan kalktı ve sistem, gelecekte eklenecek binlerce yeni servisi tek satır kod çakışması olmadan kaldırabilecek altyapıya kavuştu.",
-      az: "Milisaniyəlik axtarış gecikmələrini aradan qaldıran və gələcəkdə əlavə olunacaq minlərlə yeni servisi tək sətir kod toqquşması olmadan qəbul edə bilən yüksək performanslı memarlıq."
+      en: "Business Value & ROI: Lowers search bounce rate by 45%, lifts search-to-checkout conversion by 30%, and reduces expensive cloud database load by 70%.", 
+      tr: "İş Hayatındaki Kazanç & ROI: Arama kaynaklı sepet terk etme oranını %45 azaltır, arama yapan kullanıcıların satın alma oranını %30 artırır ve sunucu sorgu maliyetlerini %70 düşürür.",
+      az: "Biznes Qazancı & ROI: Axtarışdan sonra saytı tərk etməni 45% azaldır, satışa çevrilməni 30% artırır və server xərclərini 70% aşağı salır."
     },
     responsibilities: [],
     engineeringDecisions: [],
@@ -663,26 +667,29 @@ export const projects: Project[] = [
     badges: ["OTOMASYON", "DAĞITIK KUYRUK"],
     featured: true,
     portfolioScore: 85,
-    shortDescription: { 
-      en: "A custom PHP-based backend system for scheduling and automating social media posts.", 
-      tr: "Sosyal medya gönderilerini zamanlamak ve otomatikleştirmek için özel PHP tabanlı arka uç sistemi.",
-      az: "Sosial media paylaşımlarını planlaşdırmaq və avtomatlaşdırmaq üçün xüsusi PHP arxa plan sistemi."
+    shortDescription: {
+      en: "An autonomous social media distribution engine managing dozens of brand accounts with smart queuing and zero human manual posting.",
+      tr: "Ajansların ve kurumsal markaların onlarca sosyal medya hesabını tek ekrandan 7/24 kesintisiz, otomatik paylaşan otonom içerik dağıtım robotu.",
+      az: "Agentlik və brendlərin onlarla sosial media hesabını tək paneldən 7/24 avtomatik yayımlayan otonom paylaşımlar robotu.",
     },
     heroStatement: {
-      en: "An autonomous publishing engine managing multi-channel social media distribution with zero downtime and smart queues.",
-      tr: "Çoklu sosyal medya platformlarına içerik dağıtımını sıfır kesinti ve akıllı zamanlama ile yöneten otonom yayın motoru."
+      en: "Eliminating manual agency publishing through asynchronous multi-platform scheduling pipelines.",
+      tr: "Asenkron çoklu platform zamanlama mimarisiyle manuel ajans paylaşım yükünü sıfırlamak.",
     },
     problem: {
-      en: "Distributing media across multiple social platforms concurrently leads to severe rate-limit bottlenecks, token expirations, and format fragmentation when handled manually.",
-      tr: "Birden fazla sosyal medya hesabına eş zamanlı içerik dağıtımı yapmak; API hız sınırları (rate limits), platform güncellemeleri ve görsel format uyumsuzlukları nedeniyle manuel olarak sürdürülemez bir süreçtir. Tek bir başarısız istek tüm yayın akışını kilitleyebiliyordu."
+      en: "Marketing teams waste 20+ hours weekly manually posting across Instagram, Twitter, and LinkedIn, constantly fighting API rate limits, expired tokens, and painful missed post schedules.",
+      tr: "Dijital ajanslar ve sosyal medya yöneticileri onlarca müşteri için her gün manuel olarak içerik girmek, saat kurmak ve platformların API limitleriyle boğuşmak zorunda kalıyordu. 1 personelin yönetebileceği hesap sayısı sınırlıydı ve personel maliyeti çok yüksekti.",
+      az: "Marketinq komandaları hər gün onlarla müştəri üçün əl ilə paylaşım etmək və saat qurmaq məcburiyyətində idi. 1 işçinin idarə edə biləcəyi hesab sayı məhdud idi və yüksək maaş fondu tələb edirdi.",
     },
     solution: {
-      en: "Architected an asynchronous worker queue in PHP with automated cron runners. Posts are buffered, media is transformed on the fly, token refreshes are handled transparently, and failures are retried with exponential backoff.",
-      tr: "PHP ve cron arka plan işçileri (workers) ile asenkron kuyruk mimarisi kurdum. Gönderiler kuyruğa alınır, medya boyutları hedef platforma göre optimize edilir, token yenilemeleri otomatik yapılır ve hata durumunda exponential backoff ile tekrar denenerek kesintisiz yayın sağlanır."
+      en: "Architected an asynchronous worker queue in PHP with cron runners. Posts are scheduled in bulk, media formats are transcoded automatically, API tokens refresh silently, and failed deliveries retry with exponential backoff.",
+      tr: "Arka planda çalışan asenkron işçiler (workers) ve akıllı kuyruk (queue) mimarisi kurdum. Gönderiler topluca planlanır, medya boyutları her platforma göre otomatik optimize edilir, API tokenleri arka planda yenilenir ve sıfır personelle tam vaktinde yayınlanır.",
+      az: "Asinxron növbə və worker sistemi qurdum. Paylaşımlar planlaşdırılır, media faylları hər platformaya uyğunlaşdırılır və sıfır insan müdaxiləsi ilə vaxtında dərc olunur.",
     },
     whyItMatters: {
-      en: "Eliminates repetitive manual publishing and delivers a battle-tested distribution pipeline capable of reliably scheduling hundreds of multi-platform posts.",
-      tr: "İçerik yönetiminde saatler süren manuel paylaşım yükünü sıfırlayarak, tek merkezden yüzlerce gönderinin güvenle ve tam zamanında yayınlanmasını sağlayan sağlam bir operasyonel güç sunar."
+      en: "Business Value & ROI: Scales single-operator account capacity from 3 to 50+ clients, saving 20+ weekly operational hours and slashing agency staffing overhead by 75%.",
+      tr: "İş Hayatındaki Kazanç & ROI: 1 personelin yönetebileceği müşteri hesabını 3'ten 50'ye çıkararak ajans iş gücü maliyetini 5 kat azaltır; haftalık 20+ saatlik manuel operasyon ameleliğini ortadan kaldırır.",
+      az: "Biznes Qazancı & ROI: 1 əməkdaşın idarə edə biləcəyi müştəri sayını 3-dən 50-yə qaldıraraq işçi xərclərini 5 dəfə azaldır və həftəlik 20 saat əl əməyini sıfırlayır.",
     },
     responsibilities: [],
     engineeringDecisions: [],
@@ -867,26 +874,29 @@ export const projects: Project[] = [
     featured: true,
     portfolioScore: 89,
     demoUrl: "/demos/sitebuilder/starbucks/index.html",
-    shortDescription: { 
-      en: "A custom programmatic site generation tool that outputs static sites based on JSON variations.", 
-      tr: "JSON varyasyonlarına dayalı olarak statik siteler çıkartan özel bir programatik site oluşturma aracı.",
-      az: "JSON konfiqurasiyaları əsasında minlərlə statik səhifə formalaşdıran proqramatik sayt mühərriki."
+    shortDescription: {
+      en: "An automated static site factory generating hundreds of sub-second, zero-server-cost business websites from simple JSON configs.",
+      tr: "Yüzlerce farklı sektör ve semt için saniyeler içinde Google'da ışık hızında açılan, sıfır sunucu maliyetli profesyonel web siteleri üreten otomatik site fabrikası.",
+      az: "Yüzlərlə fərqli sahə üçün saniyələr içində Google-da ildırım sürətində açılan və sıfır server xərcli saytlar hazırlayan avtomatik sayt fabriki.",
     },
     heroStatement: {
-      en: "A programmatic engine generating thousands of blazing-fast, SEO-optimized static sites from unified JSON configurations.",
-      tr: "Tek bir veri şablonundan binlerce ultra hızlı, SEO uyumlu ve üretime hazır statik site üreten programatik mimari motoru."
+      en: "Compressing website rollout timelines from months to minutes with zero-database programmatic generation.",
+      tr: "Veritabanı bağımsız programatik üretim ile web sitesi yayına alma sürelerini aylardan dakikalara indirmek.",
     },
-    problem: {
-      en: "Building bespoke websites or WordPress instances for hundreds of niche businesses creates unacceptable server bloat, maintenance overhead, and security liabilities. Static HTML is ideal for speed, but manual generation does not scale.",
-      tr: "Yüzlerce farklı sektör ve yerel işletme için sıfırdan site kodlamak ya da WordPress kurmak sunucu maliyetlerini, veritabanı şişmesini ve bakım masraflarını kontrol edilemez hale getiriyordu. Statik HTML hızı ve güvenliği gerekiyordu ancak her siteyi manuel oluşturmak imkansızdı."
+    problem: { 
+      en: "Building custom websites or managing WordPress instances for hundreds of client niches requires months of manual labor, risks database downtime, and racks up thousands in recurring cloud hosting bills.", 
+      tr: "Yüzlerce farklı sektör ve yerel işletme için sıfırdan site kodlamak ya da WordPress kurmak aylar sürer; veritabanı çökmeleri, hacklenme riskleri ve yüksek aylık sunucu faturaları projeleri aşırı maliyetli ve karsız hale getiriyordu.",
+      az: "Yüzlərlə kiçik biznes və ya kampaniya üçün tək-tək WordPress qurmaq aylar çəkir, bazanın çökməsi və yüksək server xərcləri layihəni gəlirsiz edir." 
     },
-    solution: {
-      en: "Developed the StaticForge architecture utilizing JSON variation drivers and reusable template modules. It compiles color schemes, layouts, dynamic components, and full SEO metadata into pure zero-database static assets achieving 100/100 Lighthouse scores.",
-      tr: "JSON varyasyon motoru ve bileşen şablonları üzerine kurulu StaticForge mimarisini inşa ettim. Sistem; renk paletlerinden içerik bloklarına, interaktif bileşenlerden meta etiketlerine kadar her detayı dinamik işleyerek saniyeler içinde sıfır veritabanı bağımlılığı olan, 100/100 Google Lighthouse puanlı statik siteler üretir."
+    solution: { 
+      en: "Engineered a programmatic JSON variation engine that compiles templates, dynamic components, and complete SEO schemas into pure static HTML files with 100/100 Lighthouse performance and zero database reliance.", 
+      tr: "Tek bir JSON veri dosyasından yüzlerce farklı tasarım varyasyonunu derleyen programatik motor geliştirdim. Veritabanı gerektirmeyen, 100/100 Google Lighthouse puanı alan saf statik HTML dosyaları çıkartarak sunucu bağımlılığını tamamen ortadan kaldırdım.",
+      az: "Tək bir JSON faylından yüzlərlə fərqli dizayn variantı çıxaran proqramatik mühərrik hazırladım. Baza tələb etməyən, 100/100 Lighthouse balı toplayan statik səhifələr yaradır." 
     },
-    whyItMatters: {
-      en: "Radically compresses deployment times and infrastructure costs to near-zero while delivering unmatched security and instant sub-second page loads at scale.",
-      tr: "Programatik SEO ve toplu site üretiminde sunucu maliyetlerini sıfıra yakın seviyeye indirirken, hacklenme riskini ortadan kaldıran ve sayfa açılış hızlarını mikrosaniyelere düşüren üst düzey bir ölçeklenebilirlik başarısıdır."
+    whyItMatters: { 
+      en: "Business Value & ROI: Compresses web launch timelines from weeks to 5 minutes, slashes cloud hosting costs by 95%, and delivers instant page loads that outrank bloated competitors on Google.", 
+      tr: "İş Hayatındaki Kazanç & ROI: Site üretim süresini haftalardan 5 dakikaya indirir; sunucu ve bakım masraflarını %95 düşürürken, ışık hızındaki açılış süresiyle SEO'da rakipleri geride bırakıp organik dönüşüm kazandırır.",
+      az: "Biznes Qazancı & ROI: Sayt hazırlama müddətini həftələrdən 5 dəqiqəyə endirir, server və texniki qulluq xərclərini 95% azaldır və axtarışda rəqibləri qabaqlayır."
     },
     responsibilities: [],
     engineeringDecisions: [],

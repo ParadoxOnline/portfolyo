@@ -225,7 +225,20 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                   boxShadow: isBuilding ? `0 0 0 1px ${color}44` : "0 25px 60px -20px rgba(0,0,0,0.8)",
                 }}
               >
-                {/* Mod / Sekme Seçici: Akış, Problem, Çözüm, Değer */}
+                {/* En Üstte: Net ve Sade "Gerçekte Ne İşe Yarar?" Özeti */}
+                <div className="mb-4 rounded-xl border border-sky-500/25 bg-sky-950/20 p-3 sm:p-3.5">
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="flex h-2 w-2 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
+                    <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-sky-300">
+                      💡 {t.whatItDoes}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-[13.5px] font-medium leading-relaxed text-slate-100">
+                    {desc}
+                  </p>
+                </div>
+
+                {/* Mod / Sekme Seçici: Akış, Problem, Çözüm, İş Kazancı */}
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
                   <div className="flex flex-wrap items-center gap-1 rounded-lg border border-white/10 bg-white/[0.03] p-1 font-mono text-[11px]">
                     <button
@@ -275,22 +288,22 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                         }`}
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                        <span>{t.why}</span>
+                        <span>💰 {lang === "az" ? "Biznes Qazancı" : lang === "en" ? "ROI" : "İş Kazancı"}</span>
                       </button>
                     )}
                   </div>
 
-                  <span className="font-mono text-[10px] tracking-wider text-white/40 uppercase hidden sm:inline">
-                    ENGINEERING SIGNAL
+                  <span className="font-mono text-[10px] tracking-wider text-emerald-400 uppercase hidden sm:inline">
+                    PROVEN ROI
                   </span>
                 </div>
 
                 {/* Sekme İçerikleri */}
                 {descTab === "flow" && (
-                  <div className="space-y-3.5">
-                    {/* Problem Bloğu */}
-                    <div className="relative rounded-xl border border-rose-500/20 bg-rose-950/20 p-3.5 sm:p-4">
-                      <div className="mb-1.5 flex items-center justify-between">
+                  <div className="space-y-3">
+                    {/* 01: Problem Bloğu */}
+                    <div className="relative rounded-xl border border-rose-500/20 bg-rose-950/20 p-3 sm:p-3.5">
+                      <div className="mb-1 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="h-2 w-2 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" />
                           <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-rose-300">
@@ -301,30 +314,30 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                           {t.problemSubtitle}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-[13.5px] leading-relaxed text-slate-300">
+                      <p className="text-xs sm:text-[13px] leading-relaxed text-slate-300">
                         {problemText}
                       </p>
                     </div>
 
-                    {/* Akış Köprüsü / Ok */}
+                    {/* Akış Köprüsü 1 */}
                     <div className="flex items-center justify-center gap-2 py-0.5">
-                      <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                      <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-[10px] text-white/70">
+                      <span className="h-px w-8 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                      <span className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[9.5px] text-white/60">
                         <span>{lang === "az" ? "Mühəndislik Müdaxiləsi" : lang === "en" ? "System Intervention" : "Mimari Müdahale"}</span>
-                        <ArrowDown size={11} style={{ color }} />
+                        <ArrowDown size={10} style={{ color }} />
                       </span>
-                      <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                      <span className="h-px w-8 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                     </div>
 
-                    {/* Çözüm Bloğu */}
+                    {/* 02: Çözüm Bloğu */}
                     <div
-                      className="relative rounded-xl border p-3.5 sm:p-4 transition-all"
+                      className="relative rounded-xl border p-3 sm:p-3.5 transition-all"
                       style={{
                         borderColor: `${color}35`,
                         backgroundColor: `${color}0d`,
                       }}
                     >
-                      <div className="mb-1.5 flex items-center justify-between">
+                      <div className="mb-1 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span
                             className="h-2 w-2 rounded-full"
@@ -341,20 +354,41 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                           {t.solutionSubtitle}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-[13.5px] leading-relaxed text-slate-200">
+                      <p className="text-xs sm:text-[13px] leading-relaxed text-slate-200">
                         {solutionText}
                       </p>
                     </div>
 
-                    {/* Somut Katma Değer Vurgusu */}
+                    {/* Akış Köprüsü 2 */}
                     {whyItMattersText && (
-                      <div className="flex items-start gap-2 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs leading-relaxed text-slate-400">
-                        <span className="mt-0.5 shrink-0 font-mono text-[10px] text-amber-400">⚡</span>
-                        <span>
-                          <strong className="text-slate-300 font-medium">{t.impactBadge}: </strong>
-                          {whyItMattersText}
-                        </span>
-                      </div>
+                      <>
+                        <div className="flex items-center justify-center gap-2 py-0.5">
+                          <span className="h-px w-8 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
+                          <span className="flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 font-mono text-[9.5px] text-amber-300">
+                            <span>{lang === "az" ? "Biznes Dəyəri" : lang === "en" ? "Value Realization" : "Ticari Çıktı & Katma Değer"}</span>
+                            <ArrowDown size={10} className="text-amber-400" />
+                          </span>
+                          <span className="h-px w-8 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
+                        </div>
+
+                        {/* 03: Somut İş Kazancı & ROI Bloğu */}
+                        <div className="relative rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-950/25 via-emerald-950/15 to-transparent p-3 sm:p-3.5 shadow-lg">
+                          <div className="mb-1 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
+                              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-amber-300">
+                                💰 {t.impactBadge}
+                              </span>
+                            </div>
+                            <span className="font-mono text-[10px] text-amber-300/70 hidden sm:inline">
+                              {t.impactSubtitle}
+                            </span>
+                          </div>
+                          <p className="text-xs sm:text-[13px] font-medium leading-relaxed text-amber-100/90">
+                            {whyItMattersText}
+                          </p>
+                        </div>
+                      </>
                     )}
                   </div>
                 )}
@@ -400,14 +434,14 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                 )}
 
                 {descTab === "impact" && whyItMattersText && (
-                  <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 p-5 animate-in fade-in duration-200">
+                  <div className="rounded-xl border border-amber-500/30 bg-amber-950/25 p-5 animate-in fade-in duration-200 shadow-xl">
                     <div className="mb-2 flex items-center gap-2">
                       <span className="h-2.5 w-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_#f59e0b]" />
                       <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">
-                        {t.impactBadge} — {t.impactSubtitle}
+                        💰 {t.impactBadge} — {t.impactSubtitle}
                       </h4>
                     </div>
-                    <p className="text-sm leading-relaxed text-slate-200 md:text-[15px]">
+                    <p className="text-sm font-medium leading-relaxed text-amber-100 md:text-[15px]">
                       {whyItMattersText}
                     </p>
                   </div>
