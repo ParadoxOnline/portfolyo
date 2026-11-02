@@ -137,9 +137,9 @@ export const projects: Project[] = [
       az: "LIOS biznesləri, xidmətləri və əraziləri avtomatik analiz edir. 25 inteqrasiya olunmuş servis vasitəsilə minlərlə SEO uyğun səhifə hazırlayaraq Google Indexing API ilə dərhal canlıya ötürür.",
     },
     whyItMatters: {
-      en: "Business Value & ROI: Compresses 6 months of agency work into minutes, slashing ad/agency spend by 80%+ while driving a constant stream of organic paying customers.",
-      tr: "İş Hayatındaki Kazanç & ROI: Bir SEO ajansının 6 ayda yapacağı içerik ve sıralama operasyonunu dakikalara indirir; reklam ve ajans masraflarını %80+ düşürerek işletmelere sürekli ve ücretsiz organik müşteri akışı sağlar.",
-      az: "Biznes Qazancı & ROI: Agentliklərin 6 aya görəcəyi işi dəqiqələrə endirir; reklam xərclərini 80%+ azaldaraq müəssisələrə fasiləsiz ödənişsiz üzvi müştəri axını təmin edir.",
+      en: "Commercial Potential & ROI: Designed to automate months of manual SEO and landing page deployment into minutes, eliminating heavy agency retainer costs while driving consistent organic search traffic.",
+      tr: "Ticari Potansiyel & Katma Değer: Manuel SEO içerik operasyonunu otomasyona bağlayarak ajanslara aylar süren sayfa üretim maliyetini dakikalara indirme ve Google Indexing entegrasyonuyla reklam bütçesi harcamadan organik müşteri trafiği üretme potansiyeli sunar.",
+      az: "Kommersiya Potensialı & Dəyər: Əl ilə aparılan SEO və səhifə hazırlığı əməliyyatını avtomatlaşdıraraq xərcləri dəqiqələrə endirmək və ödənişsiz üzvi axtarış trafiki cəlb etmək potensialı yaradır.",
     },
 
     responsibilities: [
@@ -315,9 +315,9 @@ export const projects: Project[] = [
       az: "Sosial şəbəkələrdən gələn istifadəçi şikayətlərini toplayır, 6 parametr üzrə qiymətləndirir və Qdrant vektor AI ilə qruplaşdıraraq dərhal gəlir gətirəcək məhsul təkliflərini çıxarır.",
     },
     whyItMatters: {
-      en: "Business Value & ROI: Eliminates $50k+ in research consulting fees and prevents catastrophic product failures by validating commercial willingness-to-pay before writing a single line of code.",
-      tr: "İş Hayatındaki Kazanç & ROI: Aylar süren ve on binlerce dolarlık pazar araştırması/danışmanlık maliyetini sıfırlar; şirketlerin tutmayacak ürünlere para gömmesini önleyip doğrudan satın almaya hazır kitleye ürün yapmasını sağlar.",
-      az: "Biznes Qazancı & ROI: On minlərlə dollar dəyərində bazar araşdırması və məsləhət xərclərini sıfırlayır; şirkətlərin uğursuz layihələrə sərmayə qoymasının qarşısını alır.",
+      en: "Commercial Potential & ROI: Eliminates expensive market research guesswork by validating real commercial willingness-to-pay from user pain points before writing production code.",
+      tr: "Ticari Potansiyel & Katma Değer: Yüksek bütçeli pazar araştırması ve danışmanlık masraflarını bertaraf eder; şirketlerin talep görmeyecek ürünlere sermaye bağlamasını önleyip, pazarda ödeme yapmaya hazır kitlenin şikayetlerine yönelik ürün geliştirmesini hedefler.",
+      az: "Kommersiya Potensialı & Dəyər: Bahalı bazar araşdırması xərclərini aradan qaldırır; şirkətlərin tələbat olmayan məhsullara vəsait qoymasının qarşısını alaraq dəqiq hədəfli məhsul yaratmağa imkan verir.",
     },
 
     responsibilities: [
@@ -384,9 +384,9 @@ export const projects: Project[] = [
       az: "İstifadəçilərin oyun yaratdığı, oyunçuları filtrlədiyi, tək toxunuşla qatıldığı və anlıq bildirişlər aldığı mobil platforma.",
     },
     whyItMatters: {
-      en: "Business Value & ROI: Fills idle venue slots by 35%+, turning dead field hours into high-margin revenue and creating a recurring commission stream on every booking.",
-      tr: "İş Hayatındaki Kazanç & ROI: Halı saha tesislerinin boş kalan saatlerini doldurarak atıl kapasiteyi %35+ ciroya dönüştürür; maç iptallerini önleyerek tesis ve platform için kesintisiz rezervasyon komisyonu yaratır.",
-      az: "Biznes Qazancı & ROI: Meydançaların boş qalan saatlarını dolduraraq gəliri 35%+ artırır və hər rezervasiyadan stabil komissiya gəliri formalaşdırır.",
+      en: "Commercial Potential & ROI: Engineered to monetize idle sports venue slots, reduce last-minute cancellations, and unlock predictable booking commission revenue for facilities.",
+      tr: "Ticari Potansiyel & Katma Değer: Halı sahaların atıl ve boş kalan saatlerini dijital rezervasyonla doldurarak tesis kapasitesini ciroya dönüştürmeyi, maç iptallerini önlemeyi ve işletmeler için sürdürülebilir bir komisyon modeli oluşturmayı hedefler.",
+      az: "Kommersiya Potensialı & Dəyər: İdman meydançalarının boş saatlarını rəqəmsal rezervasiya ilə dolduraraq gəliri artırmaq, ləğvlərin qarşısını almaq və sabit komissiya modeli yaratmaq üçün nəzərdə tutulub.",
     },
 
     responsibilities: [
@@ -573,9 +573,9 @@ export const projects: Project[] = [
       az: "Heç bir tətbiq yükləmədən brauzerdə işləyən sistem qurdum. MediaPipe ilə bədən qamətini mikrosaniyələrdə çıxarır və WebGL ilə 3D geyimi alıcının üzərinə canlı geyindirir.",
     },
     whyItMatters: {
-      en: "Business Value & ROI: Slashes e-commerce product returns by 40%+, cuts reverse logistics losses, and doubles checkout conversion rates by giving shoppers complete purchasing confidence.",
-      tr: "İş Hayatındaki Kazanç & ROI: E-ticaret sitelerinde ürün iade oranlarını %40'ın üzerinde düşürür; kararsız müşterilerin satın alma dönüşüm oranını (conversion rate) 2 katına çıkararak ciro patlaması yaratır.",
-      az: "Biznes Qazancı & ROI: Geri qaytarma faizini 40%-dən çox azaldır və alıcıların sifarişi təsdiqləmə dönüşümünü 2 dəfə artıraraq birbaşa gəliri yüksəldir.",
+      en: "Commercial Potential & ROI: Targets significant reductions in costly e-commerce apparel return rates while boosting checkout confidence and conversion through real-time virtual try-ons.",
+      tr: "Ticari Potansiyel & Katma Değer: E-ticaret sitelerinde beden ve kumaş belirsizliğinden kaynaklanan ürün iade oranlarını düşürmeyi, müşteriye gerçekçi prova deneyimi sunarak sepetten satın almaya dönüşüm oranlarını artırmayı hedefler.",
+      az: "Kommersiya Potensialı & Dəyər: E-ticarət geyim satışlarında ölçü və parça qeyri-müəyyənliyindən yaranan geri qaytarmaları azaltmağı və alıcı etibarını artıraraq satışı yüksəltməyi hədəfləyir.",
     },
 
     responsibilities: [],
@@ -644,9 +644,9 @@ export const projects: Project[] = [
       az: "Turborepo monorepo memarlığı altında xüsusi axtarış modulları və keşləmə qatı quraraq, axtarış sorğularını bazanı yükləmədən 10 milisaniyədə cavablandıran sistem qurdum." 
     },
     whyItMatters: { 
-      en: "Business Value & ROI: Lowers search bounce rate by 45%, lifts search-to-checkout conversion by 30%, and reduces expensive cloud database load by 70%.", 
-      tr: "İş Hayatındaki Kazanç & ROI: Arama kaynaklı sepet terk etme oranını %45 azaltır, arama yapan kullanıcıların satın alma oranını %30 artırır ve sunucu sorgu maliyetlerini %70 düşürür.",
-      az: "Biznes Qazancı & ROI: Axtarışdan sonra saytı tərk etməni 45% azaldır, satışa çevrilməni 30% artırır və server xərclərini 70% aşağı salır."
+      en: "Commercial Potential & ROI: Reduces search-driven cart abandonment through sub-10ms faceted filtering, accelerating purchase decisions while drastically offloading expensive cloud database queries.", 
+      tr: "Ticari Potansiyel & Katma Değer: E-ticaret platformlarında yavaş arama sonuçlarından kaynaklanan sepet terklerini önler; 10ms altı anlık filtreleme ile kullanıcıyı hızla ürüne ulaştırırken pahalı bulut veritabanı sorgu yükünü hafifletir.",
+      az: "Kommersiya Potensialı & Dəyər: E-ticarətdə axtarış ləngiməsindən yaranan müştəri itkisini önləyir; 10ms altı anlıq filtrasiya ilə satışı sürətləndirərkən server sorğu yükünü yüngülləşdirir."
     },
     responsibilities: [],
     engineeringDecisions: [],
@@ -687,9 +687,9 @@ export const projects: Project[] = [
       az: "Asinxron növbə və worker sistemi qurdum. Paylaşımlar planlaşdırılır, media faylları hər platformaya uyğunlaşdırılır və sıfır insan müdaxiləsi ilə vaxtında dərc olunur.",
     },
     whyItMatters: {
-      en: "Business Value & ROI: Scales single-operator account capacity from 3 to 50+ clients, saving 20+ weekly operational hours and slashing agency staffing overhead by 75%.",
-      tr: "İş Hayatındaki Kazanç & ROI: 1 personelin yönetebileceği müşteri hesabını 3'ten 50'ye çıkararak ajans iş gücü maliyetini 5 kat azaltır; haftalık 20+ saatlik manuel operasyon ameleliğini ortadan kaldırır.",
-      az: "Biznes Qazancı & ROI: 1 əməkdaşın idarə edə biləcəyi müştəri sayını 3-dən 50-yə qaldıraraq işçi xərclərini 5 dəfə azaldır və həftəlik 20 saat əl əməyini sıfırlayır.",
+      en: "Commercial Potential & ROI: Removes manual multi-platform publishing friction for agencies, enabling a single operator to manage high client volumes with zero missed schedules and minimal overhead.",
+      tr: "Ticari Potansiyel & Katma Değer: Sosyal medya ve içerik ajanslarında tekrarlayan manuel paylaşım ameleliğini ortadan kaldırarak; tek bir personelin çok sayıda müşteri hesabını hatasız yönetebilmesine ve operasyonel iş gücü tasarrufuna olanak tanır.",
+      az: "Kommersiya Potensialı & Dəyər: Sosial media agentliklərində əl ilə paylaşım zəhmətini aradan qaldırır; bir əməkdaşın çoxlu sayda müştəri hesabını səhvsiz idarə etməsinə və işçi qənaətinə şərait yaradır.",
     },
     responsibilities: [],
     engineeringDecisions: [],
@@ -894,9 +894,9 @@ export const projects: Project[] = [
       az: "Tək bir JSON faylından yüzlərlə fərqli dizayn variantı çıxaran proqramatik mühərrik hazırladım. Baza tələb etməyən, 100/100 Lighthouse balı toplayan statik səhifələr yaradır." 
     },
     whyItMatters: { 
-      en: "Business Value & ROI: Compresses web launch timelines from weeks to 5 minutes, slashes cloud hosting costs by 95%, and delivers instant page loads that outrank bloated competitors on Google.", 
-      tr: "İş Hayatındaki Kazanç & ROI: Site üretim süresini haftalardan 5 dakikaya indirir; sunucu ve bakım masraflarını %95 düşürürken, ışık hızındaki açılış süresiyle SEO'da rakipleri geride bırakıp organik dönüşüm kazandırır.",
-      az: "Biznes Qazancı & ROI: Sayt hazırlama müddətini həftələrdən 5 dəqiqəyə endirir, server və texniki qulluq xərclərini 95% azaldır və axtarışda rəqibləri qabaqlayır."
+      en: "Commercial Potential & ROI: Compresses landing page production cycles from weeks to minutes, cuts dynamic server infrastructure costs, and delivers 100/100 Lighthouse speed for maximum SEO ranking power.", 
+      tr: "Ticari Potansiyel & Katma Değer: Web açılış sayfalarının üretim sürecini dakikalara indirir; dinamik sunucu ihtiyacını sıfırlayarak barındırma maliyetlerini minimuma çeker ve 100/100 Google Lighthouse hızıyla SEO avantajı sağlar.",
+      az: "Kommersiya Potensialı & Dəyər: Sayt hazırlama prosesini dəqiqələrə endirir; dinamik server tələbini aradan qaldıraraq xərcləri minimuma endirir və 100/100 Lighthouse sürəti ilə axtarış üstünlüyü təmin edir."
     },
     responsibilities: [],
     engineeringDecisions: [],

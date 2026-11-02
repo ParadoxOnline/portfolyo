@@ -59,8 +59,8 @@ export const copy = {
     problemSubtitle: "Bottleneck & waste",
     solutionBadge: "02 · System Architecture",
     solutionSubtitle: "How it works",
-    impactBadge: "03 · Business Value & ROI",
-    impactSubtitle: "Revenue & hours saved",
+    impactBadge: "03 · Commercial Potential & ROI",
+    impactSubtitle: "Target value & operational leverage",
   },
   tr: {
     nav: { architecture: "Mimari", work: "Çalışmalar", reel: "Diğerleri", contact: "İletişim" },
@@ -97,8 +97,8 @@ export const copy = {
     problemSubtitle: "Pazardaki darboğaz & kayıp",
     solutionBadge: "02 · Mimari Çözüm",
     solutionSubtitle: "Geliştirilen sistem",
-    impactBadge: "03 · İş Hayatındaki Kazanç & ROI",
-    impactSubtitle: "Tasarruf & ciro artışı",
+    impactBadge: "03 · Ticari Potansiyel & Katma Değer",
+    impactSubtitle: "Hedeflenen sektörel kazanım",
   },
   az: {
     nav: { architecture: "Memarlıq", work: "İşlər", reel: "Digərləri", contact: "Əlaqə" },
@@ -135,7 +135,7 @@ export const copy = {
     problemSubtitle: "Bazardakı çətinlik & itki",
     solutionBadge: "02 · Memarlıq Həlli",
     solutionSubtitle: "Qurulan sistem",
-    impactBadge: "03 · Biznes Qazancı & ROI",
-    impactSubtitle: "Qənaət & gəlir artımı",
+    impactBadge: "03 · Kommersiya Potensialı & Dəyər",
+    impactSubtitle: "Hədəflənən sektor qazancı",
   },
 } as const;

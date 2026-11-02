@@ -123,7 +123,7 @@ export function StageSketchArt({
         {/* 03: ROI Şeridi */}
         <rect x="10" y="85" width="102" height="5.5" rx="2" stroke="#059669" strokeWidth="0.75" fill="#f0fdf4" />
         <text x="13" y="89.5" fill="#065f46" fontSize="4" fontFamily="monospace" fontWeight="bold">
-          💰 ROI: %80+ Bütçe &amp; Zaman Tasarrufu
+          💰 Hedeflenen ROI &amp; Katma Değer
         </text>
       </g>
 
