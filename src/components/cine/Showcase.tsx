@@ -583,15 +583,18 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
       </div>
 
       {/* Tam Ekran Estetik Lightbox Görsel İnceleme Modalı */}
-      <LightboxModal
-        isOpen={isLightboxOpen}
-        onClose={() => setIsLightboxOpen(false)}
-        shots={shots}
-        initialIndex={active}
-        projectName={p.name}
-        lang={lang}
-        accentColor={color}
-      />
+      {isLightboxOpen && (
+        <LightboxModal
+          key={`${p.slug}-${active}`}
+          isOpen={isLightboxOpen}
+          onClose={() => setIsLightboxOpen(false)}
+          shots={shots}
+          initialIndex={active}
+          projectName={p.name}
+          lang={lang}
+          accentColor={color}
+        />
+      )}
     </article>
   );
 }

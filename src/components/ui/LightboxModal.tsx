@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import React, { useCallback, useEffect, useState } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Lang } from "@/providers/LangProvider";
 
 interface LightboxModalProps {
@@ -23,12 +23,21 @@ export default function LightboxModal({
   lang,
   accentColor = "#38bdf8",
 }: LightboxModalProps) {
+  // initialIndex veya isOpen değiştiğinde key prop'u ile sıfırlanabilmesi için state
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [touchStart, setTouchStart] = useState<number | null>(null);
 
-  useEffect(() => {
-    setCurrentIndex(initialIndex);
-  }, [initialIndex, isOpen]);
+  const count = shots.length;
+
+  const handlePrev = useCallback(() => {
+    if (count === 0) return;
+    setCurrentIndex((prev) => (prev - 1 + count) % count);
+  }, [count]);
+
+  const handleNext = useCallback(() => {
+    if (count === 0) return;
+    setCurrentIndex((prev) => (prev + 1) % count);
+  }, [count]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -47,19 +56,9 @@ export default function LightboxModal({
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = originalOverflow;
     };
-  }, [isOpen, shots.length]);
+  }, [isOpen, onClose, handlePrev, handleNext]);
 
   if (!isOpen || shots.length === 0) return null;
-
-  const count = shots.length;
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + count) % count);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % count);
-  };
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -170,8 +169,7 @@ export default function LightboxModal({
               }`}
               style={{
                 borderColor: idx === currentIndex ? accentColor : "rgba(255,255,255,0.15)",
-                // @ts-ignore
-                "--tw-ring-color": accentColor,
+                outlineColor: accentColor,
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -188,4 +186,3 @@ export default function LightboxModal({
     </div>
   );
 }
-
