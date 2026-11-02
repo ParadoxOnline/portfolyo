@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { useLang } from "@/providers/LangProvider";
 import { copy, describe, flagships, getShots, pick } from "@/data/showcase";
 import type { Project } from "@/data/projects";
@@ -59,6 +59,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
   const [userColor, setUserColor] = useState<string | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [descTab, setDescTab] = useState<"flow" | "problem" | "solution" | "impact">("flow");
 
   const defaultAccent = ACCENTS[p.slug] ?? "#38bdf8";
   const stageId = `project-${p.slug}`;
@@ -73,14 +74,16 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
   const phase1 = clamp01((progress - 0.13) / 0.15);
   const phase2 = clamp01((progress - 0.25) / 0.08);
   const phase3 = clamp01((progress - 0.48) / 0.18);
-  const descBox = getTwoAxisBoxState(phase3, 520, 210);
+  const descBox = getTwoAxisBoxState(phase3, 540, 260);
   const phase4 = clamp01((progress - 0.64) / 0.20);
   const phase5 = clamp01((progress - 0.82) / 0.15);
 
   const isMobile = p.slug === "macagel";
   const displayName = p.name.charAt(0).toUpperCase() + p.name.slice(1);
   const desc = describe(p, lang);
-  const systemNote = pick(p.whyItMatters, lang) || pick(p.solution, lang);
+  const problemText = pick(p.problem, lang) || desc;
+  const solutionText = pick(p.solution, lang) || desc;
+  const whyItMattersText = pick(p.whyItMatters, lang);
   const descChars = Math.floor(desc.length * clamp01((phase3 - 0.28) / 0.72));
 
   const techs = techOf(p);
@@ -183,7 +186,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
               </h3>
             </div>
 
-            {/* GÖREV 3: Mimari Açıklama Kartı (Önce Yatay ↔ Sonra Dikey ↕ Genişletilir!) */}
+            {/* GÖREV 3: Problem -> Çözüm Mimari Açıklama Kartı (Önce Yatay ↔ Sonra Dikey ↕ Genişletilir!) */}
             <div
               data-build-role="desc"
               className="relative mt-6"
@@ -213,25 +216,201 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
               )}
 
               <div
-                className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 backdrop-blur-xl"
+                className="rounded-2xl border border-white/10 bg-[#070b14]/90 p-5 md:p-6 backdrop-blur-xl shadow-2xl transition-all"
                 style={{
                   clipPath:
                     phase3 >= 0.95
                       ? "none"
                       : `inset(0 ${(100 - descBox.widthPct).toFixed(1)}% ${(100 - descBox.heightPct).toFixed(1)}% 0 round 16px)`,
-                  boxShadow: isBuilding ? `0 0 0 1px ${color}44` : undefined,
+                  boxShadow: isBuilding ? `0 0 0 1px ${color}44` : "0 25px 60px -20px rgba(0,0,0,0.8)",
                 }}
               >
-                <p className="text-base leading-[1.7] text-slate-200/90 md:text-[17px]">
-                  {desc.slice(0, Math.max(0, descChars))}
-                </p>
-                {systemNote && (
-                  <p
-                    className="mt-4 border-t border-white/10 pt-4 text-sm leading-relaxed text-slate-400 transition-opacity duration-500"
-                    style={{ opacity: phase3 > 0.65 ? 1 : 0 }}
+                {/* Mod / Sekme Seçici: Akış, Problem, Çözüm, Değer */}
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+                  <div className="flex flex-wrap items-center gap-1 rounded-lg border border-white/10 bg-white/[0.03] p-1 font-mono text-[11px]">
+                    <button
+                      type="button"
+                      onClick={() => setDescTab("flow")}
+                      className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
+                        descTab === "flow"
+                          ? "bg-white/15 text-white font-semibold shadow"
+                          : "text-white/50 hover:text-white"
+                      }`}
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+                      <span>{t.flowLabel}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDescTab("problem")}
+                      className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
+                        descTab === "problem"
+                          ? "bg-rose-500/20 text-rose-300 font-semibold"
+                          : "text-white/50 hover:text-rose-300"
+                      }`}
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                      <span>{t.problem}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDescTab("solution")}
+                      className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
+                        descTab === "solution"
+                          ? "bg-emerald-500/20 text-emerald-300 font-semibold"
+                          : "text-white/50 hover:text-emerald-300"
+                      }`}
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span>{t.solution}</span>
+                    </button>
+                    {whyItMattersText && (
+                      <button
+                        type="button"
+                        onClick={() => setDescTab("impact")}
+                        className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
+                          descTab === "impact"
+                            ? "bg-amber-500/20 text-amber-300 font-semibold"
+                            : "text-white/50 hover:text-amber-300"
+                        }`}
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                        <span>{t.why}</span>
+                      </button>
+                    )}
+                  </div>
+
+                  <span className="font-mono text-[10px] tracking-wider text-white/40 uppercase hidden sm:inline">
+                    ENGINEERING SIGNAL
+                  </span>
+                </div>
+
+                {/* Sekme İçerikleri */}
+                {descTab === "flow" && (
+                  <div className="space-y-3.5">
+                    {/* Problem Bloğu */}
+                    <div className="relative rounded-xl border border-rose-500/20 bg-rose-950/20 p-3.5 sm:p-4">
+                      <div className="mb-1.5 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="h-2 w-2 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" />
+                          <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-rose-300">
+                            {t.problemBadge}
+                          </span>
+                        </div>
+                        <span className="font-mono text-[10px] text-rose-300/60 hidden sm:inline">
+                          {t.problemSubtitle}
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-[13.5px] leading-relaxed text-slate-300">
+                        {problemText}
+                      </p>
+                    </div>
+
+                    {/* Akış Köprüsü / Ok */}
+                    <div className="flex items-center justify-center gap-2 py-0.5">
+                      <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                      <span className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-[10px] text-white/70">
+                        <span>{lang === "az" ? "Mühəndislik Müdaxiləsi" : lang === "en" ? "System Intervention" : "Mimari Müdahale"}</span>
+                        <ArrowDown size={11} style={{ color }} />
+                      </span>
+                      <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    </div>
+
+                    {/* Çözüm Bloğu */}
+                    <div
+                      className="relative rounded-xl border p-3.5 sm:p-4 transition-all"
+                      style={{
+                        borderColor: `${color}35`,
+                        backgroundColor: `${color}0d`,
+                      }}
+                    >
+                      <div className="mb-1.5 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="h-2 w-2 rounded-full"
+                            style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}` }}
+                          />
+                          <span
+                            className="font-mono text-[11px] font-semibold uppercase tracking-wider"
+                            style={{ color }}
+                          >
+                            {t.solutionBadge}
+                          </span>
+                        </div>
+                        <span className="font-mono text-[10px] text-white/50 hidden sm:inline">
+                          {t.solutionSubtitle}
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-[13.5px] leading-relaxed text-slate-200">
+                        {solutionText}
+                      </p>
+                    </div>
+
+                    {/* Somut Katma Değer Vurgusu */}
+                    {whyItMattersText && (
+                      <div className="flex items-start gap-2 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs leading-relaxed text-slate-400">
+                        <span className="mt-0.5 shrink-0 font-mono text-[10px] text-amber-400">⚡</span>
+                        <span>
+                          <strong className="text-slate-300 font-medium">{t.impactBadge}: </strong>
+                          {whyItMattersText}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {descTab === "problem" && (
+                  <div className="rounded-xl border border-rose-500/25 bg-rose-950/25 p-5 animate-in fade-in duration-200">
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-rose-500 shadow-[0_0_10px_#f43f5e]" />
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-rose-300">
+                        {t.problemBadge} — {t.problemSubtitle}
+                      </h4>
+                    </div>
+                    <p className="text-sm leading-relaxed text-slate-200 md:text-[15px]">
+                      {problemText}
+                    </p>
+                  </div>
+                )}
+
+                {descTab === "solution" && (
+                  <div
+                    className="rounded-xl border p-5 animate-in fade-in duration-200"
+                    style={{
+                      borderColor: `${color}40`,
+                      backgroundColor: `${color}12`,
+                    }}
                   >
-                    {systemNote}
-                  </p>
+                    <div className="mb-2 flex items-center gap-2">
+                      <span
+                        className="h-2.5 w-2.5 rounded-full"
+                        style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}` }}
+                      />
+                      <h4
+                        className="font-mono text-xs font-bold uppercase tracking-wider"
+                        style={{ color }}
+                      >
+                        {t.solutionBadge} — {t.solutionSubtitle}
+                      </h4>
+                    </div>
+                    <p className="text-sm leading-relaxed text-slate-200 md:text-[15px]">
+                      {solutionText}
+                    </p>
+                  </div>
+                )}
+
+                {descTab === "impact" && whyItMattersText && (
+                  <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 p-5 animate-in fade-in duration-200">
+                    <div className="mb-2 flex items-center gap-2">
+                      <span className="h-2.5 w-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_#f59e0b]" />
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">
+                        {t.impactBadge} — {t.impactSubtitle}
+                      </h4>
+                    </div>
+                    <p className="text-sm leading-relaxed text-slate-200 md:text-[15px]">
+                      {whyItMattersText}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>

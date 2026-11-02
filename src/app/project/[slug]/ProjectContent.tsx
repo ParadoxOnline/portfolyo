@@ -27,9 +27,33 @@ export default function ProjectContent({ project: p, nextProject }: { project: P
   const t = copy[lang];
   const shots = getShots(p.slug);
   const blocks = [
-    { title: t.problem, body: pick(p.problem, lang) },
-    { title: t.solution, body: pick(p.solution, lang) },
-    { title: t.why, body: pick(p.whyItMatters, lang) },
+    {
+      step: "01",
+      title: t.problemBadge,
+      sub: t.problemSubtitle,
+      body: pick(p.problem, lang),
+      tagClass: "text-rose-400 border-rose-500/30 bg-rose-500/10",
+      dotClass: "bg-rose-500",
+      borderClass: "border-rose-500/20 hover:border-rose-500/40",
+    },
+    {
+      step: "02",
+      title: t.solutionBadge,
+      sub: t.solutionSubtitle,
+      body: pick(p.solution, lang),
+      tagClass: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
+      dotClass: "bg-emerald-400",
+      borderClass: "border-emerald-500/20 hover:border-emerald-500/40",
+    },
+    {
+      step: "03",
+      title: t.impactBadge,
+      sub: t.impactSubtitle,
+      body: pick(p.whyItMatters, lang),
+      tagClass: "text-amber-400 border-amber-500/30 bg-amber-500/10",
+      dotClass: "bg-amber-400",
+      borderClass: "border-amber-500/20 hover:border-amber-500/40",
+    },
   ].filter((b) => b.body);
 
   return (
@@ -51,20 +75,28 @@ export default function ProjectContent({ project: p, nextProject }: { project: P
       </section>
 
       {blocks.length > 0 && (
-        <section className="mx-auto grid max-w-[1500px] gap-12 px-6 py-24 md:grid-cols-3 md:px-12">
+        <section className="mx-auto grid max-w-[1500px] gap-8 px-6 py-20 md:grid-cols-3 md:px-12">
           {blocks.map((b, i) => (
             <motion.div
               key={b.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.9, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="border-t border-white/15 pt-6"
+              transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className={`rounded-2xl border ${b.borderClass} bg-white/[0.02] p-6 backdrop-blur-md transition-all duration-300`}
             >
-              <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-sky-200/80">
-                {String(i + 1).padStart(2, "0")} — {b.title}
-              </p>
-              <p className="leading-relaxed text-white/70">{b.body}</p>
+              <div className="mb-4 flex items-center justify-between gap-2">
+                <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider ${b.tagClass}`}>
+                  <span className={`h-1.5 w-1.5 rounded-full ${b.dotClass}`} />
+                  {b.title}
+                </span>
+                {b.sub && (
+                  <span className="font-mono text-[11px] text-white/40">
+                    {b.sub}
+                  </span>
+                )}
+              </div>
+              <p className="text-base leading-relaxed text-white/80">{b.body}</p>
             </motion.div>
           ))}
         </section>
