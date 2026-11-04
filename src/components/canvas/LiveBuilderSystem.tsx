@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { usePathname } from "next/navigation";
 import { useLang, type Lang } from "@/providers/LangProvider";
 import { StageSketchArt } from "./StageSketchArt";
 import { getStageMetaI18n, PAPER_UI_TEXT } from "./StageMetaI18n";
@@ -342,7 +343,10 @@ function SketchChecklistPaper({
   progress: number;
   onReplay: () => void;
 }) {
+  const pathname = usePathname();
   const { lang } = useLang();
+
+  if (pathname !== "/") return null;
   const meta = getStageMetaI18n(stageId, lang);
   const paperText = PAPER_UI_TEXT[lang] ?? PAPER_UI_TEXT.tr;
 
@@ -1462,18 +1466,24 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
     [stages, activeStageId, focusedStageId, registerStage, triggerStageBuild, resetStage]
   );
 
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   return (
     <LiveBuilderContext.Provider value={ctxValue}>
       {children}
 
-      {/* SAĞ ALTTA O ANKİ SAYFAYA UYGUN KURŞUN KALEM KROKİ VE CHECKLIST KAĞIDI */}
-      <SketchChecklistPaper
-        stageId={focusedStageId}
-        progress={currentFocusState.progress}
-        onReplay={handleReplayCurrentStage}
-      />
+      {/* SAĞ ALTTA O ANKİ SAYFAYA UYGUN KURŞUN KALEM KROKİ VE CHECKLIST KAĞIDI (SADECE ANA SAYFADA) */}
+      {isHome && (
+        <SketchChecklistPaper
+          stageId={focusedStageId}
+          progress={currentFocusState.progress}
+          onReplay={handleReplayCurrentStage}
+        />
+      )}
 
-      {/* 10 SİNEMATİK, YÖN DUYARLI, AERODİNAMİK İMLEÇ */}
+      {/* 10 SİNEMATİK, YÖN DUYARLI, AERODİNAMİK İMLEÇ (SADECE ANA SAYFADA) */}
+      {isHome && (
       <div
         className="pointer-events-none fixed inset-0 z-[96] hidden overflow-hidden md:block"
         aria-hidden
@@ -1556,6 +1566,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
         </div>
 
       </div>
+      )}
     </LiveBuilderContext.Provider>
   );
 }
