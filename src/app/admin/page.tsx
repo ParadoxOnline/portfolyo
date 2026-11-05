@@ -63,6 +63,16 @@ export default function AdminEmployerDiscoveryPage() {
   const [passwordInput, setPasswordInput] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
+  const [lockCountdown, setLockCountdown] = useState<number>(0);
+
+  // Countdown timer for locked state
+  useEffect(() => {
+    if (lockCountdown <= 0) return;
+    const timer = setInterval(() => {
+      setLockCountdown((prev) => Math.max(0, prev - 1));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [lockCountdown]);
 
   // Main Engine State
   const [activeTab, setActiveTab] = useState<ActiveTab>("discovery");
@@ -108,6 +118,9 @@ export default function AdminEmployerDiscoveryPage() {
         if (data.authenticated) {
           setAuthenticated(true);
           await loadCompaniesData();
+        } else if (data.rateLimit && !data.rateLimit.allowed) {
+          setLockCountdown(data.rateLimit.waitSec || 0);
+          setAuthError(`Güvenlik Koruması: Çok fazla hatalı deneme yapıldı. Lütfen ${data.rateLimit.waitSec} saniye bekleyin.`);
         }
       } catch {
         // ignore
@@ -200,9 +213,13 @@ export default function AdminEmployerDiscoveryPage() {
       const data = await res.json();
       if (!res.ok || !data.authenticated) {
         setAuthError(data.error || "Giriş başarısız.");
+        if (data.locked && data.waitSec) {
+          setLockCountdown(data.waitSec);
+        }
       } else {
         setAuthenticated(true);
         setPasswordInput("");
+        setLockCountdown(0);
         await loadCompaniesData();
       }
     } catch {
@@ -575,17 +592,29 @@ export default function AdminEmployerDiscoveryPage() {
               </div>
 
               {authError && (
-                <div className="p-3 border border-red-500/40 bg-red-500/10 text-red-300 text-xs font-mono">
-                  ! {authError}
+                <div className={`p-3 border text-xs font-mono ${
+                  lockCountdown > 0
+                    ? "border-amber-500/50 bg-amber-500/10 text-amber-200"
+                    : "border-red-500/40 bg-red-500/10 text-red-300"
+                }`}>
+                  <div className="font-bold flex items-center justify-between">
+                    <span>{lockCountdown > 0 ? "🔒 ERİŞİM KİLİTLENDİ (BRUTEFORCE)" : "! HATA"}</span>
+                    {lockCountdown > 0 && <span className="text-amber-400 font-mono">{lockCountdown}s</span>}
+                  </div>
+                  <div className="mt-1">{authError}</div>
                 </div>
               )}
 
               <button
                 type="submit"
-                disabled={authLoading}
-                className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-black font-mono font-semibold text-xs uppercase tracking-widest py-3 transition-colors cursor-pointer"
+                disabled={authLoading || lockCountdown > 0}
+                className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed text-black font-mono font-semibold text-xs uppercase tracking-widest py-3 transition-colors cursor-pointer"
               >
-                {authLoading ? "DOĞRULANIYOR..." : "SİSTEME GİRİŞ YAP →"}
+                {authLoading
+                  ? "DOĞRULANIYOR..."
+                  : lockCountdown > 0
+                  ? `KİLİTLİ (${lockCountdown}s)`
+                  : "SİSTEME GİRİŞ YAP →"}
               </button>
             </form>
 
@@ -1893,3 +1922,4 @@ export default function AdminEmployerDiscoveryPage() {
     </div>
   );
 }
+

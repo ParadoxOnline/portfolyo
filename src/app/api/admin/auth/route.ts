@@ -6,54 +6,115 @@ import {
   isAuthenticatedAdmin,
   verifyAdminPassword,
 } from "@/lib/admin-auth";
+import {
+  checkRateLimit,
+  recordFailedAttempt,
+  resetFailedAttempts,
+} from "@/lib/rate-limiter";
 
 export const runtime = "nodejs";
 
-// Simple brute-force guard per IP
-const failedAttempts = new Map<string, { count: number; lockUntil: number }>();
+function getClientIp(req: NextRequest): string {
+  // Check common reverse proxy headers (Cloudflare, Vercel, standard X-Forwarded-For)
+  const cfIp = req.headers.get("cf-connecting-ip");
+  if (cfIp) return cfIp.trim();
 
-export async function GET() {
+  const realIp = req.headers.get("x-real-ip");
+  if (realIp) return realIp.trim();
+
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    // Leftmost IP is the original client IP
+    const firstIp = forwardedFor.split(",")[0]?.trim();
+    if (firstIp) return firstIp;
+  }
+
+  return "127.0.0.1";
+}
+
+// Timing attack mitigation: ensure response always takes at least minDelayMs
+async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function GET(req: NextRequest) {
   const authenticated = await isAuthenticatedAdmin();
-  return NextResponse.json({ authenticated });
+  const clientIp = getClientIp(req);
+  const rateLimit = await checkRateLimit(clientIp);
+
+  return NextResponse.json({
+    authenticated,
+    rateLimit: {
+      allowed: rateLimit.allowed,
+      waitSec: rateLimit.waitSec,
+      totalFailures: rateLimit.totalFailures,
+    },
+  });
 }
 
 export async function POST(req: NextRequest) {
-  try {
-    const ip = req.headers.get("x-forwarded-for") || "local";
-    const now = Date.now();
-    const record = failedAttempts.get(ip);
+  const startTime = Date.now();
+  const clientIp = getClientIp(req);
 
-    if (record && record.lockUntil > now) {
-      const waitSec = Math.ceil((record.lockUntil - now) / 1000);
+  try {
+    // 1. Check Rate Limit & Lockout Status
+    const status = await checkRateLimit(clientIp);
+    if (!status.allowed) {
+      await sleep(Math.max(0, 300 - (Date.now() - startTime)));
       return NextResponse.json(
-        { error: `Çok fazla hatalı deneme. Lütfen ${waitSec} saniye bekleyin.` },
+        {
+          error: `Güvenlik Koruması (Bruteforce Kilitlendi): Çok fazla hatalı giriş denemesi yapıldı. Lütfen ${status.waitSec} saniye bekleyin.`,
+          locked: true,
+          waitSec: status.waitSec,
+        },
         { status: 429 }
       );
     }
 
-    const body = await req.json();
+    const body = await req.json().catch(() => ({}));
     const password = String(body.password || "").trim();
 
     if (!password) {
-      return NextResponse.json({ error: "Lütfen yönetici erişim anahtarını girin." }, { status: 400 });
-    }
-
-    if (!verifyAdminPassword(password)) {
-      const current = failedAttempts.get(ip) || { count: 0, lockUntil: 0 };
-      current.count += 1;
-      if (current.count >= 5) {
-        current.lockUntil = now + 60_000; // 1 min lock after 5 bad attempts
-        current.count = 0;
-      }
-      failedAttempts.set(ip, current);
-
       return NextResponse.json(
-        { error: "Geçersiz yönetici şifresi. Erişim reddedildi." },
-        { status: 401 }
+        { error: "Lütfen yönetici erişim anahtarını girin." },
+        { status: 400 }
       );
     }
 
-    failedAttempts.delete(ip);
+    // 2. Constant-time Password Verification
+    const isCorrect = verifyAdminPassword(password);
+
+    // Timing-attack prevention: simulate work to equalize response time
+    const elapsed = Date.now() - startTime;
+    if (elapsed < 350) {
+      await sleep(350 - elapsed);
+    }
+
+    if (!isCorrect) {
+      // Record failure and calculate progressive lock
+      const outcome = await recordFailedAttempt(clientIp);
+      
+      let message = "Geçersiz yönetici anahtarı. Erişim reddedildi.";
+      if (outcome.locked) {
+        message = `Hatalı şifre denemesi (${outcome.failures}. deneme). Güvenlik nedeniyle erişiminiz ${outcome.waitSec} saniye kilitlendi.`;
+      } else {
+        const remaining = Math.max(1, 3 - outcome.failures);
+        message = `Geçersiz yönetici anahtarı. (${outcome.failures} hatalı deneme. 3 denemeden sonra kilitlenecektir.)`;
+      }
+
+      return NextResponse.json(
+        {
+          error: message,
+          locked: outcome.locked,
+          waitSec: outcome.waitSec,
+          failures: outcome.failures,
+        },
+        { status: outcome.locked ? 429 : 401 }
+      );
+    }
+
+    // 3. Successful Login -> Clear IP Strike Record
+    await resetFailedAttempts(clientIp);
 
     const token = createSessionToken();
     const cookieStore = await cookies();
@@ -67,7 +128,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ authenticated: true });
   } catch {
-    return NextResponse.json({ error: "Giriş işlemi sırasında bir hata oluştu." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Giriş işlemi sırasında güvenlik katmanında bir hata oluştu." },
+      { status: 500 }
+    );
   }
 }
 
