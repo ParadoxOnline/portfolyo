@@ -568,18 +568,14 @@ export default function AdminEmployerDiscoveryPage() {
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald-400 mb-2">
               PRIVATE COMMAND NODE // YÖNETİCİ KİLİDİ
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-white mb-2">
+            <h1 className="text-2xl font-bold tracking-tight text-white mb-6">
               İşveren Keşif & Değerlendirme Sistemi
             </h1>
-            <p className="text-xs text-zinc-400 leading-relaxed mb-6">
-              İzmir & Uzaktan Web Ajansları, Yazılım Şirketleri, E-Ticaret ve SEO Ajansları için
-              özel keşif, eleme, AI portföy uygunluk analizi ve başvuru takip motoru.
-            </p>
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label className="block font-mono text-[11px] uppercase tracking-wider text-zinc-400 mb-2">
-                  YÖNETİCİ ERİŞİM ANAHTARI (ADMIN_PASSWORD)
+                  YÖNETİCİ ERİŞİM ANAHTARI
                 </label>
                 <input
                   type="password"
@@ -617,16 +613,10 @@ export default function AdminEmployerDiscoveryPage() {
                   : "SİSTEME GİRİŞ YAP →"}
               </button>
             </form>
-
-            <div className="mt-6 pt-4 border-t border-zinc-800/80 text-[11px] font-mono text-zinc-500 space-y-1">
-              <div>• Varsayılan Anahtar: <code className="text-zinc-300">SabriCan2026!Admin</code></div>
-              <div>• Vercel / .env üzerinden <code className="text-zinc-300">ADMIN_PASSWORD</code> ile özelleştirilebilir.</div>
-            </div>
           </div>
         </div>
 
-        <div className="border-t border-zinc-900 pt-4 flex justify-between items-center font-mono text-[11px] text-zinc-600">
-          <span>NOINDEX / NOFOLLOW KORUMALI ÖZEL PANEL</span>
+        <div className="border-t border-zinc-900 pt-4 flex justify-end items-center font-mono text-[11px] text-zinc-600">
           <span>İZMİR & REMOTE EMPLOYER RADAR</span>
         </div>
       </div>
