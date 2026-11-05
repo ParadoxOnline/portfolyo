@@ -7,6 +7,7 @@ import {
   WorkModel,
   evaluateCompanyForPortfolio,
 } from "@/data/employer-seed";
+import { detectPreciseLocation } from "@/lib/location-verifier";
 
 export const runtime = "nodejs";
 
@@ -237,40 +238,8 @@ export async function POST(req: NextRequest) {
       linkedinMatch?.[0] ||
       `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(companyName)}`;
 
-    // 5. Detect İzmir & District / Work Model
-    const izmirDistricts = [
-      "Bayraklı",
-      "Alsancak",
-      "Konak",
-      "Bornova",
-      "Urla",
-      "Karşıyaka",
-      "Buca",
-      "Gaziemir",
-      "Çiğli",
-      "Balçova",
-      "Narlıdere",
-      "Güzelbahçe",
-    ];
-    let detectedDistrict = "";
-    for (const dist of izmirDistricts) {
-      if (combinedLower.includes(dist.toLowerCase())) {
-        detectedDistrict = dist;
-        break;
-      }
-    }
-    if (!detectedDistrict && combinedLower.includes("teknopark izmir")) {
-      detectedDistrict = "Urla (Teknopark İzmir)";
-    } else if (!detectedDistrict && combinedLower.includes("depark")) {
-      detectedDistrict = "Buca / İnciraltı (DEPARK)";
-    }
-
-    const hasIzmirSignal =
-      combinedLower.includes("izmir") ||
-      combinedLower.includes("i̇zmir") ||
-      Boolean(detectedDistrict) ||
-      phones.some((p) => p.includes("232")) ||
-      cityHint.toLowerCase().includes("izmir");
+    // 5. Rigorous Location & District Detection
+    const locInfo = detectPreciseLocation(combinedHtml, phones);
 
     const hasRemoteSignal =
       combinedLower.includes("remote") ||
@@ -278,14 +247,13 @@ export async function POST(req: NextRequest) {
       combinedLower.includes("hibrit") ||
       combinedLower.includes("hybrid");
 
-    const city = hasIzmirSignal ? "İzmir" : cityHint || "Türkiye / Uzaktan";
-    const district = detectedDistrict || (hasIzmirSignal ? "Merkez" : "Remote");
-    let workModel: WorkModel = "İzmir (Yerinde / Hibrit)";
-    if (hasIzmirSignal && hasRemoteSignal) {
-      workModel = "İzmir + Uzaktan";
-    } else if (!hasIzmirSignal) {
-      workModel = "Uzaktan (Remote)";
-    }
+    const city = locInfo.city;
+    const district = locInfo.district;
+    let workModel: WorkModel = locInfo.isConfirmedIzmir
+      ? hasRemoteSignal
+        ? "İzmir + Uzaktan"
+        : "İzmir (Yerinde / Hibrit)"
+      : "Uzaktan (Remote)";
 
     // 6. Detect Technologies
     const technologies: string[] = [];
@@ -478,3 +446,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

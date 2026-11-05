@@ -5,6 +5,7 @@ import {
   EmployerCompany,
   evaluateCompanyForPortfolio,
 } from "@/data/employer-seed";
+import { detectPreciseLocation } from "@/lib/location-verifier";
 
 export const runtime = "nodejs";
 
@@ -55,7 +56,7 @@ const USER_AGENT =
 
 async function liveWebSearchForCompanyUrls(query: string): Promise<string[]> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 6000);
+  const timer = setTimeout(() => controller.abort(), 6500);
 
   try {
     const res = await fetch("https://html.duckduckgo.com/html/", {
@@ -117,12 +118,14 @@ async function liveWebSearchForCompanyUrls(query: string): Promise<string[]> {
 async function fetchLiveCompanyDiagnostics(originUrl: string): Promise<{
   ok: boolean;
   html: string;
+  combinedText: string;
   ttfbMs: number;
   contactUrl: string;
   careerUrl: string;
+  subPagesFetched: string[];
 }> {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 5500);
+  const timer = setTimeout(() => controller.abort(), 7000);
   const start = performance.now();
 
   try {
@@ -156,7 +159,7 @@ async function fetchLiveCompanyDiagnostics(originUrl: string): Promise<{
         }
         if (
           !contactUrl &&
-          (lower.includes("iletisim") || lower.includes("contact") || lower.includes("bize-ulasin"))
+          (lower.includes("iletisim") || lower.includes("contact") || lower.includes("bize-ulasin") || lower.includes("hakkimizda"))
         ) {
           contactUrl = abs;
         }
@@ -165,20 +168,41 @@ async function fetchLiveCompanyDiagnostics(originUrl: string): Promise<{
       }
     }
 
+    // Also fetch the contact/about page to inspect the real physical address and telephone!
+    let subHtml = "";
+    const subTarget = contactUrl || `${originUrl}/iletisim`;
+    try {
+      const subRes = await fetch(subTarget, {
+        headers: { "User-Agent": USER_AGENT },
+        signal: AbortSignal.timeout(3500),
+      });
+      if (subRes.ok) {
+        subHtml = await subRes.text();
+      }
+    } catch {
+      // ignore
+    }
+
+    const combinedText = `${html}\n${subHtml}`;
+
     return {
       ok: res.ok,
       html,
+      combinedText,
       ttfbMs,
       contactUrl: contactUrl || `${originUrl}/iletisim`,
       careerUrl: careerUrl || contactUrl || `${originUrl}/kariyer`,
+      subPagesFetched: subHtml ? [subTarget] : [],
     };
   } catch {
     return {
       ok: false,
       html: "",
+      combinedText: "",
       ttfbMs: Math.round(performance.now() - start),
       contactUrl: `${originUrl}/iletisim`,
       careerUrl: `${originUrl}/kariyer`,
+      subPagesFetched: [],
     };
   } finally {
     clearTimeout(timer);
@@ -202,11 +226,15 @@ export async function POST(req: NextRequest) {
         : []
     );
 
-    // Build real live search query
+    const isIzmirOnlyRequested = location.includes("İzmir");
+
+    // Strictly enforce location keywords in search query
     const queryParts: string[] = [];
-    if (location.includes("İzmir")) queryParts.push("İzmir");
+    if (isIzmirOnlyRequested) {
+      queryParts.push('"İzmir"');
+    }
     if (category !== "Tümü") queryParts.push(category);
-    else queryParts.push("web ajansı yazılım şirketi");
+    else queryParts.push("web ajansı yazılım");
     if (techFilter !== "Tümü") queryParts.push(techFilter.split("/")[0].trim());
     if (customKeyword) queryParts.push(customKeyword);
 
@@ -233,8 +261,8 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 2. Fetch live real sites in parallel (top 6 fresh companies)
-    const targets = freshOrigins.slice(0, 6);
+    // 2. Fetch live real sites in parallel (up to 8 candidate sites to filter out non-Izmir)
+    const targets = freshOrigins.slice(0, 8);
     const liveResults = await Promise.all(
       targets.map((origin) => fetchLiveCompanyDiagnostics(origin))
     );
@@ -247,11 +275,25 @@ export async function POST(req: NextRequest) {
       const diag = liveResults[i];
       const parsed = new URL(origin);
       const domain = parsed.hostname.replace(/^www\./i, "").toLowerCase();
-      const html = diag.html;
-      const lowerHtml = html.toLowerCase();
+      const combined = diag.combinedText || diag.html;
+      const lowerCombined = combined.toLowerCase();
+
+      // Extract real phones to test 0232 area code
+      const phoneMatches =
+        combined.match(/(?:\+90|0)\s*\(?[23458][0-9]{2}\)?[\s.-]*[0-9]{3}[\s.-]*[0-9]{2}[\s.-]*[0-9]{2}/g) || [];
+      const cleanPhones = [...new Set(phoneMatches.map((p) => p.trim()))];
+
+      // Rigorous location detector
+      const locInfo = detectPreciseLocation(combined, cleanPhones);
+
+      // STRICT FILTER: If user requested İzmir, reject any company not verified in İzmir!
+      if (isIzmirOnlyRequested && !locInfo.isConfirmedIzmir) {
+        console.log(`[Filtered out non-Izmir company]: ${domain} -> detected as ${locInfo.city}`);
+        continue;
+      }
 
       // Real Company Name extraction from <title>
-      const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+      const titleMatch = diag.html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
       let companyName = domain.split(".")[0];
       if (titleMatch?.[1]) {
         const cleanTitle = titleMatch[1]
@@ -264,54 +306,37 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      // Real Email & Phone extraction
-      const emailMatches = html.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}/g) || [];
+      // Real Email extraction
+      const emailMatches = combined.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}/g) || [];
       const cleanEmails = [...new Set(emailMatches.map((e) => e.toLowerCase()))].filter(
         (e) => !e.includes("wix") && !e.includes("sentry") && !e.includes(".png") && !e.includes(".jpg")
       );
       const contactEmail = cleanEmails.find((e) => e.includes(domain)) || cleanEmails[0] || `info@${domain}`;
-
-      const phoneMatches =
-        html.match(/(?:\+90|0)\s*\(?[23458][0-9]{2}\)?[\s.-]*[0-9]{3}[\s.-]*[0-9]{2}[\s.-]*[0-9]{2}/g) || [];
-      const contactPhone = phoneMatches[0]?.trim() || "Web sitesinde form mevcut";
+      const contactPhone = cleanPhones[0] || "İletişim formunda mevcut";
 
       // Real Technology Detection
       const technologies: string[] = [];
-      if (lowerHtml.includes("wp-content") || lowerHtml.includes("wp-includes")) technologies.push("WordPress");
-      if (lowerHtml.includes("elementor")) technologies.push("Elementor");
-      if (lowerHtml.includes("woocommerce")) technologies.push("WooCommerce");
-      if (lowerHtml.includes("_next/static") || lowerHtml.includes("__next_data__")) technologies.push("Next.js", "React");
-      else if (lowerHtml.includes("react")) technologies.push("React");
-      if (lowerHtml.includes("shopify")) technologies.push("Shopify");
-      if (lowerHtml.includes("ikas")) technologies.push("İkas");
-      if (lowerHtml.includes("tailwind")) technologies.push("Tailwind CSS");
-      const hasSchemaOrg = lowerHtml.includes("application/ld+json");
+      if (lowerCombined.includes("wp-content") || lowerCombined.includes("wp-includes")) technologies.push("WordPress");
+      if (lowerCombined.includes("elementor")) technologies.push("Elementor");
+      if (lowerCombined.includes("woocommerce")) technologies.push("WooCommerce");
+      if (lowerCombined.includes("_next/static") || lowerCombined.includes("__next_data__")) technologies.push("Next.js", "React");
+      else if (lowerCombined.includes("react")) technologies.push("React");
+      if (lowerCombined.includes("shopify")) technologies.push("Shopify");
+      if (lowerCombined.includes("ikas")) technologies.push("İkas");
+      if (lowerCombined.includes("tailwind")) technologies.push("Tailwind CSS");
+      const hasSchemaOrg = lowerCombined.includes("application/ld+json");
       if (hasSchemaOrg) technologies.push("Schema.org / JSON-LD");
 
       if (technologies.length === 0) technologies.push("Özel Web Mimarisi");
 
-      // Real Location & District Signals
-      const izmirDistricts = ["Bayraklı", "Alsancak", "Konak", "Bornova", "Urla", "Karşıyaka", "Buca", "Gaziemir"];
-      let detectedDistrict = "";
-      for (const d of izmirDistricts) {
-        if (lowerHtml.includes(d.toLowerCase())) {
-          detectedDistrict = d;
-          break;
-        }
-      }
-
-      const hasIzmir = lowerHtml.includes("izmir") || lowerHtml.includes("i̇zmir") || Boolean(detectedDistrict);
-      const city = hasIzmir ? "İzmir" : location.includes("İzmir") ? "İzmir" : "Türkiye / Uzaktan";
-      const district = detectedDistrict || (hasIzmir ? "Merkez" : "Remote");
-
       const derivedCategory: CompanyCategory =
         category !== "Tümü"
           ? category
-          : lowerHtml.includes("seo ajansı")
+          : lowerCombined.includes("seo ajansı")
           ? "SEO Ajansı"
-          : lowerHtml.includes("e-ticaret")
+          : lowerCombined.includes("e-ticaret")
           ? "E-Ticaret Ajansı"
-          : lowerHtml.includes("yazılım")
+          : lowerCombined.includes("yazılım")
           ? "Yazılım Şirketi"
           : "Web Ajansı";
 
@@ -319,9 +344,9 @@ export async function POST(req: NextRequest) {
         name: companyName,
         domain,
         category: derivedCategory,
-        city,
-        district,
-        workModel: hasIzmir ? "İzmir (Yerinde / Hibrit)" : "Uzaktan (Remote)",
+        city: locInfo.city,
+        district: locInfo.district,
+        workModel: locInfo.isConfirmedIzmir ? "İzmir (Yerinde / Hibrit)" : "Uzaktan (Remote)",
         companySize: "Büyüyen (10-30)",
         technologies,
         services: [derivedCategory, "Web & Dijital Sistemler"],
@@ -337,9 +362,9 @@ export async function POST(req: NextRequest) {
         website: origin,
         careerUrl: diag.careerUrl,
         category: derivedCategory,
-        city,
-        district,
-        workModel: hasIzmir ? "İzmir (Yerinde / Hibrit)" : "Uzaktan (Remote)",
+        city: locInfo.city,
+        district: locInfo.district,
+        workModel: locInfo.isConfirmedIzmir ? "İzmir (Yerinde / Hibrit)" : "Uzaktan (Remote)",
         companySize: "Büyüyen (10-30)",
         technologies,
         services: [derivedCategory],
@@ -352,7 +377,7 @@ export async function POST(req: NextRequest) {
         lastAnalyzedAt: new Date().toISOString(),
         ttfbMs: diag.ttfbMs,
         hasSchemaOrg,
-        notes: `Canlı web taramasıyla (${diag.ttfbMs}ms TTFB) bulundu. İletişim e-postası: ${contactEmail}`,
+        notes: `Doğrulandı: ${locInfo.city} / ${locInfo.district}. (${locInfo.evidence[0] || "Canlı tarandı"}). TTFB: ${diag.ttfbMs}ms`,
         aiEvaluation,
       });
 
