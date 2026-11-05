@@ -447,6 +447,10 @@ export default function Navbar() {
     return false;
   };
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <nav
       ref={navContainerRef}
