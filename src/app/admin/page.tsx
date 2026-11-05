@@ -76,10 +76,8 @@ export default function AdminEmployerDiscoveryPage() {
 
   // Main Engine State
   const [activeTab, setActiveTab] = useState<ActiveTab>("discovery");
-  const [companies, setCompanies] = useState<EmployerCompany[]>(INITIAL_EMPLOYER_COMPANIES);
-  const [selectedCompanyId, setSelectedCompanyId] = useState<string>(
-    INITIAL_EMPLOYER_COMPANIES[0]?.id || ""
-  );
+  const [companies, setCompanies] = useState<EmployerCompany[]>([]);
+  const [selectedCompanyId, setSelectedCompanyId] = useState<string>("");
   const [saveIndicator, setSaveIndicator] = useState<string>("");
 
   // Discovery controls
@@ -1015,7 +1013,17 @@ export default function AdminEmployerDiscoveryPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {companies.slice(0, 9).map((comp) => (
+                {companies.length === 0 ? (
+                  <div className="col-span-full border border-zinc-800/80 bg-zinc-900/20 p-10 text-center space-y-2">
+                    <div className="font-mono text-sm text-zinc-300">
+                      Henüz listeye eklenmiş firma bulunmuyor.
+                    </div>
+                    <p className="text-xs text-zinc-500 max-w-md mx-auto">
+                      Yukarıdaki <strong>&quot;Firma Keşfini Başlat&quot;</strong> butonuna tıklayarak webden gerçek firmaları taratabilir veya sağdaki kutucuğa hedef firma web sitesi URL&apos;si girerek canlı analiz başlatabilirsiniz.
+                    </p>
+                  </div>
+                ) : (
+                  companies.slice(0, 9).map((comp) => (
                   <div
                     key={comp.id}
                     className={`border p-4 transition-all flex flex-col justify-between ${
@@ -1096,7 +1104,8 @@ export default function AdminEmployerDiscoveryPage() {
                       </button>
                     </div>
                   </div>
-                ))}
+                ))
+              )}
               </div>
             </div>
           </div>

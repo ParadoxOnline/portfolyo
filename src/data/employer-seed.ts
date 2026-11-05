@@ -66,6 +66,9 @@ export interface EmployerCompany {
   aiEvaluation: AIEvaluation;
 }
 
+// Strictly no fake data. The initial database starts completely clean and empty.
+export const INITIAL_EMPLOYER_COMPANIES: EmployerCompany[] = [];
+
 export function evaluateCompanyForPortfolio(params: {
   name: string;
   domain: string;
@@ -93,9 +96,9 @@ export function evaluateCompanyForPortfolio(params: {
 
   // 1. Konum & Çalışma Modeli Uyumu (İzmir & Remote odak)
   if (params.city.toLowerCase().includes("izmir")) {
-    score += 14;
+    score += 15;
     fitReasons.push(
-      `İzmir (${params.district || "Merkez"}) lokasyonu sayesinde yüz yüze tanışma, hibrit çalışma veya yerel ajans partnerliği avantajı.`
+      `İzmir (${params.district || "Merkez"}) lokasyonu sayesinde doğrudan yüz yüze tanışma, hibrit çalışma veya yerel ajans partnerliği avantajı.`
     );
   } else if (params.workModel.includes("Uzaktan")) {
     score += 10;
@@ -172,7 +175,7 @@ export function evaluateCompanyForPortfolio(params: {
     );
   } else {
     staffingSignals.push(
-      "Yapılandırılmış mühendislik/ürün ekibi: Düzenli спринт (sprint) ve uzman Frontend/Full-Stack geliştirici kadro ihtiyacı."
+      "Yapılandırılmış mühendislik/ürün ekibi: Düzenli sprint ve uzman Frontend/Full-Stack geliştirici kadro ihtiyacı."
     );
   }
 
@@ -195,7 +198,7 @@ export function evaluateCompanyForPortfolio(params: {
   score = Math.min(98, Math.max(45, score));
 
   const priority: PriorityLevel =
-    score >= 82 ? "Yüksek (P1)" : score >= 68 ? "Orta (P2)" : "Düşük (P3)";
+    score >= 80 ? "Yüksek (P1)" : score >= 65 ? "Orta (P2)" : "Düşük (P3)";
 
   let recommendedApproach: AIEvaluation["recommendedApproach"] = "Hibrit (Kadro + Dış Kaynak)";
   if (params.category === "Yazılım Şirketi") {
@@ -205,7 +208,7 @@ export function evaluateCompanyForPortfolio(params: {
   }
 
   let estimatedStaffingNeed = "Orta Düzey — Proje Bazlı veya Kadrolu Geliştirici İhtiyacı";
-  if (score >= 82) {
+  if (score >= 80) {
     estimatedStaffingNeed =
       params.category === "Yazılım Şirketi"
         ? "Yüksek — React / Next.js & Full-Stack Ürün Geliştirici İhtiyacı"
@@ -252,236 +255,3 @@ Sabri Can Tütüncü`;
     customPitchAgencyPartner,
   };
 }
-
-const rawSeedCompanies: Array<{
-  id: string;
-  name: string;
-  domain: string;
-  website: string;
-  careerUrl: string;
-  category: CompanyCategory;
-  city: string;
-  district: string;
-  workModel: WorkModel;
-  companySize: CompanySize;
-  technologies: string[];
-  services: string[];
-  contactEmail: string;
-  contactPhone: string;
-  linkedinUrl: string;
-  approved: boolean;
-  applicationStatus: ApplicationStatus;
-  followUpDate: string;
-  ttfbMs: number;
-  hasSchemaOrg: boolean;
-  notes: string;
-}> = [
-  {
-    id: "emp-izmir-01",
-    name: "Ege Dijital & Web Ajansı",
-    domain: "egedijital.com",
-    website: "https://www.egedijital.com",
-    careerUrl: "https://www.egedijital.com/iletisim",
-    category: "Web Ajansı",
-    city: "İzmir",
-    district: "Bayraklı",
-    workModel: "İzmir (Yerinde / Hibrit)",
-    companySize: "Büyüyen (10-30)",
-    technologies: ["WordPress", "Elementor", "PHP", "WooCommerce", "Google Tag Manager"],
-    services: ["Kurumsal Web Tasarım", "E-Ticaret", "SEO", "Kurumsal Kimlik"],
-    contactEmail: "info@egedijital.com",
-    contactPhone: "+90 232 400 00 00",
-    linkedinUrl: "https://www.linkedin.com/search/results/companies/?keywords=Ege%20Dijital%20Izmir",
-    approved: true,
-    applicationStatus: "Onaylandı",
-    followUpDate: "2026-11-10",
-    ttfbMs: 680,
-    hasSchemaOrg: false,
-    notes: "İzmir Bayraklı merkezli kurumsal web ve WordPress/WooCommerce projeleri üreten ajans. Hem geliştirici hem white-label partnerlik için yüksek uyum.",
-  },
-  {
-    id: "emp-izmir-02",
-    name: "İzmir Web Tasarım & Yazılım (MODD / Kreatif Ekip)",
-    domain: "moddgroup.com",
-    website: "https://www.moddgroup.com",
-    careerUrl: "https://www.moddgroup.com/iletisim",
-    category: "Web Ajansı",
-    city: "İzmir",
-    district: "Alsancak / Konak",
-    workModel: "İzmir (Yerinde / Hibrit)",
-    companySize: "Büyüyen (10-30)",
-    technologies: ["WordPress", "React", "Next.js", "Tailwind CSS", "GSAP"],
-    services: ["Kreatif Web Tasarım", "Dijital Pazarlama", "UI/UX", "Özel Web Yazılım"],
-    contactEmail: "info@moddgroup.com",
-    contactPhone: "+90 232 422 00 00",
-    linkedinUrl: "https://www.linkedin.com/company/modd-group/",
-    approved: true,
-    applicationStatus: "Onaylandı",
-    followUpDate: "2026-11-12",
-    ttfbMs: 520,
-    hasSchemaOrg: true,
-    notes: "İzmir merkezli tam hizmet reklam ve dijital web ajansı. Yüksek profilli kurumsal sitelerde modern frontend ve hız optimizasyonu ihtiyacı yüksek.",
-  },
-  {
-    id: "emp-izmir-03",
-    name: "Teknopark İzmir Yazılım & SaaS Ekibi (Atolye15)",
-    domain: "atolye15.com",
-    website: "https://www.atolye15.com",
-    careerUrl: "https://www.atolye15.com/careers",
-    category: "Yazılım Şirketi",
-    city: "İzmir",
-    district: "Konak / Alsancak",
-    workModel: "İzmir + Uzaktan",
-    companySize: "Orta Ölçekli (30-100)",
-    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS"],
-    services: ["Özel Yazılım Geliştirme", "SaaS Ürün Mühendisliği", "UI/UX Tasarım", "Web Uygulamaları"],
-    contactEmail: "hello@atolye15.com",
-    contactPhone: "+90 232 464 00 00",
-    linkedinUrl: "https://www.linkedin.com/company/atolye15/",
-    approved: true,
-    applicationStatus: "Onaylandı",
-    followUpDate: "2026-11-08",
-    ttfbMs: 240,
-    hasSchemaOrg: true,
-    notes: "İzmir'in en güçlü modern yazılım ve ürün stüdyolarından biri. React, TypeScript ve Next.js odaklı mühendislik kültürü.",
-  },
-  {
-    id: "emp-izmir-04",
-    name: "İzmir SEO & Performans Ajansı (Seorative)",
-    domain: "seorative.com",
-    website: "https://www.seorative.com",
-    careerUrl: "https://www.seorative.com/kariyer/",
-    category: "SEO Ajansı",
-    city: "İzmir",
-    district: "Bayraklı / Folkart",
-    workModel: "İzmir (Yerinde / Hibrit)",
-    companySize: "Büyüyen (10-30)",
-    technologies: ["WordPress", "Schema.org / JSON-LD", "WooCommerce", "Shopify", "Next.js"],
-    services: ["Teknik SEO", "E-Ticaret SEO", "İçerik Stratejisi", "Dönüşüm Optimizasyonu (CRO)"],
-    contactEmail: "info@seorative.com",
-    contactPhone: "+90 232 332 00 00",
-    linkedinUrl: "https://www.linkedin.com/company/seorative/",
-    approved: true,
-    applicationStatus: "Keşfedildi",
-    followUpDate: "2026-11-11",
-    ttfbMs: 610,
-    hasSchemaOrg: true,
-    notes: "İzmir merkezli SEO ve dijital büyüme ajansı. Müşteri sitelerinde Core Web Vitals, JSON-LD Schema ve GEO iyileştirmeleri için doğrudan teknik partner/geliştirici adayı.",
-  },
-  {
-    id: "emp-izmir-05",
-    name: "T-Soft / İkas Partner E-Ticaret Ajansı (무 / İzmir E-Ticaret)",
-    domain: "izmireticaretajansi.com",
-    website: "https://www.ideasoft.com.tr",
-    careerUrl: "https://www.ideasoft.com.tr/insan-kaynaklari/",
-    category: "E-Ticaret Ajansı",
-    city: "İzmir",
-    district: "Gaziemir / Bayraklı",
-    workModel: "İzmir + Uzaktan",
-    companySize: "Orta Ölçekli (30-100)",
-    technologies: ["WooCommerce", "Shopify", "İkas", "PHP", "JavaScript", "CSS / Font Preload"],
-    services: ["E-Ticaret Altyapı Kurulumu", "Özel Tema & Modül", "Teknik SEO", "Hız Optimizasyonu"],
-    contactEmail: "ik@ideasoft.com.tr",
-    contactPhone: "+90 232 250 00 00",
-    linkedinUrl: "https://www.linkedin.com/company/ideasoft/",
-    approved: false,
-    applicationStatus: "Keşfedildi",
-    followUpDate: "2026-11-14",
-    ttfbMs: 490,
-    hasSchemaOrg: true,
-    notes: "İzmir bölge ofisi ve e-ticaret partner ekosistemi. E-ticaret hız, görsel optimizasyon (AVIF/WebP) ve özel entegrasyon ihtiyacı.",
-  },
-  {
-    id: "emp-izmir-06",
-    name: "Yucca Dijital / İzmir Web & E-Ticaret Stüdyosu",
-    domain: "yuccadijital.com",
-    website: "https://www.yuccadijital.com",
-    careerUrl: "https://www.yuccadijital.com/iletisim",
-    category: "Web Ajansı",
-    city: "İzmir",
-    district: "Bornova",
-    workModel: "İzmir (Yerinde / Hibrit)",
-    companySize: "Butik (2-10)",
-    technologies: ["WordPress", "Elementor", "WooCommerce", "PHP"],
-    services: ["Web Tasarım", "E-Ticaret", "Kurumsal Web", "Lokal SEO"],
-    contactEmail: "info@yuccadijital.com",
-    contactPhone: "+90 232 388 00 00",
-    linkedinUrl: "https://www.linkedin.com/search/results/companies/?keywords=Yucca%20Dijital",
-    approved: false,
-    applicationStatus: "Keşfedildi",
-    followUpDate: "2026-11-15",
-    ttfbMs: 790,
-    hasSchemaOrg: false,
-    notes: "Butik ajans yapısı; dış kaynak (white-label) WordPress/Elementor hızlandırma ve özel müşteri projeleri için hızlı karar alabilen yapı.",
-  },
-  {
-    id: "emp-remote-07",
-    name: "Zeoo / Uzaktan Teknik SEO & Performans Ajansı",
-    domain: "zeo.org",
-    website: "https://zeo.org/tr",
-    careerUrl: "https://zeo.org/tr/kariyer",
-    category: "SEO Ajansı",
-    city: "Uzaktan (Türkiye / Global)",
-    district: "Remote",
-    workModel: "Uzaktan (Remote)",
-    companySize: "Orta Ölçekli (30-100)",
-    technologies: ["Next.js", "React", "Schema.org / JSON-LD", "Core Web Vitals", "WordPress"],
-    services: ["Teknik SEO", "GEO & Yapay Zeka Arama", "Performans Denetimi", "İçerik & Veri Analitiği"],
-    contactEmail: "career@zeo.org",
-    contactPhone: "+90 216 000 00 00",
-    linkedinUrl: "https://www.linkedin.com/company/zeo-agency/",
-    approved: true,
-    applicationStatus: "Onaylandı",
-    followUpDate: "2026-11-09",
-    ttfbMs: 310,
-    hasSchemaOrg: true,
-    notes: "Türkiye'nin önde gelen teknik SEO ajanslarından. Portfolyodaki GEO / AI Bot Radarı ve Canlı CWV Denetim araçları doğrudan üst düzey kanıt niteliğinde.",
-  },
-  {
-    id: "emp-izmir-08",
-    name: "Kartaca (Teknopark İzmir / Kurumsal Yazılım)",
-    domain: "kartaca.com",
-    website: "https://kartaca.com",
-    careerUrl: "https://kartaca.com/tr/kariyer/",
-    category: "Yazılım Şirketi",
-    city: "İzmir",
-    district: "Urla (Teknopark İzmir)",
-    workModel: "İzmir + Uzaktan",
-    companySize: "Orta Ölçekli (30-100)",
-    technologies: ["React", "TypeScript", "Node.js", "Cloud / DevOps", "Web Uygulamaları"],
-    services: ["Özel Yazılım", "Bulut Mimarisi", "E-Ticaret & Kurumsal Platformlar"],
-    contactEmail: "ik@kartaca.com",
-    contactPhone: "+90 232 000 00 00",
-    linkedinUrl: "https://www.linkedin.com/company/kartaca/",
-    approved: false,
-    applicationStatus: "Keşfedildi",
-    followUpDate: "2026-11-16",
-    ttfbMs: 290,
-    hasSchemaOrg: true,
-    notes: "İzmir Ar-Ge ve yazılım merkezi bulunan köklü teknoloji şirketi. Düzenli yazılım mühendisi ve frontend geliştirici alımı yapıyor.",
-  },
-];
-
-export const INITIAL_EMPLOYER_COMPANIES: EmployerCompany[] = rawSeedCompanies.map((item) => {
-  const aiEvaluation = evaluateCompanyForPortfolio({
-    name: item.name,
-    domain: item.domain,
-    category: item.category,
-    city: item.city,
-    district: item.district,
-    workModel: item.workModel,
-    companySize: item.companySize,
-    technologies: item.technologies,
-    services: item.services,
-    hasCareerPage: Boolean(item.careerUrl),
-    hasOpenPositionSignal: item.careerUrl.includes("kariyer") || item.careerUrl.includes("careers"),
-    ttfbMs: item.ttfbMs,
-    hasSchemaOrg: item.hasSchemaOrg,
-  });
-
-  return {
-    ...item,
-    lastAnalyzedAt: "2026-11-05T18:00:00.000Z",
-    aiEvaluation,
-  };
-});
