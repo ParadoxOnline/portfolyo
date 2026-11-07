@@ -626,9 +626,8 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
       const r = node.getBoundingClientRect();
       const st = stagesRef.current[id];
 
-      if (st?.status === "built" && (r.bottom < -vh * 0.35 || r.top > vh * 1.35)) {
-        resetStage(id);
-      }
+      // Not: Sahneler bir kez inşa edildikten sonra (status === "built") yukarı veya aşağı
+      // kaydırıldığında sıfırlanmaz (resetStage çağrılmaz). Sadece ilk oluşturmada animasyon oynar.
 
       if (r.bottom > vh * 0.18 && r.top < vh * 0.78) {
         const anchorY = r.top + Math.min(r.height * 0.45, vh * 0.42);
@@ -650,7 +649,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
       cursorFocusStageRef.current = primaryId;
       setActiveStageId(primaryId);
     }
-  }, [resetStage, triggerStageBuild]);
+  }, [triggerStageBuild]);
 
   useEffect(() => {
     const initX = window.innerWidth - 190;

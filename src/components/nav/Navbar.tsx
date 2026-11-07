@@ -51,17 +51,28 @@ export default function Navbar() {
   const navContainerRef = useRef<HTMLDivElement>(null);
 
   const isHome = pathname === "/";
-  const phase1 = !isHome ? 1 : clamp01((progress - 0.13) / 0.15);
+  const [navBuilt, setNavBuilt] = useState(!isHome);
 
-  // Scroll takibi (Sticky Header arka plan derinliği için)
+  useEffect(() => {
+    if (!isHome || progress >= 0.28) {
+      setNavBuilt(true);
+    }
+  }, [isHome, progress]);
+
+  // Scroll takibi (Sticky Header arka plan derinliği & navbar kaybolmasını önleme)
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
+      if (window.scrollY > 30) {
+        setNavBuilt(true);
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const phase1 = navBuilt || !isHome ? 1 : clamp01((progress - 0.13) / 0.15);
 
   // Çeviriler & Kategorilendirme
   const navContent = {
