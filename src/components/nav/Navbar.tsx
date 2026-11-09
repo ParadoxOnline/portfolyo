@@ -736,6 +736,20 @@ export default function Navbar() {
               <div className="truncate text-xs font-semibold text-white">{cats.contact.title}</div>
             </Link>
           </div>
+
+          {/* Mobilde Özgeçmiş / CV İndir Butonu */}
+          <div className="mt-3 pt-2 border-t border-white/10">
+            <a
+              href="/Sabri_Can_Tutuncu_CV.pdf"
+              download="Sabri_Can_Tutuncu_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-sky-400/30 bg-sky-500/15 p-2.5 text-xs font-bold text-sky-200 transition active:bg-sky-500/25"
+            >
+              <FileDown size={15} />
+              <span>{currentNav.cvTitle}</span>
+            </a>
+          </div>
         </div>
       )}
     </nav>
