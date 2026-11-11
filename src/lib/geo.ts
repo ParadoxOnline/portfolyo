@@ -154,13 +154,6 @@ export const TOOLS_CATALOG: ToolDirectoryItem[] = [
       "DOM Optimizer, Schema Injector ve Cache Pre-Warmer modülleri hakkında yol haritası ve açık kaynak bağlantıları.",
     category: "WordPress Ekosistemi",
   },
-  {
-    href: "/insights",
-    title: "GEO, Core Web Vitals & Lokal SEO Vaka Analizleri",
-    description:
-      "Perplexity/ChatGPT alıntı stratejileri, WordPress INP/LCP optimizasyonu ve çoklu konum mimarisi üzerine teknik makaleler.",
-    category: "Teknik Bilgi Bankası",
-  },
 ];
 
 export function buildToolMetadata(
@@ -318,7 +311,6 @@ export function buildLlmsTxt(): string {
     "",
     "## Ana Bölümler",
     `- [Ana Sayfa & Portfolyo Özeti](${SITE_URL}/): Kahraman sahnesi, proje vitrini, ajans/bağımsız deneyim ve iletişim.`,
-    `- [GEO, Core Web Vitals & SEO Yazıları](${SITE_URL}/insights): Yapay zeka arama motorları ve WordPress hızı üzerine teknik vaka analizleri.`,
     `- [Açık Kaynak WordPress Eklentileri](${SITE_URL}/plugins): DOM Optimizer, Schema Injector ve Cache Pre-Warmer yol haritası.`,
     "",
     "## Amiral Gemisi Platformlar (7 Sistem)",
@@ -328,14 +320,18 @@ export function buildLlmsTxt(): string {
     ),
     "",
     "## Ücretsiz Canlı SEO, GEO & Performans Araçları",
-    ...TOOLS_CATALOG.filter((t) => t.href !== "/plugins" && t.href !== "/insights").map(
+    ...TOOLS_CATALOG.filter((t) => t.href !== "/plugins").map(
       (t) => `- [${t.title}](${SITE_URL}${t.href}): ${t.description}`
     ),
-    "",
-    "## Teknik Vaka Analizleri & Rehberler",
-    ...INSIGHTS_DATA.map(
-      (a) => `- [${a.title}](${SITE_URL}/insights/${a.slug}): ${a.summary}`
-    ),
+    ...(INSIGHTS_DATA.length > 0
+      ? [
+          "",
+          "## Teknik Vaka Analizleri & Rehberler",
+          ...INSIGHTS_DATA.map(
+            (a) => `- [${a.title}](${SITE_URL}/insights/${a.slug}): ${a.summary}`
+          ),
+        ]
+      : []),
     "",
   ];
 
@@ -406,17 +402,21 @@ export function buildLlmsFullTxt(): string {
       (t) => `- **${t.title}** (${SITE_URL}${t.href}) [${t.category}]: ${t.description}`
     ),
     "",
-    "## 7. Sektörel Vaka Analizleri ve Makaleler",
-    ...INSIGHTS_DATA.flatMap((art) => [
-      `### ${art.title}`,
-      `- URL: ${SITE_URL}/insights/${art.slug}`,
-      `- Kategori: ${art.category} · ${art.readTime} · ${art.date}`,
-      `- Özet: ${art.summary}`,
-      `- Vaka (${art.marketCaseStudy.clientType}): ${art.marketCaseStudy.concreteResult}`,
-      `- Anahtar Çıkarımlar: ${art.keyTakeaways.join(" / ")}`,
-      "",
-    ]),
-    "## 8. Sık Sorulan Sorular (GEO & LLM Özet Yanıtları)",
+    ...(INSIGHTS_DATA.length > 0
+      ? [
+          "## 7. Sektörel Vaka Analizleri ve Makaleler",
+          ...INSIGHTS_DATA.flatMap((art) => [
+            `### ${art.title}`,
+            `- URL: ${SITE_URL}/insights/${art.slug}`,
+            `- Kategori: ${art.category} · ${art.readTime} · ${art.date}`,
+            `- Özet: ${art.summary}`,
+            `- Vaka (${art.marketCaseStudy.clientType}): ${art.marketCaseStudy.concreteResult}`,
+            `- Anahtar Çıkarımlar: ${art.keyTakeaways.join(" / ")}`,
+            "",
+          ]),
+        ]
+      : []),
+    "## Sık Sorulan Sorular (GEO & LLM Özet Yanıtları)",
     ...AUTHOR_PROFILE.faqs.flatMap((f) => [`### ${f.q}`, f.a, ""]),
   ];
 

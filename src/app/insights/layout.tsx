@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { buildToolMetadata } from "@/lib/geo";
 
-export const metadata: Metadata = buildToolMetadata(
-  "/insights",
-  "GEO, Core Web Vitals & Lokal SEO Vaka Analizleri",
-  "Yapay zeka arama motorları (ChatGPT Search, Perplexity), WordPress hız optimizasyonu ve sektörel lokal SEO mimarisi üzerine vaka rehberleri."
-);
+export const metadata: Metadata = {
+  ...buildToolMetadata(
+    "/insights",
+    "Yazılar ve Teknik Notlar",
+    "Teknik notlar ve yazılar bölümü şu anda hazırlanmaktadır."
+  ),
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function InsightsLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

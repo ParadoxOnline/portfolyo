@@ -105,17 +105,19 @@ export default function HomePage() {
           </ul>
         </section>
 
-        <section>
-          <h2>GEO, Core Web Vitals ve Lokal SEO Vaka Analizleri</h2>
-          <ul>
-            {INSIGHTS_DATA.map((article) => (
-              <li key={article.slug}>
-                <Link href={`/insights/${article.slug}`}>{article.title}</Link> ({article.category}):{" "}
-                {article.summary} — Sonuç: {article.marketCaseStudy.concreteResult}
-              </li>
-            ))}
-          </ul>
-        </section>
+        {INSIGHTS_DATA.length > 0 && (
+          <section>
+            <h2>GEO, Core Web Vitals ve Lokal SEO Vaka Analizleri</h2>
+            <ul>
+              {INSIGHTS_DATA.map((article) => (
+                <li key={article.slug}>
+                  <Link href={`/insights/${article.slug}`}>{article.title}</Link> ({article.category}):{" "}
+                  {article.summary} — Sonuç: {article.marketCaseStudy.concreteResult}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section>
           <h2>Sık Sorulan Sorular</h2>

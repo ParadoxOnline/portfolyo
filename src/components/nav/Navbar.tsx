@@ -9,7 +9,6 @@ import {
   Sparkles,
   Activity,
   Radar,
-  BookOpen,
   Briefcase,
   Mail,
   ChevronDown,
@@ -141,13 +140,6 @@ export default function Navbar() {
               icon: Radar,
             },
             {
-              href: "/insights",
-              title: "GEO & Makaleler",
-              desc: "Sektörel Vaka Analizleri & Yapay Zeka Arama Stratejileri",
-              badge: "Vaka Rehberi",
-              icon: BookOpen,
-            },
-            {
               href: "/plugins",
               title: "Eklentiler",
               desc: "Açık Kaynak Geliştirici Kütüphaneleri",
@@ -238,13 +230,6 @@ export default function Navbar() {
               icon: Radar,
             },
             {
-              href: "/insights",
-              title: "GEO & Case Studies",
-              desc: "Market Case Studies & Generative Engine Optimization",
-              badge: "Guides",
-              icon: BookOpen,
-            },
-            {
               href: "/plugins",
               title: "Plugins",
               desc: "Open Source Developer Libraries",
@@ -333,13 +318,6 @@ export default function Navbar() {
               desc: "Canlı Kıyaslama və Performans Radarı",
               badge: "Məxfilik Təminatlı",
               icon: Radar,
-            },
-            {
-              href: "/insights",
-              title: "GEO & Məqalələr",
-              desc: "Sektor Təhlilləri və Süni İntellekt Axtarış Strategiyaları",
-              badge: "Keyslər",
-              icon: BookOpen,
             },
             {
               href: "/plugins",
