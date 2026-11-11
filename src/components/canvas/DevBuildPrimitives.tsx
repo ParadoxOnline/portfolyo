@@ -205,7 +205,7 @@ export function TwoAxisResizeFrame({
   localP,
   targetWidthPx = 820,
   targetHeightPx = 460,
-  accentColor = "#38bdf8",
+  accentColor = "#3b82f6",
   className = "",
   role = "media",
   children,

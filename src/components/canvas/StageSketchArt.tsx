@@ -90,23 +90,23 @@ export function StageSketchArt({
         <rect x="7" y="46" width="108" height="46" rx="4" stroke="#363028" strokeWidth="1.3" />
 
         {/* Üst Sekmeler: [PROB] [SİSTEM] [ROI] */}
-        <rect x="10" y="49" width="28" height="6.5" rx="2" stroke="#be123c" strokeWidth="0.8" />
-        <text x="12" y="54" fill="#be123c" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
+        <rect x="10" y="49" width="28" height="6.5" rx="2" stroke="#453e34" strokeWidth="0.8" />
+        <text x="12" y="54" fill="#453e34" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
           PROB
         </text>
-        <rect x="41" y="49" width="32" height="6.5" rx="2" stroke="#0284c7" strokeWidth="0.8" />
-        <text x="43" y="54" fill="#0284c7" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
+        <rect x="41" y="49" width="32" height="6.5" rx="2" stroke="#1e40af" strokeWidth="0.85" />
+        <text x="43" y="54" fill="#1e40af" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
           SİSTEM
         </text>
-        <rect x="76" y="49" width="26" height="6.5" rx="2" stroke="#059669" strokeWidth="0.8" />
-        <text x="78" y="54" fill="#059669" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
+        <rect x="76" y="49" width="26" height="6.5" rx="2" stroke="#363028" strokeWidth="0.8" />
+        <text x="78" y="54" fill="#363028" fontSize="4.2" fontFamily="monospace" fontWeight="bold">
           ROI
         </text>
 
         {/* 01: Problem Bloğu */}
-        <rect x="10" y="58" width="102" height="10" rx="2" stroke="#e11d48" strokeWidth="0.75" />
-        <circle cx="14" cy="63" r="1.5" fill="#e11d48" />
-        <text x="18" y="65" fill="#be123c" fontSize="4.2" fontFamily="monospace">
+        <rect x="10" y="58" width="102" height="10" rx="2" stroke="#453e34" strokeWidth="0.75" />
+        <circle cx="14" cy="63" r="1.5" fill="#453e34" />
+        <text x="18" y="65" fill="#363028" fontSize="4.2" fontFamily="monospace">
           01: Pazar Tıkanıklığı
         </text>
 
@@ -114,16 +114,16 @@ export function StageSketchArt({
         <path d="M60 69 L 60 71 M58.5 70 L 60 71.5 L 61.5 70" stroke="#363028" strokeWidth="0.8" />
 
         {/* 02: Mimari Çözüm Bloğu */}
-        <rect x="10" y="73" width="102" height="10" rx="2" stroke="#0284c7" strokeWidth="0.75" />
-        <circle cx="14" cy="78" r="1.5" fill="#0284c7" />
-        <text x="18" y="80" fill="#0284c7" fontSize="4.2" fontFamily="monospace">
+        <rect x="10" y="73" width="102" height="10" rx="2" stroke="#1e40af" strokeWidth="0.8" />
+        <circle cx="14" cy="78" r="1.5" fill="#1e40af" />
+        <text x="18" y="80" fill="#1e40af" fontSize="4.2" fontFamily="monospace">
           02: Otonom Mimari
         </text>
 
         {/* 03: ROI Şeridi */}
-        <rect x="10" y="85" width="102" height="5.5" rx="2" stroke="#059669" strokeWidth="0.75" fill="#f0fdf4" />
-        <text x="13" y="89.5" fill="#065f46" fontSize="4" fontFamily="monospace" fontWeight="bold">
-          💰 Hedeflenen ROI &amp; Katma Değer
+        <rect x="10" y="85" width="102" height="5.5" rx="2" stroke="#363028" strokeWidth="0.75" fill="#e8e0cf" />
+        <text x="13" y="89.5" fill="#2b2620" fontSize="4" fontFamily="monospace" fontWeight="bold">
+          Hedeflenen ROI &amp; Katma Değer
         </text>
       </g>
 

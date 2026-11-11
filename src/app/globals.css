@@ -1,17 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-base: #04060a;
-  --color-bg-surface: #070b12;
-  --color-bg-elevated: #0c121d;
-  --color-border: rgba(255, 255, 255, 0.06);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
-  --color-accent: #7dd3fc;
-  --color-accent-dim: rgba(186, 230, 253, 0.15);
-  --color-accent-glow: rgba(186, 230, 253, 0.4);
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #52525b;
+  /* Corporate 60-30-10 Palette */
+  /* 60%: Obsidian Charcoal Canvas */
+  --color-bg-base: #090b0f;
+  /* 30%: Structural Slate Surfaces & Typography */
+  --color-bg-surface: #11141a;
+  --color-bg-elevated: #181c24;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  /* 10%: Executive Cobalt Blue Accent */
+  --color-accent: #3b82f6;
+  --color-accent-dim: rgba(59, 130, 246, 0.14);
+  --color-accent-glow: rgba(59, 130, 246, 0.25);
+
+  --color-text-primary: #f4f4f5;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
   --color-mono: #71717a;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -70,7 +75,7 @@
 }
 
 .glass-panel {
-  background: rgba(10, 10, 15, 0.6);
+  background: rgba(17, 20, 26, 0.78);
   backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
 }
@@ -78,7 +83,7 @@
 /* ───── Cinematic layer ───── */
 html {
   scroll-behavior: auto;
-  background: #04060a;
+  background: #090b0f;
 }
 
 html.lenis,
@@ -91,7 +96,7 @@ html.lenis body {
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, #e0f2fe 0%, #7dd3fc 55%, #38bdf8 100%);
+  background: linear-gradient(100deg, #ffffff 0%, #cbd5e1 45%, #60a5fa 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -99,15 +104,15 @@ html.lenis body {
 
 .outline-num {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.09);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);
 }
 
 .aurora {
   background:
-    radial-gradient(closest-side, rgba(125, 211, 252, 0.35), transparent 70%),
-    radial-gradient(40% 40% at 70% 30%, rgba(224, 242, 254, 0.22), transparent 70%),
-    radial-gradient(40% 40% at 25% 75%, rgba(56, 189, 248, 0.16), transparent 70%);
-  filter: blur(40px);
+    radial-gradient(closest-side, rgba(59, 130, 246, 0.14), transparent 70%),
+    radial-gradient(40% 40% at 70% 30%, rgba(148, 163, 184, 0.10), transparent 70%),
+    radial-gradient(40% 40% at 25% 75%, rgba(37, 99, 235, 0.08), transparent 70%);
+  filter: blur(48px);
   animation: aurora-spin 28s linear infinite;
 }
 
@@ -119,8 +124,8 @@ html.lenis body {
 
 .grid-floor {
   background-image:
-    linear-gradient(rgba(186, 230, 253, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(186, 230, 253, 0.14) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
   background-size: 64px 64px;
   transform: perspective(500px) rotateX(62deg);
   transform-origin: bottom;

@@ -32,13 +32,13 @@ export default function Shot({ slug, name, src, label, className = "" }: ShotPro
   }
 
   const h = hash(slug);
-  const hue = 195 + (h % 25);
-  const hue2 = 205 + ((h >> 3) % 20);
+  const hue = 215 + (h % 12);
+  const hue2 = 220 + ((h >> 3) % 10);
   return (
     <div
       className={`relative h-full w-full overflow-hidden ${className}`}
       style={{
-        background: `radial-gradient(120% 90% at 20% 0%, hsl(${hue} 75% 28% / .9), transparent 60%), radial-gradient(90% 80% at 100% 100%, hsl(${hue2} 70% 24% / .85), transparent 55%), #05080c`,
+        background: `radial-gradient(120% 90% at 20% 0%, hsl(${hue} 55% 20% / .85), transparent 60%), radial-gradient(90% 80% at 100% 100%, hsl(${hue2} 45% 16% / .8), transparent 55%), #090b0f`,
       }}
     >
       <div className="absolute inset-0 grid grid-cols-[18%_1fr] gap-3 p-4 opacity-60">

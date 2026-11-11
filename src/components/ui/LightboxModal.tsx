@@ -22,7 +22,7 @@ export default function LightboxModal({
   initialIndex,
   projectName,
   lang,
-  accentColor = "#38bdf8",
+  accentColor = "#3b82f6",
 }: LightboxModalProps) {
   const [currentIndex, setCurrentIndex] = useState(
     Math.min(Math.max(0, initialIndex), Math.max(0, shots.length - 1))

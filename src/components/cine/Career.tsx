@@ -247,7 +247,7 @@ export default function Career() {
   const data = CONTENT[lang] ?? CONTENT.tr;
   const sectionRef = useRef<HTMLElement>(null);
 
-  const { progress, activeColor } = useStageBuild("career-stage", "#38bdf8");
+  const { progress, activeColor } = useStageBuild("career-stage", "#3b82f6");
 
   // 0'dan Profesyonel Yazılımcı İnşa Fazları
   const phase1 = clamp01((progress - 0.13) / 0.15);
@@ -269,15 +269,15 @@ export default function Career() {
       className="relative mx-auto w-full max-w-[1580px] overflow-hidden px-6 py-28 md:px-12 md:py-36"
     >
       <div
-        className="pointer-events-none absolute -left-[15vmin] top-1/3 h-[70vmin] w-[70vmin] rounded-full blur-[150px] transition-opacity duration-500"
-        style={{ backgroundColor: `${activeColor}1a`, opacity: phase1 }}
+        className="pointer-events-none absolute -left-[15vmin] top-1/3 h-[70vmin] w-[70vmin] rounded-full blur-[160px] transition-opacity duration-500"
+        style={{ backgroundColor: `${activeColor}12`, opacity: phase1 * 0.65 }}
         aria-hidden
       />
 
       {/* GÖREV 1: Üst Başlık & Çizgi */}
       <div
         data-build-role="grid"
-        className="flex items-center gap-3 border-t border-white/10 pt-10 font-mono text-xs uppercase tracking-[0.28em] text-sky-300"
+        className="flex items-center gap-3 border-t border-white/10 pt-10 font-mono text-xs uppercase tracking-[0.28em] text-blue-400"
         style={{
           opacity: phase1,
           transform: `translate3d(0, ${(1 - phase1) * 14}px, 0)`,
@@ -286,7 +286,7 @@ export default function Career() {
         <span
           data-build-role="color"
           className="h-2.5 w-2.5 rounded-full transition-colors duration-700"
-          style={{ backgroundColor: activeColor, boxShadow: `0 0 12px ${activeColor}` }}
+          style={{ backgroundColor: activeColor, boxShadow: `0 0 8px ${activeColor}66` }}
         />
         {data.kicker}
       </div>
@@ -310,14 +310,14 @@ export default function Career() {
       >
         {descBox.isWireframe && (
           <div
-            className="pointer-events-none absolute left-0 top-0 z-20 rounded-lg border border-dashed border-sky-400/60 bg-sky-400/[0.05]"
+            className="pointer-events-none absolute left-0 top-0 z-20 rounded-lg border border-dashed border-blue-400/60 bg-blue-500/[0.04]"
             style={{
               width: `${descBox.widthPct}%`,
               height: `${descBox.heightPct}%`,
             }}
           />
         )}
-        <p className="text-lg leading-[1.7] text-slate-300/75 md:text-xl">
+        <p className="text-lg leading-[1.7] text-zinc-400 md:text-xl">
           {data.lead.slice(0, Math.max(0, leadChars))}
         </p>
       </div>
@@ -345,10 +345,10 @@ export default function Career() {
             <div
               key={s.unit}
               className={`relative rounded-2xl border p-7 backdrop-blur-xl transition-colors duration-200 ${st.isRenaming
-                  ? "border-sky-400 bg-sky-500/15 ring-2 ring-sky-400/50"
+                  ? "border-blue-400 bg-blue-500/15 ring-1 ring-blue-400/50"
                   : st.isCloning
-                    ? "border-dashed border-sky-300/70 bg-sky-400/10"
-                    : "border-white/10 bg-white/[0.03]"
+                    ? "border-dashed border-blue-400/60 bg-blue-500/[0.06]"
+                    : "border-white/10 bg-[#11141a]/90"
                 }`}
               style={{
                 opacity: st.opacity,
@@ -356,7 +356,7 @@ export default function Career() {
               }}
             >
               {st.badgeText && (
-                <span className="pointer-events-none absolute -top-3 right-4 rounded bg-sky-400 px-2 py-0.5 font-mono text-[10px] font-bold text-slate-950 shadow">
+                <span className="pointer-events-none absolute -top-3 right-4 rounded bg-blue-600 px-2 py-0.5 font-mono text-[10px] font-bold text-white shadow">
                   {st.badgeText}
                 </span>
               )}
@@ -371,7 +371,7 @@ export default function Career() {
                   {displayUnit}
                 </span>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300/70">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">
                 {st.displayText}
               </p>
             </div>
@@ -393,15 +393,15 @@ export default function Career() {
             <article
               key={c.scene}
               data-build-role={idx === 0 ? "badges" : "cta"}
-              className="rounded-3xl border border-white/12 bg-[#070b14]/85 p-7 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl md:p-10"
+              className="rounded-3xl border border-white/10 bg-[#11141a]/95 p-7 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.85)] backdrop-blur-xl md:p-10"
             >
               <div className="flex flex-col gap-5 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
                 <div className="flex items-start gap-4">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-sky-400/30 bg-sky-400/10 text-sky-300">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-blue-500/25 bg-blue-500/10 text-blue-400">
                     <Icon size={20} />
                   </span>
                   <div>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-sky-300/80">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-blue-400/90">
                       {c.context}
                     </span>
                     <h3 className="mt-1.5 font-display text-2xl font-bold tracking-tight text-white md:text-4xl">
@@ -409,19 +409,19 @@ export default function Career() {
                     </h3>
                   </div>
                 </div>
-                <div className="inline-flex items-baseline gap-2 rounded-2xl border border-white/12 bg-white/[0.04] px-5 py-3">
+                <div className="inline-flex items-baseline gap-2 rounded-2xl border border-white/10 bg-[#181c24] px-5 py-3">
                   <span className="font-display text-4xl font-bold text-white">{c.duration}</span>
-                  <span className="font-mono text-xs tracking-[0.25em] text-sky-300">
+                  <span className="font-mono text-xs tracking-[0.25em] text-blue-400">
                     {c.durationUnit}
                   </span>
                 </div>
               </div>
 
-              <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-200/85 md:text-lg">
+              <p className="mt-6 max-w-3xl text-base leading-relaxed text-zinc-300 md:text-lg">
                 {c.summary}
               </p>
 
-              <span className="mt-8 block font-mono text-[11px] uppercase tracking-[0.28em] text-white/40">
+              <span className="mt-8 block font-mono text-[11px] uppercase tracking-[0.28em] text-zinc-500">
                 {c.doLabel}
               </span>
               <div className="mt-4 grid gap-4 md:grid-cols-3">
@@ -439,35 +439,35 @@ export default function Career() {
                     <div
                       key={d.title}
                       className={`rounded-2xl border p-5 transition ${subState.isRenaming
-                          ? "border-sky-400 bg-sky-500/15"
+                          ? "border-blue-400 bg-blue-500/15"
                           : subState.isCloning
-                            ? "border-dashed border-sky-400/50 bg-sky-400/[0.06]"
-                            : "border-white/10 bg-white/[0.025] hover:border-sky-400/35 hover:bg-white/[0.04]"
+                            ? "border-dashed border-blue-400/50 bg-blue-500/[0.05]"
+                            : "border-white/10 bg-[#181c24]/70 hover:border-blue-500/35 hover:bg-[#181c24]"
                         }`}
                       style={{
                         opacity: subState.opacity,
                         transform: `translate3d(${subState.offsetX.toFixed(1)}px, 0, 0)`,
                       }}
                     >
-                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-sky-400/25 bg-sky-400/10 text-sky-300">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-blue-500/25 bg-blue-500/10 text-blue-400">
                         <DIcon size={18} />
                       </span>
                       <h4 className="mt-4 font-display text-lg font-semibold text-white">
                         {subState.displayText}
                       </h4>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-300/65">{d.text}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-zinc-400">{d.text}</p>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="mt-6 flex items-start gap-3 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.05] p-5">
-                <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-emerald-300" />
+              <div className="mt-6 flex items-start gap-3 rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] p-5">
+                <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-blue-400" />
                 <div>
-                  <span className="block font-mono text-[10px] uppercase tracking-[0.28em] text-emerald-200/75">
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.28em] text-blue-300/80">
                     {c.valueLabel}
                   </span>
-                  <p className="mt-1 font-medium text-white/90">{c.value}</p>
+                  <p className="mt-1 font-medium text-zinc-100">{c.value}</p>
                 </div>
               </div>
 
@@ -475,7 +475,7 @@ export default function Career() {
                 data-build-role={idx === 1 ? "qa" : undefined}
                 className="mt-6 flex flex-wrap items-center gap-2"
               >
-                <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/40">
+                <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
                   {c.toolsLabel}
                 </span>
                 {c.tools.map((tool, ti) => {
@@ -491,8 +491,8 @@ export default function Career() {
                     <span
                       key={tool}
                       className={`rounded-full border px-3.5 py-1 font-mono text-xs ${tState.isRenaming
-                          ? "border-sky-400 bg-sky-400/25 text-white"
-                          : "border-white/10 bg-white/[0.04] text-white/80"
+                          ? "border-blue-400 bg-blue-500/20 text-white"
+                          : "border-white/10 bg-[#181c24] text-zinc-300"
                         }`}
                       style={{
                         opacity: tState.opacity,

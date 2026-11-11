@@ -52,7 +52,7 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} ${caveat.variable}`}
     >
       <body
-        className="antialiased selection:bg-sky-400/30 selection:text-white"
+        className="antialiased selection:bg-blue-500/30 selection:text-white"
         data-mode="lab"
       >
         <ModeProvider>

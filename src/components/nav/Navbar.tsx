@@ -40,7 +40,7 @@ interface SubItem {
 export default function Navbar() {
   const { lang } = useLang();
   const pathname = usePathname();
-  const { progress } = useStageBuild("hero-stage", "#38bdf8");
+  const { progress } = useStageBuild("hero-stage", "#3b82f6");
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -463,7 +463,7 @@ export default function Navbar() {
       ref={navContainerRef}
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-[#04060a]/85 backdrop-blur-2xl border-b border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.85)] py-2.5"
+          ? "bg-[#090b0f]/90 backdrop-blur-2xl border-b border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.85)] py-2.5"
           : "bg-transparent py-4"
       }`}
     >
@@ -472,13 +472,13 @@ export default function Navbar() {
         <Link
           href="/"
           onClick={closeAll}
-          className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-[#070b14]/80 px-4 py-2 backdrop-blur-xl transition hover:border-sky-400/40 hover:bg-[#070b14]/95 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+          className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-[#11141a]/90 px-4 py-2 backdrop-blur-xl transition hover:border-blue-500/40 hover:bg-[#181c24] shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
         >
           <span className="relative flex h-2.5 w-2.5 items-center justify-center">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-400 shadow-[0_0_10px_#38bdf8]" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-50" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
           </span>
-          <span className="font-display text-xs sm:text-sm font-bold tracking-tight text-white group-hover:text-sky-200 transition">
+          <span className="font-display text-xs sm:text-sm font-bold tracking-tight text-white group-hover:text-blue-300 transition">
             SABRİ CAN TÜTÜNCÜ
           </span>
         </Link>
@@ -486,7 +486,7 @@ export default function Navbar() {
         {/* ORTA KATEGORİK MENÜ (DESKTOP) */}
         <div
           data-nav-clone-group="true"
-          className="hidden items-center gap-1.5 rounded-full border border-white/10 bg-[#070b14]/80 p-1.5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] md:flex"
+          className="hidden items-center gap-1.5 rounded-full border border-white/10 bg-[#11141a]/90 p-1.5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.6)] md:flex"
         >
           {topCategories.map((cat, idx) => {
             const st = getCloneAndRenameState(
@@ -514,12 +514,12 @@ export default function Navbar() {
                     onClick={() => setActiveDropdown(isOpen ? null : cat.id)}
                     className={`relative flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide transition-all ${
                       isOpen || active
-                        ? "bg-sky-500/15 text-sky-300 shadow-[inset_0_0_12px_rgba(56,189,248,0.2)]"
+                        ? "bg-blue-500/15 text-blue-300"
                         : st.isRenaming
-                        ? "bg-sky-500/25 text-sky-200 ring-1 ring-sky-400"
+                        ? "bg-blue-500/20 text-blue-200 ring-1 ring-blue-400"
                         : st.isCloning
-                        ? "border border-dashed border-sky-400/60 bg-sky-400/10 text-sky-200"
-                        : "text-white/75 hover:bg-white/[0.08] hover:text-white"
+                        ? "border border-dashed border-blue-400/60 bg-blue-500/10 text-blue-200"
+                        : "text-zinc-300 hover:bg-white/[0.07] hover:text-white"
                     }`}
                     style={{
                       opacity: st.opacity,
@@ -527,13 +527,13 @@ export default function Navbar() {
                     }}
                   >
                     {active && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                     )}
                     <span>{st.displayText}</span>
                     <ChevronDown
                       size={13}
-                      className={`transition-transform duration-200 text-white/50 ${
-                        isOpen ? "rotate-180 text-sky-300" : ""
+                      className={`transition-transform duration-200 text-zinc-400 ${
+                        isOpen ? "rotate-180 text-blue-300" : ""
                       }`}
                     />
                   </button>
@@ -552,7 +552,7 @@ export default function Navbar() {
                         onMouseEnter={() => handleMouseEnter(cat.id)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <div className="sp-in grid grid-cols-[minmax(0,1fr)_320px] overflow-hidden border border-white/[0.12] bg-[#05080d] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
+                        <div className="sp-in grid grid-cols-[minmax(0,1fr)_320px] overflow-hidden border border-white/[0.12] bg-[#11141a] shadow-[0_30px_80px_rgba(0,0,0,0.9)]">
                           <div className="max-h-[calc(100vh-120px)] overflow-y-auto py-2">
                             <p className="px-6 pb-2 pt-3 font-mono text-[11px] text-zinc-500">
                               {cat.label} <span className="text-zinc-700">/</span> {rows.length}
@@ -571,20 +571,20 @@ export default function Navbar() {
                                     >
                                       <span
                                         aria-hidden
-                                        className="absolute left-0 top-0 h-full w-[2px] origin-top scale-y-0 bg-sky-300 transition-transform duration-200 group-hover:scale-y-100 group-focus-visible:scale-y-100"
+                                        className="absolute left-0 top-0 h-full w-[2px] origin-top scale-y-0 bg-blue-500 transition-transform duration-200 group-hover:scale-y-100 group-focus-visible:scale-y-100"
                                       />
-                                      <span className={`font-mono text-[11px] tabular-nums transition-colors ${isSubActive ? "text-sky-300" : "text-zinc-600 group-hover:text-sky-300"}`}>
+                                      <span className={`font-mono text-[11px] tabular-nums transition-colors ${isSubActive ? "text-blue-400" : "text-zinc-600 group-hover:text-blue-400"}`}>
                                         {SPECIMENS[sub.href]?.plate}
                                       </span>
                                       <span className="min-w-0">
-                                        <span className={`block font-display text-[17px] leading-tight tracking-tight ${isSubActive ? "text-sky-200" : "text-white"}`}>
+                                        <span className={`block font-display text-[17px] leading-tight tracking-tight ${isSubActive ? "text-blue-300" : "text-white"}`}>
                                           {sub.title}
                                         </span>
                                         <span className="mt-0.5 block truncate text-xs text-zinc-500 transition-colors group-hover:text-zinc-400">
                                           {sub.desc}
                                         </span>
                                       </span>
-                                      <span aria-hidden className="text-zinc-700 transition-all group-hover:translate-x-0.5 group-hover:text-sky-300">
+                                      <span aria-hidden className="text-zinc-700 transition-all group-hover:translate-x-0.5 group-hover:text-blue-400">
                                         →
                                       </span>
                                     </Link>
@@ -593,7 +593,7 @@ export default function Navbar() {
                               })}
                             </ul>
                           </div>
-                          <aside className="border-l border-white/10 bg-[#04060a] p-5">
+                          <aside className="border-l border-white/10 bg-[#090b0f] p-5">
                             <div key={activeHref} className="sp-in">
                               {spec && <SpecimenFrame kind={spec.kind} plate={spec.plate} caption={spec.caption} />}
                               <p className="mt-5 font-display text-xl leading-tight tracking-tight text-white">{activeItem.title}</p>
@@ -615,12 +615,12 @@ export default function Navbar() {
                 onClick={closeAll}
                 className={`relative flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide transition-all ${
                   active
-                    ? "bg-sky-500/15 text-sky-300 shadow-[inset_0_0_12px_rgba(56,189,248,0.2)]"
+                    ? "bg-blue-500/15 text-blue-300"
                     : st.isRenaming
-                    ? "bg-sky-500/25 text-sky-200 ring-1 ring-sky-400"
+                    ? "bg-blue-500/20 text-blue-200 ring-1 ring-blue-400"
                     : st.isCloning
-                    ? "border border-dashed border-sky-400/60 bg-sky-400/10 text-sky-200"
-                    : "text-white/75 hover:bg-white/[0.08] hover:text-white"
+                    ? "border border-dashed border-blue-400/60 bg-blue-500/10 text-blue-200"
+                    : "text-zinc-300 hover:bg-white/[0.07] hover:text-white"
                 }`}
                 style={{
                   opacity: st.opacity,
@@ -628,13 +628,12 @@ export default function Navbar() {
                 }}
               >
                 {active && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                 )}
                 <span>{st.displayText}</span>
                 {cat.id === "contact" && (
                   <span className="relative flex h-2 w-2 items-center justify-center">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-400" />
                   </span>
                 )}
               </Link>
@@ -650,7 +649,7 @@ export default function Navbar() {
             download="Sabri_Can_Tutuncu_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1.5 font-mono text-xs font-semibold text-sky-300 backdrop-blur-xl transition hover:border-sky-400 hover:bg-sky-500/25 hover:text-white shadow-[0_0_15px_rgba(56,189,248,0.15)]"
+            className="flex items-center gap-1.5 rounded-full border border-blue-500/35 bg-blue-500/10 px-3 py-1.5 font-mono text-xs font-semibold text-blue-300 backdrop-blur-xl transition hover:border-blue-400 hover:bg-blue-600 hover:text-white"
             title={currentNav.cvTitle}
           >
             <FileDown size={14} />
@@ -658,7 +657,7 @@ export default function Navbar() {
           </a>
 
           {/* DİL DEĞİŞTİRİCİ */}
-          <div className="rounded-full border border-white/10 bg-[#070b14]/80 p-1 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          <div className="rounded-full border border-white/10 bg-[#11141a]/90 p-1 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
             <LangToggle />
           </div>
 
@@ -667,7 +666,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#070b14]/80 text-white/80 backdrop-blur-xl transition hover:border-sky-400/40 hover:text-white md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#11141a]/90 text-white/80 backdrop-blur-xl transition hover:border-blue-400/40 hover:text-white md:hidden"
           >
             {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -676,15 +675,15 @@ export default function Navbar() {
 
       {/* MOBİL MENÜ MODALI */}
       {mobileMenuOpen && (
-        <div className="mx-4 mt-2 rounded-3xl border border-white/10 bg-[#070b14]/95 p-4 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] ring-1 ring-white/10 animate-in fade-in slide-in-from-top-3 duration-200 md:hidden max-h-[80vh] overflow-y-auto">
+        <div className="mx-4 mt-2 rounded-3xl border border-white/10 bg-[#11141a]/95 p-4 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.95)] ring-1 ring-white/10 animate-in fade-in slide-in-from-top-3 duration-200 md:hidden max-h-[80vh] overflow-y-auto">
           {/* Portfolyo Linki */}
           <div className="mb-3">
             <Link
               href="/#work"
               onClick={closeAll}
-              className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.03] p-3 text-xs font-semibold text-white"
+              className="flex items-center gap-3 rounded-xl border border-white/5 bg-[#181c24] p-3 text-xs font-semibold text-white"
             >
-              <FolderKanban size={16} className="text-sky-400" />
+              <FolderKanban size={16} className="text-blue-400" />
               <span>{cats.projects.title}</span>
             </Link>
           </div>
@@ -692,8 +691,8 @@ export default function Navbar() {
           {/* Araçlar Listesi */}
           <div className="mb-4">
             <div className="mb-2 flex items-center justify-between px-2">
-              <span className="font-mono text-[11px] text-sky-300">{cats.tools.title}</span>
-              <span className="font-mono text-[11px] text-white/35">{cats.tools.items.length}</span>
+              <span className="font-mono text-[11px] text-blue-400">{cats.tools.title}</span>
+              <span className="font-mono text-[11px] text-zinc-500">{cats.tools.items.length}</span>
             </div>
             <ul className="border-t border-white/10">
               {[...cats.tools.items]
@@ -705,10 +704,10 @@ export default function Navbar() {
                       onClick={closeAll}
                       className="grid grid-cols-[28px_minmax(0,1fr)] items-baseline gap-2 border-b border-white/[0.07] px-2 py-3 active:bg-white/[0.05]"
                     >
-                      <span className="font-mono text-[11px] tabular-nums text-white/35">{SPECIMENS[sub.href]?.plate}</span>
+                      <span className="font-mono text-[11px] tabular-nums text-zinc-500">{SPECIMENS[sub.href]?.plate}</span>
                       <span>
                         <span className="block font-display text-[15px] leading-tight text-white">{sub.title}</span>
-                        <span className="mt-0.5 line-clamp-1 block text-[11px] text-white/45">{sub.desc}</span>
+                        <span className="mt-0.5 line-clamp-1 block text-[11px] text-zinc-400">{sub.desc}</span>
                       </span>
                     </Link>
                   </li>
@@ -721,18 +720,18 @@ export default function Navbar() {
             <Link
               href={cats.career.href}
               onClick={closeAll}
-              className="flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.03] p-2.5 transition active:bg-white/10"
+              className="flex items-center gap-2 rounded-xl border border-white/5 bg-[#181c24] p-2.5 transition active:bg-white/10"
             >
-              <Briefcase size={16} className="text-sky-400" />
+              <Briefcase size={16} className="text-blue-400" />
               <div className="truncate text-xs font-semibold text-white">{cats.career.title}</div>
             </Link>
 
             <Link
               href={cats.contact.href}
               onClick={closeAll}
-              className="flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.03] p-2.5 transition active:bg-white/10"
+              className="flex items-center gap-2 rounded-xl border border-white/5 bg-[#181c24] p-2.5 transition active:bg-white/10"
             >
-              <Mail size={16} className="text-emerald-400" />
+              <Mail size={16} className="text-blue-400" />
               <div className="truncate text-xs font-semibold text-white">{cats.contact.title}</div>
             </Link>
           </div>
@@ -744,7 +743,7 @@ export default function Navbar() {
               download="Sabri_Can_Tutuncu_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-sky-400/30 bg-sky-500/15 p-2.5 text-xs font-bold text-sky-200 transition active:bg-sky-500/25"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-blue-500/35 bg-blue-600 p-2.5 text-xs font-bold text-white transition hover:bg-blue-500"
             >
               <FileDown size={15} />
               <span>{currentNav.cvTitle}</span>

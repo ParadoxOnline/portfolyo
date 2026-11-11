@@ -59,9 +59,9 @@ export default function MobileDesktopNotice() {
       aria-label={t.title}
       className="fixed inset-x-4 bottom-5 z-[999] md:hidden animate-in fade-in slide-in-from-bottom-6 duration-300"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-sky-400/35 bg-[#060b14]/95 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.85),0_0_35px_rgba(56,189,248,0.22)] backdrop-blur-xl">
-        {/* Üstte parlayan neon çizgi */}
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent" />
+      <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#11141a]/95 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+        {/* Üstte kurumsal ince çizgi */}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
         {/* Sağ üst kapatma butonu */}
         <button
@@ -74,12 +74,12 @@ export default function MobileDesktopNotice() {
         </button>
 
         <div className="flex items-start gap-3.5 pr-6">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-400/30 bg-sky-400/10 text-sky-300 shadow-[0_0_15px_rgba(56,189,248,0.35)]">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/10 text-blue-400">
             <Monitor size={20} />
           </div>
 
           <div>
-            <span className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.2em] text-sky-300/90">
+            <span className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.2em] text-blue-400">
               {t.badge}
             </span>
             <h4 className="mt-0.5 font-display text-[17px] font-bold tracking-tight text-white">
@@ -88,7 +88,7 @@ export default function MobileDesktopNotice() {
           </div>
         </div>
 
-        <p className="mt-2.5 text-[13px] leading-relaxed text-slate-300/85">
+        <p className="mt-2.5 text-[13px] leading-relaxed text-zinc-400">
           {t.desc}
         </p>
 
@@ -96,7 +96,7 @@ export default function MobileDesktopNotice() {
           <button
             type="button"
             onClick={handleDismiss}
-            className="w-full rounded-xl border border-sky-400/40 bg-sky-400/15 py-2.5 text-center font-mono text-[12px] font-semibold tracking-wide text-sky-200 transition hover:bg-sky-400/25 active:scale-[0.98]"
+            className="w-full rounded-xl bg-blue-600 py-2.5 text-center font-mono text-[12px] font-semibold tracking-wide text-white transition hover:bg-blue-500 active:scale-[0.98]"
           >
             {t.action}
           </button>

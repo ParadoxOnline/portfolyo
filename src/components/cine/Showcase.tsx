@@ -17,13 +17,13 @@ import {
 } from "@/components/canvas/DevBuildPrimitives";
 
 const ACCENTS: Record<string, string> = {
-  lios: "#a855f7",
-  gen: "#38bdf8",
-  macagel: "#22c55e",
-  tekstil: "#ec4899",
-  arama: "#f43f5e",
-  devrim: "#6366f1",
-  sitebuilder: "#10b981",
+  lios: "#3b82f6",
+  gen: "#2563eb",
+  macagel: "#3b82f6",
+  tekstil: "#475569",
+  arama: "#2563eb",
+  devrim: "#3b82f6",
+  sitebuilder: "#2563eb",
 };
 
 const TYPOS: Record<string, string> = {
@@ -61,7 +61,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [descTab, setDescTab] = useState<"flow" | "problem" | "solution" | "impact">("flow");
 
-  const defaultAccent = ACCENTS[p.slug] ?? "#38bdf8";
+  const defaultAccent = ACCENTS[p.slug] ?? "#3b82f6";
   const stageId = `project-${p.slug}`;
   const { progress, isBuilding, isBuilt, activeColor } = useStageBuild(
     stageId,
@@ -88,7 +88,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
 
   const techs = techOf(p);
   const swatches = Array.from(
-    new Set([defaultAccent, "#38bdf8", "#a855f7", "#10b981", "#f43f5e"])
+    new Set([defaultAccent, "#3b82f6", "#2563eb", "#475569", "#334155"])
   ).slice(0, 4);
 
   return (
@@ -101,16 +101,16 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
       {/* Devasa Arka Plan Kontur Rakamı */}
       <span
         className="outline-num pointer-events-none absolute -top-6 right-6 select-none font-display text-[22vw] font-bold leading-none transition-opacity duration-500 md:right-12"
-        style={{ opacity: phase1 * 0.65 }}
+        style={{ opacity: phase1 * 0.55 }}
         aria-hidden
       >
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      {/* Sinematik Volümetrik Sahne Spot Işığı */}
+      {/* Kurumsal Volümetrik Sahne Spot Işığı (Yumuşak ve Dengeli) */}
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[150px] transition-opacity duration-500"
-        style={{ backgroundColor: `${color}22`, opacity: phase1 }}
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[160px] transition-opacity duration-500"
+        style={{ backgroundColor: `${color}12`, opacity: phase1 * 0.65 }}
         aria-hidden
       />
 
@@ -125,15 +125,15 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
       >
         <div className="flex items-center gap-4">
           <span
-            className="inline-flex h-7 items-center rounded-full px-3 font-mono text-[11px] font-semibold tracking-wider text-slate-950"
+            className="inline-flex h-7 items-center rounded-full px-3 font-mono text-[11px] font-semibold tracking-wider text-white"
             style={{
               backgroundColor: color,
-              boxShadow: `0 0 20px ${color}66`,
+              boxShadow: `0 4px 16px -4px ${color}66`,
             }}
           >
             0{index + 1} / 0{total}
           </span>
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/60">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-400">
             {p.category} · {p.year}
           </span>
         </div>
@@ -141,7 +141,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
         {/* Canlı Renk Paleti Noktaları (1. Noktadan 4'e Çoğaltılır) */}
         <div
           data-build-role="color"
-          className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 backdrop-blur-md"
+          className="flex items-center gap-2 rounded-full border border-white/10 bg-[#11141a]/90 px-3.5 py-1.5 backdrop-blur-md"
         >
           {swatches.map((hex, si) => {
             const swState = getCloneAndRenameState(phase1, si, swatches.length, hex, swatches[0], 20);
@@ -184,7 +184,7 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                   progress={progress}
                 />
               </h3>
-              <p className="mt-2 text-sm sm:text-[14.5px] font-medium leading-relaxed text-sky-200/85">
+              <p className="mt-2 text-sm sm:text-[14.5px] font-medium leading-relaxed text-zinc-400">
                 {desc}
               </p>
             </div>
@@ -219,28 +219,28 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
               )}
 
               <div
-                className="rounded-2xl border border-white/10 bg-[#070b14]/90 p-4 sm:p-4.5 backdrop-blur-xl shadow-2xl transition-all"
+                className="rounded-2xl border border-white/10 bg-[#11141a]/95 p-4 sm:p-4.5 backdrop-blur-xl shadow-2xl transition-all"
                 style={{
                   clipPath:
                     phase3 >= 0.95
                       ? "none"
                       : `inset(0 ${(100 - descBox.widthPct).toFixed(1)}% ${(100 - descBox.heightPct).toFixed(1)}% 0 round 16px)`,
-                  boxShadow: isBuilding ? `0 0 0 1px ${color}44` : "0 25px 60px -20px rgba(0,0,0,0.8)",
+                  boxShadow: isBuilding ? `0 0 0 1px ${color}44` : "0 24px 60px -20px rgba(0,0,0,0.85)",
                 }}
               >
                 {/* Mod / Sekme Seçici: Akış, Problem, Çözüm, İş Kazancı */}
                 <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-2.5">
-                  <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/[0.03] p-1 font-mono text-[11px]">
+                  <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-[#181c24] p-1 font-mono text-[11px]">
                     <button
                       type="button"
                       onClick={() => setDescTab("flow")}
                       className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
                         descTab === "flow"
-                          ? "bg-white/15 text-white font-semibold shadow"
-                          : "text-white/50 hover:text-white"
+                          ? "bg-white/12 text-white font-semibold shadow-sm"
+                          : "text-zinc-400 hover:text-white"
                       }`}
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
                       <span>{t.flowLabel}</span>
                     </button>
                     <button
@@ -248,11 +248,11 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                       onClick={() => setDescTab("problem")}
                       className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
                         descTab === "problem"
-                          ? "bg-rose-500/20 text-rose-300 font-semibold"
-                          : "text-white/50 hover:text-rose-300"
+                          ? "bg-white/12 text-zinc-100 font-semibold"
+                          : "text-zinc-400 hover:text-zinc-200"
                       }`}
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" />
                       <span>{t.problem}</span>
                     </button>
                     <button
@@ -260,11 +260,11 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                       onClick={() => setDescTab("solution")}
                       className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
                         descTab === "solution"
-                          ? "bg-emerald-500/20 text-emerald-300 font-semibold"
-                          : "text-white/50 hover:text-emerald-300"
+                          ? "bg-blue-500/20 text-blue-300 font-semibold"
+                          : "text-zinc-400 hover:text-blue-300"
                       }`}
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
                       <span>{t.solution}</span>
                     </button>
                     {whyItMattersText && (
@@ -273,17 +273,17 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                         onClick={() => setDescTab("impact")}
                         className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
                           descTab === "impact"
-                            ? "bg-amber-500/20 text-amber-300 font-semibold"
-                            : "text-white/50 hover:text-amber-300"
+                            ? "bg-white/12 text-white font-semibold"
+                            : "text-zinc-400 hover:text-white"
                         }`}
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                        <span>💰 {lang === "az" ? "ROI" : lang === "en" ? "ROI" : "İş Kazancı"}</span>
+                        <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
+                        <span>{lang === "az" ? "ROI" : lang === "en" ? "ROI" : "İş Kazancı"}</span>
                       </button>
                     )}
                   </div>
 
-                  <span className="font-mono text-[10px] tracking-wider text-emerald-400 uppercase hidden sm:inline">
+                  <span className="font-mono text-[10px] tracking-wider text-blue-400/90 uppercase hidden sm:inline">
                     PROVEN ROI
                   </span>
                 </div>
@@ -294,14 +294,14 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                     {/* Problem ve Çözüm Yan Yana 2'li Izgara */}
                     <div className="grid gap-2 sm:grid-cols-2">
                       {/* 01: Problem Bloğu */}
-                      <div className="rounded-xl border border-rose-500/20 bg-rose-950/20 p-2.5 sm:p-3">
+                      <div className="rounded-xl border border-white/10 bg-[#181c24]/80 p-2.5 sm:p-3">
                         <div className="mb-1 flex items-center gap-1.5">
-                          <span className="h-1.5 w-1.5 rounded-full bg-rose-500 shadow-[0_0_6px_#f43f5e]" />
-                          <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-rose-300">
+                          <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" />
+                          <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-zinc-300">
                             {t.problemBadge}
                           </span>
                         </div>
-                        <p className="text-xs leading-relaxed text-slate-300 line-clamp-3">
+                        <p className="text-xs leading-relaxed text-zinc-400 line-clamp-3">
                           {problemText}
                         </p>
                       </div>
@@ -310,23 +310,17 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                       <div
                         className="rounded-xl border p-2.5 sm:p-3"
                         style={{
-                          borderColor: `${color}35`,
-                          backgroundColor: `${color}0d`,
+                          borderColor: "rgba(59, 130, 246, 0.25)",
+                          backgroundColor: "rgba(59, 130, 246, 0.06)",
                         }}
                       >
                         <div className="mb-1 flex items-center gap-1.5">
-                          <span
-                            className="h-1.5 w-1.5 rounded-full"
-                            style={{ backgroundColor: color, boxShadow: `0 0 6px ${color}` }}
-                          />
-                          <span
-                            className="font-mono text-[10.5px] font-bold uppercase tracking-wider"
-                            style={{ color }}
-                          >
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                          <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-blue-300">
                             {t.solutionBadge}
                           </span>
                         </div>
-                        <p className="text-xs leading-relaxed text-slate-200 line-clamp-3">
+                        <p className="text-xs leading-relaxed text-zinc-200 line-clamp-3">
                           {solutionText}
                         </p>
                       </div>
@@ -334,11 +328,11 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
 
                     {/* 03: Somut İş Kazancı & ROI Satırı */}
                     {whyItMattersText && (
-                      <div className="flex items-center gap-2 rounded-xl border border-amber-500/25 bg-amber-950/20 px-3 py-2 text-xs">
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-amber-300 shrink-0">
-                          💰 {t.impactBadge}:
+                      <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-[#181c24] px-3 py-2 text-xs">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-blue-400 shrink-0">
+                          {t.impactBadge}:
                         </span>
-                        <p className="text-xs font-medium leading-snug text-amber-100/90 line-clamp-2">
+                        <p className="text-xs font-medium leading-snug text-zinc-300 line-clamp-2">
                           {whyItMattersText}
                         </p>
                       </div>
@@ -347,54 +341,42 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                 )}
 
                 {descTab === "problem" && (
-                  <div className="rounded-xl border border-rose-500/25 bg-rose-950/25 p-3.5 sm:p-4 animate-in fade-in duration-200">
+                  <div className="rounded-xl border border-white/10 bg-[#181c24] p-3.5 sm:p-4 animate-in fade-in duration-200">
                     <div className="mb-1.5 flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" />
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-rose-300">
+                      <span className="h-2 w-2 rounded-full bg-zinc-400" />
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-200">
                         {t.problemBadge} — {t.problemSubtitle}
                       </h4>
                     </div>
-                    <p className="text-xs sm:text-[13px] leading-relaxed text-slate-200">
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-zinc-300">
                       {problemText}
                     </p>
                   </div>
                 )}
 
                 {descTab === "solution" && (
-                  <div
-                    className="rounded-xl border p-3.5 sm:p-4 animate-in fade-in duration-200"
-                    style={{
-                      borderColor: `${color}40`,
-                      backgroundColor: `${color}12`,
-                    }}
-                  >
+                  <div className="rounded-xl border border-blue-500/25 bg-blue-500/[0.06] p-3.5 sm:p-4 animate-in fade-in duration-200">
                     <div className="mb-1.5 flex items-center gap-2">
-                      <span
-                        className="h-2 w-2 rounded-full"
-                        style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}` }}
-                      />
-                      <h4
-                        className="font-mono text-xs font-bold uppercase tracking-wider"
-                        style={{ color }}
-                      >
+                      <span className="h-2 w-2 rounded-full bg-blue-400" />
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-blue-300">
                         {t.solutionBadge} — {t.solutionSubtitle}
                       </h4>
                     </div>
-                    <p className="text-xs sm:text-[13px] leading-relaxed text-slate-200">
+                    <p className="text-xs sm:text-[13px] leading-relaxed text-zinc-200">
                       {solutionText}
                     </p>
                   </div>
                 )}
 
                 {descTab === "impact" && whyItMattersText && (
-                  <div className="rounded-xl border border-amber-500/30 bg-amber-950/25 p-3.5 sm:p-4 animate-in fade-in duration-200 shadow-xl">
+                  <div className="rounded-xl border border-white/12 bg-[#181c24] p-3.5 sm:p-4 animate-in fade-in duration-200 shadow-xl">
                     <div className="mb-1.5 flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
-                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-amber-300">
-                        💰 {t.impactBadge} — {t.impactSubtitle}
+                      <span className="h-2 w-2 rounded-full bg-blue-400" />
+                      <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-blue-300">
+                        {t.impactBadge} — {t.impactSubtitle}
                       </h4>
                     </div>
-                    <p className="text-xs sm:text-[13px] font-medium leading-relaxed text-amber-100">
+                    <p className="text-xs sm:text-[13px] font-medium leading-relaxed text-zinc-200">
                       {whyItMattersText}
                     </p>
                   </div>
@@ -429,14 +411,14 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                       ? "#ffffff"
                       : st.isCloning
                       ? color
-                      : `${color}45`,
+                      : "rgba(255,255,255,0.1)",
                     borderStyle: st.isCloning ? "dashed" : "solid",
                     backgroundColor: st.isRenaming
-                      ? `${color}40`
+                      ? `${color}30`
                       : st.isCloning
-                      ? `${color}22`
-                      : `${color}12`,
-                    color: "#f1f5f9",
+                      ? `${color}1a`
+                      : "#181c24",
+                    color: "#e4e4e7",
                     transform: `translate3d(${st.offsetX.toFixed(1)}px, ${st.offsetY.toFixed(1)}px, 0) scale(${st.scale})`,
                   }}
                 >
@@ -458,24 +440,24 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
             <Link
               href={`/project/${p.slug}`}
               id={`view-${p.slug}`}
-              className="group inline-flex items-center gap-3 rounded-full px-6 py-3 font-display text-sm font-semibold text-slate-950 transition hover:scale-[1.03]"
+              className="group inline-flex items-center gap-3 rounded-full px-6 py-3 font-display text-sm font-semibold text-white transition hover:scale-[1.02]"
               style={{
                 backgroundColor: color,
-                boxShadow: `0 12px 35px -8px ${color}88`,
+                boxShadow: `0 10px 28px -8px ${color}77`,
               }}
             >
               <span>{t.view}</span>
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-black/20 text-slate-950 transition group-hover:rotate-45">
+              <span className="grid h-6 w-6 place-items-center rounded-full bg-white/15 text-white transition group-hover:rotate-45">
                 <ArrowUpRight size={14} />
               </span>
             </Link>
 
             {count > 1 && (
-              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-md">
+              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-[#11141a] p-1 backdrop-blur-md">
                 <button
                   type="button"
                   onClick={() => setActive((c) => (c - 1 + count) % count)}
-                  className="grid h-8 w-8 place-items-center rounded-full text-white/60 transition hover:bg-white/10 hover:text-white"
+                  className="grid h-8 w-8 place-items-center rounded-full text-zinc-400 transition hover:bg-white/10 hover:text-white"
                   aria-label="Önceki ekran"
                 >
                   <ChevronLeft size={15} />
@@ -496,10 +478,10 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                       onClick={() => setActive(i)}
                       className={`rounded-full px-3 py-1 font-mono text-xs transition ${
                         btnState.isRenaming
-                          ? "bg-sky-400 text-slate-950 font-bold"
+                          ? "bg-blue-600 text-white font-bold"
                           : i === active
-                          ? "bg-white font-semibold text-slate-950"
-                          : "text-white/50 hover:text-white"
+                          ? "bg-white font-semibold text-zinc-950"
+                          : "text-zinc-400 hover:text-white"
                       }`}
                       style={{
                         opacity: btnState.opacity,
@@ -636,9 +618,9 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
             ) : (
               /* Masaüstü Sinematik Stüdyo Penceresi */
               <div
-                className="group/window relative w-full overflow-hidden rounded-2xl border border-white/15 bg-[#070b12] transition-transform duration-300 hover:scale-[1.008]"
+                className="group/window relative w-full overflow-hidden rounded-2xl border border-white/12 bg-[#11141a] transition-transform duration-300 hover:scale-[1.006]"
                 style={{
-                  boxShadow: `0 55px 140px -30px ${color}45, 0 0 0 1px rgba(255,255,255,0.08)`,
+                  boxShadow: `0 45px 110px -30px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.08)`,
                 }}
                 onTouchStart={(e) => setTouchStartX(e.targetTouches[0].clientX)}
                 onTouchEnd={(e) => {
@@ -650,13 +632,13 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
                 }}
               >
                 {/* Pencere Üst Barı */}
-                <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3">
+                <div className="flex items-center justify-between border-b border-white/10 bg-[#181c24]/80 px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
                   </div>
-                  <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-1 font-mono text-[11px] text-white/60">
+                  <div className="flex items-center gap-2 rounded-full border border-white/10 bg-[#090b0f]/75 px-4 py-1 font-mono text-[11px] text-zinc-300">
                     <span
                       className="h-1.5 w-1.5 rounded-full"
                       style={{ backgroundColor: color }}
@@ -768,8 +750,8 @@ function Scene({ p, index, total }: { p: Project; index: number; total: number }
 export default function Showcase() {
   const { lang } = useLang();
   const t = copy[lang];
-  const { progress: liosProgress } = useStageBuild("project-lios", "#a855f7");
-  const { progress: heroProgress } = useStageBuild("hero-stage", "#38bdf8");
+  const { progress: liosProgress } = useStageBuild("project-lios", "#3b82f6");
+  const { progress: heroProgress } = useStageBuild("hero-stage", "#3b82f6");
 
   const headerVisible = Math.max(
     clamp01((heroProgress - 0.85) / 0.14),
@@ -784,15 +766,15 @@ export default function Showcase() {
       >
         <div className="grid items-end gap-8 border-b border-white/10 pb-14 md:grid-cols-12">
           <div className="md:col-span-7">
-            <p className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-sky-300">
-              <span className="h-px w-10 bg-sky-400" />
+            <p className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.3em] text-blue-400">
+              <span className="h-px w-10 bg-blue-500" />
               {t.flagshipLabel}
             </p>
             <h2 className="font-display text-[clamp(2.6rem,6vw,5.4rem)] font-bold leading-[0.98] tracking-[-0.03em] text-white">
               {t.selected}
             </h2>
           </div>
-          <p className="max-w-md text-lg leading-relaxed text-slate-300/70 md:col-span-5">
+          <p className="max-w-md text-lg leading-relaxed text-zinc-400 md:col-span-5">
             {t.selectedDesc.replace("{n}", String(flagships.length))}
           </p>
         </div>

@@ -160,12 +160,12 @@ function ContactModal({ t, onClose }: { t: CopyType; onClose: () => void }) {
       aria-modal="true"
       aria-label={t.modalTitle}
     >
-      <div className="absolute inset-0 bg-[#01040a]/85 backdrop-blur-xl" onClick={onClose} />
+      <div className="absolute inset-0 bg-[#090b0f]/85 backdrop-blur-xl" onClick={onClose} />
       <div
-        className="pointer-events-none absolute inset-0 opacity-20"
+        className="pointer-events-none absolute inset-0 opacity-15"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(125,211,252,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,252,0.25) 1px, transparent 1px)",
+            "linear-gradient(rgba(148,163,184,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.2) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           maskImage: "radial-gradient(circle at center, black 20%, transparent 70%)",
         }}
@@ -176,10 +176,10 @@ function ContactModal({ t, onClose }: { t: CopyType; onClose: () => void }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.96 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl border border-white/15 bg-[#050b12]/95 p-6 shadow-[0_0_120px_-20px_rgba(56,189,248,0.45)] md:p-10"
+        className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl border border-white/12 bg-[#11141a]/95 p-6 shadow-[0_24px_90px_-20px_rgba(0,0,0,0.9)] md:p-10"
       >
         <motion.div
-          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-300 to-transparent"
+          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.9, delay: 0.2 }}
@@ -188,13 +188,13 @@ function ContactModal({ t, onClose }: { t: CopyType; onClose: () => void }) {
           id="contact-close"
           onClick={onClose}
           aria-label={t.close}
-          className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/60 transition hover:rotate-90 hover:border-white/40 hover:text-white"
+          className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full border border-white/15 text-zinc-400 transition hover:rotate-90 hover:border-white/40 hover:text-white"
         >
           <X size={18} />
         </button>
 
-        <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.35em] text-sky-200/80">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-sky-300" />
+        <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.35em] text-blue-400">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
           {t.modalEyebrow}
         </p>
         <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-white md:text-4xl">
@@ -204,39 +204,29 @@ function ContactModal({ t, onClose }: { t: CopyType; onClose: () => void }) {
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {channels.map((c, i) => {
             const Icon = c.icon;
-            const green = c.accent === "emerald";
+            const isWa = c.accent === "emerald";
             return (
               <motion.div
                 key={c.key}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 + i * 0.15, duration: 0.6 }}
-                className={`group relative overflow-hidden rounded-2xl border p-6 transition duration-500 ${
-                  green
-                    ? "border-emerald-300/20 bg-emerald-400/[0.04] hover:border-emerald-300/60 hover:shadow-[0_0_50px_-10px_rgba(52,211,153,0.5)]"
-                    : "border-sky-300/20 bg-sky-400/[0.04] hover:border-sky-300/60 hover:shadow-[0_0_50px_-10px_rgba(56,189,248,0.5)]"
-                }`}
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#181c24]/90 p-6 transition duration-300 hover:border-blue-500/45 hover:shadow-[0_16px_45px_-12px_rgba(0,0,0,0.8)]"
               >
-                <span
-                  className={`grid h-14 w-14 place-items-center rounded-xl border ${
-                    green
-                      ? "border-emerald-300/40 bg-emerald-400/10 text-emerald-200"
-                      : "border-sky-300/40 bg-sky-400/10 text-sky-200"
-                  }`}
-                >
+                <span className="grid h-14 w-14 place-items-center rounded-xl border border-blue-500/25 bg-blue-500/10 text-blue-400">
                   <Icon size={26} />
                 </span>
                 <h4 className="mt-5 font-display text-2xl font-bold text-white">{c.title}</h4>
-                <p className="mt-1 text-sm text-white/55">{c.desc}</p>
+                <p className="mt-1 text-sm text-zinc-400">{c.desc}</p>
 
-                <div className="mt-5 flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-black/30 px-4 py-3 font-mono text-sm text-white/85">
+                <div className="mt-5 flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-[#090b0f]/75 px-4 py-3 font-mono text-sm text-zinc-200">
                   <span className="truncate">{c.value}</span>
                   <button
                     onClick={() => copy(c.key, c.raw)}
-                    className="flex shrink-0 items-center gap-1.5 text-[11px] uppercase tracking-widest text-white/50 transition hover:text-white"
+                    className="flex shrink-0 items-center gap-1.5 text-[11px] uppercase tracking-widest text-zinc-400 transition hover:text-white"
                   >
                     {copied === c.key ? (
-                      <Check size={14} className="text-emerald-300" />
+                      <Check size={14} className="text-blue-400" />
                     ) : (
                       <Copy size={14} />
                     )}
@@ -249,8 +239,10 @@ function ContactModal({ t, onClose }: { t: CopyType; onClose: () => void }) {
                   href={c.href}
                   target={c.external ? "_blank" : undefined}
                   rel={c.external ? "noopener noreferrer" : undefined}
-                  className={`mt-5 flex items-center justify-center gap-2 rounded-full px-6 py-3 font-medium text-black transition hover:scale-[1.03] ${
-                    green ? "bg-emerald-300" : "bg-sky-200"
+                  className={`mt-5 flex items-center justify-center gap-2 rounded-full px-6 py-3 font-medium transition hover:scale-[1.02] ${
+                    isWa
+                      ? "bg-blue-600 text-white hover:bg-blue-500"
+                      : "bg-zinc-100 text-zinc-950 hover:bg-white"
                   }`}
                 >
                   {c.action}
@@ -271,7 +263,7 @@ export default function Contact() {
   const [open, setOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const { progress, activeColor } = useStageBuild("contact-stage", "#38bdf8");
+  const { progress, activeColor } = useStageBuild("contact-stage", "#3b82f6");
 
   // 0'dan Profesyonel Yazılımcı İnşa Fazları
   const phase1 = clamp01((progress - 0.13) / 0.15);
@@ -292,8 +284,8 @@ export default function Contact() {
       className="relative mx-auto w-full max-w-[1580px] overflow-hidden px-6 pb-28 pt-24 md:px-12 md:pt-36"
     >
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[90vmin] w-[90vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[150px] transition-opacity duration-500"
-        style={{ backgroundColor: `${activeColor}1c`, opacity: phase1 }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[90vmin] w-[90vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[160px] transition-opacity duration-500"
+        style={{ backgroundColor: `${activeColor}12`, opacity: phase1 * 0.6 }}
         aria-hidden
       />
 
@@ -301,7 +293,7 @@ export default function Contact() {
         {/* GÖREV 1: Üst Başlık & Vurgu */}
         <div
           data-build-role="grid"
-          className="flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.35em] text-sky-300"
+          className="flex items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.35em] text-blue-400"
           style={{
             opacity: phase1,
             transform: `translate3d(0, ${(1 - phase1) * 14}px, 0)`,
@@ -310,7 +302,7 @@ export default function Contact() {
           <span
             data-build-role="color"
             className="h-2.5 w-2.5 rounded-full transition-colors duration-700"
-            style={{ backgroundColor: activeColor, boxShadow: `0 0 12px ${activeColor}` }}
+            style={{ backgroundColor: activeColor, boxShadow: `0 0 8px ${activeColor}66` }}
           />
           {t.eyebrow}
         </div>
@@ -334,7 +326,7 @@ export default function Contact() {
         {/* GÖREV 3: Açıklama Metni */}
         <p
           data-build-role="desc"
-          className="mx-auto mt-6 min-h-[2.2em] max-w-2xl text-center text-lg leading-[1.7] text-slate-300/75 md:text-xl"
+          className="mx-auto mt-6 min-h-[2.2em] max-w-2xl text-center text-lg leading-[1.7] text-zinc-400 md:text-xl"
           style={{
             opacity: phase3 > 0.02 ? 1 : 0,
             transform: `translate3d(0, ${(1 - phase3) * 12}px, 0)`,
@@ -344,7 +336,7 @@ export default function Contact() {
         </p>
 
         <span
-          className="mt-14 block text-center font-mono text-[11px] uppercase tracking-[0.3em] text-white/40"
+          className="mt-14 block text-center font-mono text-[11px] uppercase tracking-[0.3em] text-zinc-500"
           style={{ opacity: phase4 }}
         >
           {t.seekLabel}
@@ -374,10 +366,10 @@ export default function Contact() {
                 key={s.title}
                 className={`relative rounded-2xl border p-7 backdrop-blur-xl transition-colors duration-200 ${
                   st.isRenaming
-                    ? "border-sky-400 bg-sky-500/15 ring-2 ring-sky-400/50"
+                    ? "border-blue-400 bg-blue-500/15 ring-1 ring-blue-400/50"
                     : st.isCloning
-                    ? "border-dashed border-sky-300/70 bg-sky-400/10"
-                    : "border-white/10 bg-white/[0.03] hover:border-sky-300/40 hover:bg-white/[0.05]"
+                    ? "border-dashed border-blue-400/60 bg-blue-500/[0.06]"
+                    : "border-white/10 bg-[#11141a]/90 hover:border-blue-500/35 hover:bg-[#181c24]"
                 }`}
                 style={{
                   opacity: st.opacity,
@@ -385,17 +377,17 @@ export default function Contact() {
                 }}
               >
                 {st.badgeText && (
-                  <span className="pointer-events-none absolute -top-3 right-4 rounded bg-sky-400 px-2 py-0.5 font-mono text-[10px] font-bold text-slate-950 shadow">
+                  <span className="pointer-events-none absolute -top-3 right-4 rounded bg-blue-600 px-2 py-0.5 font-mono text-[10px] font-bold text-white shadow">
                     {st.badgeText}
                   </span>
                 )}
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-sky-400/30 bg-sky-400/10 text-sky-300">
+                <span className="grid h-11 w-11 place-items-center rounded-xl border border-blue-500/25 bg-blue-500/10 text-blue-400">
                   <Icon size={20} />
                 </span>
                 <h3 className="mt-5 font-display text-xl font-bold text-white">
                   {st.displayText}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-slate-300/65">
+                <p className="mt-2.5 text-sm leading-relaxed text-zinc-400">
                   {displayBody}
                 </p>
               </div>
@@ -413,7 +405,7 @@ export default function Contact() {
         >
           {visionBox.isWireframe && (
             <div
-              className="pointer-events-none absolute left-0 top-0 z-20 rounded-2xl border border-dashed border-sky-400"
+              className="pointer-events-none absolute left-0 top-0 z-20 rounded-2xl border border-dashed border-blue-400"
               style={{
                 width: `${visionBox.widthPct}%`,
                 height: `${visionBox.heightPct}%`,
@@ -421,7 +413,7 @@ export default function Contact() {
             />
           )}
           <div
-            className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#070b14]/85 p-6 backdrop-blur-xl"
+            className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#11141a]/95 p-6 backdrop-blur-xl"
             style={{
               clipPath:
                 phase5 >= 0.95
@@ -429,12 +421,12 @@ export default function Contact() {
                   : `inset(0 ${(100 - visionBox.widthPct).toFixed(1)}% ${(100 - visionBox.heightPct).toFixed(1)}% 0 round 16px)`,
             }}
           >
-            <Quote size={22} className="mt-1 shrink-0 text-sky-300" />
+            <Quote size={22} className="mt-1 shrink-0 text-blue-400" />
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-sky-300/80">
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-blue-400/90">
                 {t.visionLabel}
               </span>
-              <p className="mt-1 font-display text-lg font-medium text-white/90 md:text-xl">
+              <p className="mt-1 font-display text-lg font-medium text-zinc-100 md:text-xl">
                 {t.vision}
               </p>
             </div>
@@ -453,12 +445,12 @@ export default function Contact() {
           <button
             id="contact-cta"
             onClick={() => setOpen(true)}
-            className="inline-flex items-center gap-3 rounded-full bg-white px-10 py-4 font-display text-sm font-semibold text-slate-950 shadow-[0_0_50px_rgba(125,211,252,0.4)] transition hover:scale-105 hover:shadow-[0_0_70px_rgba(125,211,252,0.7)]"
+            className="inline-flex items-center gap-3 rounded-full bg-blue-600 px-10 py-4 font-display text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(37,99,235,0.5)] transition hover:scale-[1.03] hover:bg-blue-500"
           >
             <span>{t.cta}</span>
             <ArrowUpRight size={17} />
           </button>
-          <p data-build-role="qa" className="mt-4 text-sm text-white/45">
+          <p data-build-role="qa" className="mt-4 text-sm text-zinc-500">
             {t.hint}
           </p>
         </div>

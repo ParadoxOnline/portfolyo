@@ -26,19 +26,19 @@ interface AgentDef {
 const TAU = Math.PI * 2;
 
 const SWARM_AGENTS: AgentDef[] = [
-  { id: 0, role: "title", color: "#e0f2fe", glow: "#38bdf8", angleOffset: (TAU / 10) * 0, lag: 0.16 },
-  { id: 1, role: "desc", color: "#bae6fd", glow: "#0ea5e9", angleOffset: (TAU / 10) * 1, lag: 0.135 },
-  { id: 2, role: "color", color: "#ddd6fe", glow: "#a855f7", angleOffset: (TAU / 10) * 2, lag: 0.115 },
-  { id: 3, role: "frame-nw", color: "#a7f3d0", glow: "#10b981", angleOffset: (TAU / 10) * 3, lag: 0.098 },
-  { id: 4, role: "frame-se", color: "#fde68a", glow: "#f59e0b", angleOffset: (TAU / 10) * 4, lag: 0.084 },
-  { id: 5, role: "media", color: "#c7d2fe", glow: "#6366f1", angleOffset: (TAU / 10) * 5, lag: 0.072 },
-  { id: 6, role: "badges", color: "#fbcfe8", glow: "#ec4899", angleOffset: (TAU / 10) * 6, lag: 0.062 },
-  { id: 7, role: "cta", color: "#d9f99d", glow: "#84cc16", angleOffset: (TAU / 10) * 7, lag: 0.054 },
-  { id: 8, role: "grid", color: "#99f6e4", glow: "#14b8a6", angleOffset: (TAU / 10) * 8, lag: 0.047 },
-  { id: 9, role: "qa", color: "#fed7aa", glow: "#f97316", angleOffset: (TAU / 10) * 9, lag: 0.041 },
+  { id: 0, role: "title", color: "#f8fafc", glow: "#3b82f6", angleOffset: (TAU / 10) * 0, lag: 0.16 },
+  { id: 1, role: "desc", color: "#e2e8f0", glow: "#60a5fa", angleOffset: (TAU / 10) * 1, lag: 0.135 },
+  { id: 2, role: "color", color: "#cbd5e1", glow: "#3b82f6", angleOffset: (TAU / 10) * 2, lag: 0.115 },
+  { id: 3, role: "frame-nw", color: "#f1f5f9", glow: "#64748b", angleOffset: (TAU / 10) * 3, lag: 0.098 },
+  { id: 4, role: "frame-se", color: "#e2e8f0", glow: "#475569", angleOffset: (TAU / 10) * 4, lag: 0.084 },
+  { id: 5, role: "media", color: "#dbeafe", glow: "#2563eb", angleOffset: (TAU / 10) * 5, lag: 0.072 },
+  { id: 6, role: "badges", color: "#cbd5e1", glow: "#64748b", angleOffset: (TAU / 10) * 6, lag: 0.062 },
+  { id: 7, role: "cta", color: "#eff6ff", glow: "#3b82f6", angleOffset: (TAU / 10) * 7, lag: 0.054 },
+  { id: 8, role: "grid", color: "#e2e8f0", glow: "#475569", angleOffset: (TAU / 10) * 8, lag: 0.047 },
+  { id: 9, role: "qa", color: "#f8fafc", glow: "#60a5fa", angleOffset: (TAU / 10) * 9, lag: 0.041 },
 ];
 
-const TRIAL_COLORS = ["#f43f5e", "#f59e0b", "#a855f7"];
+const TRIAL_COLORS = ["#475569", "#64748b", "#94a3b8"];
 
 interface StageState {
   progress: number;
@@ -185,7 +185,7 @@ const STAGE_META: Record<
   },
 };
 
-export function useStageBuild(stageId: string, finalColor = "#38bdf8") {
+export function useStageBuild(stageId: string, finalColor = "#3b82f6") {
   const ctx = useContext(LiveBuilderContext);
   const registerStage = ctx?.registerStage;
   const triggerStageBuild = ctx?.triggerStageBuild;
@@ -313,8 +313,8 @@ export function LiveTypoText({
           data-typo-wrong="true"
           className={`rounded-md px-1 transition-colors ${
             isDeleting
-              ? "bg-rose-500/25 text-rose-200 line-through decoration-rose-400 decoration-2 ring-1 ring-rose-400/50"
-              : "text-rose-300/90"
+              ? "bg-red-500/15 text-red-200 line-through decoration-red-400/80 decoration-2 ring-1 ring-red-400/35"
+              : "text-red-300/85"
           }`}
         >
           {visibleWrong}
@@ -325,8 +325,8 @@ export function LiveTypoText({
           data-typo-caret="true"
           className={`ml-1 inline-block h-[0.84em] w-[3px] translate-y-[0.06em] animate-pulse rounded-full ${
             isDeleting
-              ? "bg-rose-400 shadow-[0_0_14px_#f43f5e]"
-              : "bg-sky-300 shadow-[0_0_14px_#38bdf8]"
+              ? "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.45)]"
+              : "bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.45)]"
           }`}
         />
       )}
@@ -565,7 +565,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
     }))
   );
 
-  const registerStage = useCallback((stageId: string, defaultColor = "#38bdf8") => {
+  const registerStage = useCallback((stageId: string, defaultColor = "#3b82f6") => {
     stageColorsRef.current[stageId] = defaultColor;
     if (stagesRef.current[stageId]) return;
     stagesRef.current = {
@@ -592,7 +592,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
       if (!force && cur && (cur.status === "building" || cur.status === "built")) return;
 
       const color =
-        defaultColor || stageColorsRef.current[stageId] || cur?.targetColor || "#38bdf8";
+        defaultColor || stageColorsRef.current[stageId] || cur?.targetColor || "#3b82f6";
 
       runningTimersRef.current[stageId] = {
         startTime: performance.now(),
@@ -1446,7 +1446,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
   const currentFocusState = stages[focusedStageId] ?? {
     progress: 0,
     status: "idle" as const,
-    targetColor: "#38bdf8",
+    targetColor: "#3b82f6",
   };
 
   const handleReplayCurrentStage = useCallback(() => {
@@ -1506,7 +1506,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
               viewBox="0 0 32 32"
               fill="none"
               style={{
-                filter: `drop-shadow(0 6px 14px rgba(0,0,0,0.85)) drop-shadow(0 0 12px ${agent.glow}88)`,
+                filter: `drop-shadow(0 6px 12px rgba(0,0,0,0.75)) drop-shadow(0 0 6px ${agent.glow}44)`,
               }}
             >
               <defs>
@@ -1551,7 +1551,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
         {/* Renk ayarlayan imlecin yanında beliren minimalist cam renk paleti */}
         <div
           ref={swatchElRef}
-          className="fixed left-0 top-0 flex items-center gap-1.5 rounded-full border border-white/15 bg-[#070b14]/90 px-2.5 py-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.8)] backdrop-blur-md transition-opacity duration-200"
+          className="fixed left-0 top-0 flex items-center gap-1.5 rounded-full border border-white/15 bg-[#11141a]/95 px-2.5 py-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.8)] backdrop-blur-md transition-opacity duration-200"
           style={{ opacity: 0, transform: "translate3d(-200px, -200px, 0)" }}
         >
           {TRIAL_COLORS.map((c) => (
@@ -1561,7 +1561,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
               style={{ backgroundColor: c }}
             />
           ))}
-          <span className="h-3 w-3 rounded-full bg-sky-400 ring-2 ring-white shadow-[0_0_10px_#38bdf8]" />
+          <span className="h-3 w-3 rounded-full bg-blue-500 ring-2 ring-white/90" />
         </div>
 
       </div>

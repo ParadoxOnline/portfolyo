@@ -41,11 +41,11 @@ function ParticleSwarm() {
       <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#818cf8"
-          size={0.05}
+          color="#64748b"
+          size={0.045}
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.6}
+          opacity={0.45}
         />
       </Points>
     </group>
