@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { INSIGHTS_DATA } from "@/data/ecosystem";
+import { AUTHOR_PROFILE, SITE_URL } from "@/lib/geo";
 
 export function generateStaticParams() {
   return INSIGHTS_DATA.map((article) => ({
@@ -11,6 +13,33 @@ export function generateStaticParams() {
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = INSIGHTS_DATA.find((a) => a.slug === slug);
+  if (!article) return { title: "Yazı Bulunamadı" };
+
+  return {
+    title: article.title,
+    description: article.summary,
+    keywords: article.tags,
+    authors: [{ name: article.author, url: SITE_URL }],
+    alternates: { canonical: `/insights/${article.slug}` },
+    openGraph: {
+      title: `${article.title} | ${AUTHOR_PROFILE.name}`,
+      description: article.summary,
+      url: `${SITE_URL}/insights/${article.slug}`,
+      type: "article",
+      locale: "tr_TR",
+      siteName: AUTHOR_PROFILE.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.summary,
+    },
+  };
 }
 
 export default async function ArticlePage({ params }: PageProps) {
@@ -23,8 +52,51 @@ export default async function ArticlePage({ params }: PageProps) {
 
   const cs = article.marketCaseStudy;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        headline: article.title,
+        description: article.summary,
+        articleSection: article.category,
+        keywords: article.tags.join(", "),
+        inLanguage: "tr",
+        url: `${SITE_URL}/insights/${article.slug}`,
+        author: {
+          "@type": "Person",
+          "@id": `${SITE_URL}/#person`,
+          name: article.author,
+          url: SITE_URL,
+        },
+        publisher: {
+          "@type": "Person",
+          "@id": `${SITE_URL}/#person`,
+          name: AUTHOR_PROFILE.name,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Yazılar", item: `${SITE_URL}/insights` },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: `${SITE_URL}/insights/${article.slug}`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <article className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mx-auto max-w-[760px] px-4 pb-24 pt-28 sm:px-6">
         <nav aria-label="Konum" className="font-mono text-[11px] text-zinc-500">
           <Link href="/" className="hover:text-zinc-300">Ana sayfa</Link>

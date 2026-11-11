@@ -574,36 +574,39 @@ export function LiveTypoText({
 
   return (
     <span className={`relative inline ${className}`}>
-      {gradientAfter !== undefined && visibleCorrect.length > gradientAfter ? (
-        <>
-          <span>{visibleCorrect.slice(0, gradientAfter)}</span>
-          <span className={accentClass}>{visibleCorrect.slice(gradientAfter)}</span>
-        </>
-      ) : (
-        <span>{visibleCorrect}</span>
-      )}
-      {visibleWrong && (
-        <span
-          data-typo-wrong="true"
-          className={`rounded-md px-1 transition-colors ${
-            isDeleting
-              ? "bg-red-500/15 text-red-200 line-through decoration-red-400/80 decoration-2 ring-1 ring-red-400/35"
-              : "text-red-300/85"
-          }`}
-        >
-          {visibleWrong}
-        </span>
-      )}
-      {showCaret && (
-        <span
-          data-typo-caret="true"
-          className={`ml-1 inline-block h-[0.84em] w-[3px] translate-y-[0.06em] animate-pulse rounded-full ${
-            isDeleting
-              ? "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.45)]"
-              : "bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.45)]"
-          }`}
-        />
-      )}
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {gradientAfter !== undefined && visibleCorrect.length > gradientAfter ? (
+          <>
+            <span>{visibleCorrect.slice(0, gradientAfter)}</span>
+            <span className={accentClass}>{visibleCorrect.slice(gradientAfter)}</span>
+          </>
+        ) : (
+          <span>{visibleCorrect}</span>
+        )}
+        {visibleWrong && (
+          <span
+            data-typo-wrong="true"
+            className={`rounded-md px-1 transition-colors ${
+              isDeleting
+                ? "bg-red-500/15 text-red-200 line-through decoration-red-400/80 decoration-2 ring-1 ring-red-400/35"
+                : "text-red-300/85"
+            }`}
+          >
+            {visibleWrong}
+          </span>
+        )}
+        {showCaret && (
+          <span
+            data-typo-caret="true"
+            className={`ml-1 inline-block h-[0.84em] w-[3px] translate-y-[0.06em] animate-pulse rounded-full ${
+              isDeleting
+                ? "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.45)]"
+                : "bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.45)]"
+            }`}
+          />
+        )}
+      </span>
     </span>
   );
 }

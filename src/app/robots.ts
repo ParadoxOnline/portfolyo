@@ -1,14 +1,36 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/geo";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://sabritutuncu.com' // Replace with actual domain when known
-
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/private/"],
+      },
+      {
+        userAgent: [
+          "Googlebot",
+          "Bingbot",
+          "GPTBot",
+          "OAI-SearchBot",
+          "ChatGPT-User",
+          "PerplexityBot",
+          "Perplexity-User",
+          "ClaudeBot",
+          "Claude-Web",
+          "anthropic-ai",
+          "Google-Extended",
+          "Applebot",
+          "Applebot-Extended",
+          "CCBot",
+        ],
+        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        disallow: ["/api/", "/private/"],
+      },
+    ],
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
+  };
 }

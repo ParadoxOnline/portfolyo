@@ -1,6 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ToolPage, Panel, Status } from "@/components/tools/ToolKit";
+import { buildToolMetadata } from "@/lib/geo";
+
+export const metadata: Metadata = buildToolMetadata(
+  "/plugins",
+  "Açık Kaynak WordPress Eklentileri & Geliştirici Araçları",
+  "WordPress ve Elementor performansı için DOM Optimizer, GEO uyumlu Schema Injector ve LiteSpeed Cache Pre-Warmer modülleri."
+);
 
 const planned = [
   {
