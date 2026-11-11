@@ -14,6 +14,18 @@ import { useLang, type Lang } from "@/providers/LangProvider";
 import { StageSketchArt } from "./StageSketchArt";
 import { getStageMetaI18n, PAPER_UI_TEXT } from "./StageMetaI18n";
 
+export type CursorIconKind =
+  | "arrow"
+  | "pencil"
+  | "grab"
+  | "clone"
+  | "resize-x"
+  | "resize-y"
+  | "type"
+  | "eraser"
+  | "brush"
+  | "check";
+
 interface AgentDef {
   id: number;
   role: string;
@@ -39,6 +51,268 @@ const SWARM_AGENTS: AgentDef[] = [
 ];
 
 const TRIAL_COLORS = ["#475569", "#64748b", "#94a3b8"];
+
+const CURSOR_GLYPHS: CursorIconKind[] = [
+  "arrow",
+  "pencil",
+  "grab",
+  "clone",
+  "resize-x",
+  "resize-y",
+  "type",
+  "eraser",
+  "brush",
+  "check",
+];
+
+function renderCursorSvgBody(kind: CursorIconKind, agent: AgentDef) {
+  switch (kind) {
+    case "arrow":
+      return (
+        <>
+          <defs>
+            <linearGradient
+              id={`cursor-grad-${agent.id}`}
+              x1="16"
+              y1="2"
+              x2="16"
+              y2="28"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="38%" stopColor={agent.color} />
+              <stop offset="100%" stopColor={agent.glow} />
+            </linearGradient>
+          </defs>
+          <path
+            d="M16 2.5L26.5 26.5L16 21.2L5.5 26.5L16 2.5Z"
+            fill={`url(#cursor-grad-${agent.id})`}
+            stroke="#090b0f"
+            strokeWidth="1.7"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M16 4.8L16 20.2L7.8 24.4L16 4.8Z"
+            fill="rgba(255,255,255,0.32)"
+          />
+          <path
+            d="M16 4.5L16 20.5"
+            stroke="#ffffff"
+            strokeWidth="1.1"
+            strokeLinecap="round"
+            strokeOpacity="0.85"
+          />
+        </>
+      );
+    case "pencil":
+      return (
+        <>
+          <path
+            d="M7 25L9.2 18.2L21.5 5.9C22.4 5 23.9 5 24.8 5.9L26.1 7.2C27 8.1 27 9.6 26.1 10.5L13.8 22.8L7 25Z"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M19.5 7.9L24.1 12.5"
+            stroke="#3b82f6"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M9.4 18.4L13.6 22.6"
+            stroke="#090b0f"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <circle cx="7" cy="25" r="1.4" fill="#3b82f6" />
+        </>
+      );
+    case "grab":
+      return (
+        <>
+          <path
+            d="M11 16V9.5C11 8.4 11.9 7.5 13 7.5C14.1 7.5 15 8.4 15 9.5V14.5V7.8C15 6.7 15.9 5.8 17 5.8C18.1 5.8 19 6.7 19 7.8V14.5V9C19 7.9 19.9 7 21 7C22.1 7 23 7.9 23 9V18.5C23 22.8 19.8 26 15.6 26H14.2C11.5 26 9.3 24.4 8.2 21.8L6.6 17.8C6.1 16.7 6.7 15.4 7.8 15C8.8 14.6 10 15.1 10.6 16L11 16.6"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12.5 22.8H19.5"
+            stroke="#3b82f6"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </>
+      );
+    case "clone":
+      return (
+        <>
+          <rect
+            x="5.5"
+            y="9.5"
+            width="14"
+            height="14"
+            rx="3"
+            fill="#181c24"
+            stroke={agent.color}
+            strokeWidth="1.6"
+          />
+          <rect
+            x="11.5"
+            y="5.5"
+            width="15"
+            height="15"
+            rx="3"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.7"
+          />
+          <path
+            d="M19 9.5V16.5M15.5 13H22.5"
+            stroke="#2563eb"
+            strokeWidth="2.1"
+            strokeLinecap="round"
+          />
+        </>
+      );
+    case "resize-x":
+      return (
+        <>
+          <path
+            d="M4.5 16L10.5 10.5V14H21.5V10.5L27.5 16L21.5 21.5V18H10.5V21.5L4.5 16Z"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <rect x="14.5" y="13.5" width="3" height="5" rx="1" fill="#3b82f6" />
+        </>
+      );
+    case "resize-y":
+      return (
+        <>
+          <path
+            d="M16 4.5L21.5 10.5H18V21.5H21.5L16 27.5L10.5 21.5H14V10.5H10.5L16 4.5Z"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <rect x="13.5" y="14.5" width="5" height="3" rx="1" fill="#3b82f6" />
+        </>
+      );
+    case "type":
+      return (
+        <>
+          <path
+            d="M11 6.5H21M11 25.5H21M16 6.5V25.5"
+            stroke="#090b0f"
+            strokeWidth="4.6"
+            strokeLinecap="round"
+          />
+          <path
+            d="M11 6.5H21M11 25.5H21M16 6.5V25.5"
+            stroke={agent.color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <path
+            d="M13 16H19"
+            stroke="#3b82f6"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+        </>
+      );
+    case "eraser":
+      return (
+        <>
+          <path
+            d="M6.5 20.5L18.2 8.8C19.2 7.8 20.8 7.8 21.8 8.8L25.2 12.2C26.2 13.2 26.2 14.8 25.2 15.8L16.5 24.5H9.8L6.5 21.2C6 20.8 6 20.9 6.5 20.5Z"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M13.5 13.5L20.5 20.5"
+            stroke="#090b0f"
+            strokeWidth="1.6"
+          />
+          <path
+            d="M8.5 24.5H25.5"
+            stroke="#3b82f6"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+        </>
+      );
+    case "brush":
+      return (
+        <>
+          <path
+            d="M23.8 5.5C24.8 4.5 26.4 4.5 27.2 5.4C28 6.2 28 7.8 27 8.8L15.8 20L12.6 16.8L23.8 5.5Z"
+            fill={agent.color}
+            stroke="#090b0f"
+            strokeWidth="1.7"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12.6 16.8C9.8 17.1 8.4 19.2 8.2 21.4C8.1 22.8 7 24.2 5.5 24.6C8.1 26.2 12.1 26.1 14.3 23.9C15.5 22.7 15.9 21.3 15.8 20L12.6 16.8Z"
+            fill="#3b82f6"
+            stroke="#090b0f"
+            strokeWidth="1.7"
+            strokeLinejoin="round"
+          />
+        </>
+      );
+    case "check":
+      return (
+        <>
+          <circle
+            cx="16"
+            cy="16"
+            r="10.5"
+            fill="#11141a"
+            stroke="#3b82f6"
+            strokeWidth="2"
+          />
+          <path
+            d="M11.2 16.2L14.5 19.5L21.2 12.6"
+            stroke="#f8fafc"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      );
+  }
+}
+
+function AgentCursorIcons({ agent }: { agent: AgentDef }) {
+  const dropFilter = `drop-shadow(0 6px 12px rgba(0,0,0,0.75)) drop-shadow(0 0 6px ${agent.glow}44)`;
+  return (
+    <>
+      {CURSOR_GLYPHS.map((kind) => (
+        <div key={kind} className="agent-cursor-glyph" data-glyph={kind}>
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            style={{ filter: dropFilter }}
+          >
+            {renderCursorSvgBody(kind, agent)}
+          </svg>
+        </div>
+      ))}
+    </>
+  );
+}
 
 interface StageState {
   progress: number;
@@ -549,6 +823,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
   const mouseRef = useRef({ x: 640, y: 360, moved: false });
 
   const cursorElsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const lastIconsRef = useRef<CursorIconKind[]>(SWARM_AGENTS.map(() => "arrow"));
   const swatchElRef = useRef<HTMLDivElement | null>(null);
   const actionHudElRef = useRef<HTMLDivElement | null>(null);
   const actionHudTextRef = useRef<HTMLSpanElement | null>(null);
@@ -773,7 +1048,12 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
       }
 
       // Her imlecin (0..9) bu karedeki bağımsız hedef noktası
-      const targets: { tx: number; ty: number; orbitTangentAngle: number | null }[] = [];
+      const targets: {
+        tx: number;
+        ty: number;
+        orbitTangentAngle: number | null;
+        iconKind: CursorIconKind;
+      }[] = [];
 
       SWARM_AGENTS.forEach((agent, idx) => {
         const p = agentPosRef.current[idx];
@@ -792,6 +1072,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
         let tx = p.anchorX;
         let ty = p.anchorY;
         let orbitTangentAngle: number | null = null;
+        let iconKind: CursorIconKind = "arrow";
 
         if (building && stageEl) {
           const wave = Math.sin(t * 2.4 + idx * 1.35);
@@ -803,6 +1084,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
           // ═══════════════════════════════════════════════════════════════════
           if (progress < 0.13 && sb) {
             const drawSweep = Math.min(1, progress / 0.13);
+            iconKind = idx === 9 ? "check" : "pencil";
             switch (idx) {
               case 0: // Üst bar sol->orta çizici
                 tx = sb.left + sb.width * (0.06 + drawSweep * 0.42);
@@ -848,6 +1130,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             hudLabel = "✏️ 10 imleç işbölümüyle sayfa krokisini çiziyor...";
           } else if (idx === 9 && activeStrikeRow >= 0) {
             // İMLEÇ 9 (QA): Görev bittiği anda sağ alttaki checklist maddesine kurşun kalem çiziği atar!
+            iconKind = "pencil";
             const rowEl = document.querySelector(
               `[data-checklist-row="${activeStrikeRow}"]`
             ) as HTMLElement | null;
@@ -860,6 +1143,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             }
           } else if (idx === 8 && sb) {
             // İMLEÇ 8 (KROKİ REHBERİ): Sürekli sağ alttaki kroki kağıdında o anki aktif kutuyu ölçer!
+            iconKind = "check";
             if (progress < 0.28) {
               tx = sb.left + sb.width * (0.2 + 0.6 * ((t * 0.4) % 1));
               ty = sb.top + sb.height * 0.11;
@@ -901,21 +1185,25 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             switch (idx) {
               case 0:
                 // İmleç 0: Üst barın SOL UCUNU sabit tutar (Sol Çapa)
+                iconKind = "grab";
                 tx = Math.max(40, topBarRect.left - 8);
                 ty = topBarRect.top + topBarRect.height * 0.5;
                 break;
               case 1:
                 // İmleç 1: Üst barın SAĞ UCUNU tutup sağa doğru gerer (Karşılıklı Germe)
+                iconKind = "resize-x";
                 tx = topBarRect.left + topBarRect.width * (0.2 + 0.8 * localP);
                 ty = topBarRect.top + topBarRect.height * 0.5;
                 break;
               case 2:
                 // İmleç 2: 1. Butonu (Kaynak Şablon) tutar ve korur
+                iconKind = "grab";
                 tx = topBarRect.left + topBarRect.width * 0.18 + wave * 6;
                 ty = topBarRect.top + topBarRect.height * 0.5 - 12;
                 break;
               case 3:
                 // İmleç 3: 1. Butondan 2. Butonu çoğaltıp orta slota taşır ve adını yazar
+                iconKind = localP < 0.55 ? "clone" : "type";
                 tx =
                   topBarRect.left +
                   topBarRect.width * (0.18 + 0.34 * Math.min(1, localP * 1.4)) +
@@ -924,6 +1212,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 break;
               case 4:
                 // İmleç 4: 1. Butondan 3. Butonu çoğaltıp sağ slota taşır ve adını yazar
+                iconKind = localP < 0.55 ? "clone" : "type";
                 tx =
                   topBarRect.left +
                   topBarRect.width * (0.18 + 0.68 * Math.min(1, localP * 1.25)) +
@@ -932,12 +1221,14 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 break;
               case 5:
                 // İmleç 5: Renk paletini tutar ve renkleri dener
+                iconKind = "brush";
                 tx = colorRect.left + colorRect.width * 0.5 + wave * 10;
                 ty = colorRect.top + colorRect.height * 0.5;
                 showColorPalette = true;
                 break;
               case 6:
                 // İmleç 6: İmleç 5'ten aldığı rengi üst rozet/çerçeve kenarına taşır!
+                iconKind = "brush";
                 tx =
                   colorRect.left +
                   (topBarRect.left - colorRect.left) * ((localP * 1.6) % 1) +
@@ -948,11 +1239,13 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 break;
               case 7:
                 // İmleç 7: Sağ üst dil/tema kontrolünü hizalar
+                iconKind = "check";
                 tx = Math.min(window.innerWidth - 70, topBarRect.right + 140) + wave * 8;
                 ty = topBarRect.top + topBarRect.height * 0.5;
                 break;
               default:
                 // İmleç 9: Üst barın alt hiza çizgisini boydan boya kontrol eder
+                iconKind = "check";
                 tx = topBarRect.left + topBarRect.width * localP;
                 ty = colorRect.bottom + 14;
                 break;
@@ -981,11 +1274,13 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             switch (idx) {
               case 0:
                 // İmleç 0: Başlık kutusunun SOL ÜST köşesini sabit tutar
+                iconKind = "grab";
                 tx = b.left - 10;
                 ty = b.top + 8;
                 break;
               case 1: {
                 // İmleç 1 (Baş Yazıcı): Aktif yazım imlecini (caret) harf harf takip eder
+                iconKind = "type";
                 if (caret) {
                   const c = caret.getBoundingClientRect();
                   tx = c.left + 8;
@@ -998,6 +1293,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
               }
               case 2: {
                 // İmleç 2 (Editör / Düzeltmen): Hatalı kelime yazıldığında üstünü sağdan sola seçip siler!
+                iconKind = wrongEl ? "eraser" : localP > 0.58 ? "check" : "type";
                 if (wrongEl) {
                   const wRect = wrongEl.getBoundingClientRect();
                   const selSweep = Math.min(1, Math.max(0, (localP - 0.30) / 0.26));
@@ -1011,32 +1307,38 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
               }
               case 3:
                 // İmleç 3: Sol marjda satır yüksekliğini (line-height) yukarı-aşağı kalibre eder
+                iconKind = "resize-y";
                 tx = b.left - 16;
                 ty = b.top + b.height * (0.2 + 0.7 * ((localP * 2) % 1));
                 break;
               case 4:
                 // İmleç 4: Başlık kutusunun SAĞ KENAR sınırını tutar
+                iconKind = "grab";
                 tx = b.right + 10;
                 ty = b.top + b.height * 0.35 + cosW * 12;
                 break;
               case 5:
                 // İmleç 5: Alt satırdaki gradyan kelimeleri soldan sağa boyar
+                iconKind = "brush";
                 tx = b.left + b.width * (0.1 + 0.65 * localP);
                 ty = b.bottom - 16 + wave * 6;
                 showColorPalette = localP > 0.55;
                 break;
               case 6:
                 // İmleç 6: İmleç 5 ile yardımlaşarak gradyanın sağ ucunu parlatır
+                iconKind = "brush";
                 tx = b.left + b.width * (0.85 - 0.35 * localP);
                 ty = b.bottom - 8 - wave * 6;
                 break;
               case 7:
                 // İmleç 7: Alt taban çizgisini (baseline) ortadan destekler
+                iconKind = "check";
                 tx = b.left + b.width * 0.35 + wave * 20;
                 ty = b.bottom + 14;
                 break;
               default:
                 // İmleç 9: Başlık karakter aralığını (kerning) üstten denetler
+                iconKind = "check";
                 tx = b.left + b.width * (0.2 + 0.6 * localP);
                 ty = b.top - 12;
                 break;
@@ -1065,36 +1367,43 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             switch (idx) {
               case 0:
                 // İmleç 0: Sol üst köşeyi sabitler (Anchor NW)
+                iconKind = "grab";
                 tx = b.left - 6;
                 ty = b.top - 6;
                 break;
               case 1:
                 // İmleç 1: Sağ üst köşeyi tutup YATAYDA sağa doğru çeker
+                iconKind = "resize-x";
                 tx = curRight + 6;
                 ty = b.top + 8;
                 break;
               case 2:
                 // İmleç 2: İmleç 1'e yardım ederek sağ orta kenarı YATAYDA çeker
+                iconKind = "resize-x";
                 tx = curRight + 6;
                 ty = Math.min(curBottom, b.top + b.height * 0.45);
                 break;
               case 3:
                 // İmleç 3: Sol alt köşeyi tutup DİKEYDE aşağı doğru çeker
+                iconKind = "resize-y";
                 tx = b.left + b.width * 0.22;
                 ty = curBottom + 8;
                 break;
               case 4:
                 // İmleç 4: İmleç 3'e yardım ederek sağ alt kenarı DİKEYDE aşağı çeker
+                iconKind = "resize-y";
                 tx = Math.max(b.left + 80, curRight - 36);
                 ty = curBottom + 8;
                 break;
               case 5:
                 // İmleç 5: 1. Satır metnini soldan sağa yazar
+                iconKind = "type";
                 tx = b.left + 20 + (curRight - b.left - 40) * Math.min(1, localP * 1.3);
                 ty = b.top + 24;
                 break;
               case 6:
                 // İmleç 6: 2. Satır metnini paralel olarak yazar
+                iconKind = "type";
                 tx =
                   b.left +
                   20 +
@@ -1103,6 +1412,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 break;
               case 7:
                 // İmleç 7: 3. Satır / Sistem Notunu paralel olarak yazar
+                iconKind = "type";
                 tx =
                   b.left +
                   20 +
@@ -1111,6 +1421,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 break;
               default:
                 // İmleç 9: Açıklama kartının sol dikey kenarlığını kontrol eder
+                iconKind = "check";
                 tx = b.left - 10;
                 ty = b.top + (curBottom - b.top) * 0.6;
                 break;
@@ -1143,41 +1454,49 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
               switch (idx) {
                 case 0:
                   // İmleç 0: Sol üst köşeyi sıkıca sabitler (Sol Üst Çapa)
+                  iconKind = "grab";
                   tx = b.left - 4;
                   ty = b.top - 4;
                   break;
                 case 1:
                   // İmleç 1: Sol alt köşeyi sabitler ve dikey açılımda sol rayı indirir
+                  iconKind = "grab";
                   tx = b.left - 4;
                   ty = bh.top;
                   break;
                 case 2:
                   // İmleç 2: Sağ kenarın ÜST kısmından tutup YATAYDA sağa çeker
+                  iconKind = "resize-x";
                   tx = rh.left + 6;
                   ty = Math.max(b.top + 12, rh.top - 32);
                   break;
                 case 3:
                   // İmleç 3: İmleç 2 ile yardımlaşarak sağ kenarın ALT kısmından tutup YATAYDA çeker
+                  iconKind = "resize-x";
                   tx = rh.left + 6;
                   ty = rh.top + 28;
                   break;
                 case 4:
                   // İmleç 4: Alt kenarın SOL-ORTA kısmından tutup DİKEYDE aşağı çeker
+                  iconKind = "resize-y";
                   tx = Math.max(b.left + 40, bh.left - 55);
                   ty = bh.top + 6;
                   break;
                 case 5:
                   // İmleç 5: İmleç 4 ile yardımlaşarak alt kenarın SAĞ-ORTA kısmından tutup DİKEYDE aşağı çeker
+                  iconKind = "resize-y";
                   tx = Math.min(rh.left - 20, bh.left + 55);
                   ty = bh.top + 6;
                   break;
                 case 6:
                   // İmleç 6: Pencere üst çubuğundaki trafik ışıklarını ve URL barını döşer
+                  iconKind = "brush";
                   tx = b.left + (rh.left - b.left) * (0.15 + 0.7 * ((localP * 1.8) % 1));
                   ty = b.top + 18;
                   break;
                 case 7: {
                   // İmleç 7: Sağ alttaki kroki kağıdından ekran görüntüsünü alıp 3D pencerenin ortasına taşır!
+                  iconKind = localP > 0.35 && localP < 0.9 ? "clone" : "grab";
                   const carryP = Math.min(1, Math.max(0, (localP - 0.35) / 0.55));
                   const startX = sb ? sb.left + sb.width * 0.72 : window.innerWidth - 180;
                   const startY = sb ? sb.top + sb.height * 0.55 : window.innerHeight - 200;
@@ -1189,6 +1508,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 }
                 default:
                   // İmleç 9: Sağ alt köşe kilidini (SE) kontrol eder
+                  iconKind = "check";
                   tx = rh.left + 8;
                   ty = bh.top + 8;
                   break;
@@ -1209,38 +1529,47 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
 
               switch (idx) {
                 case 0: // 1. Kart sol üst tutucu
+                  iconKind = localP < 0.45 ? "clone" : "grab";
                   tx = card1X - 55;
                   ty = midY - 38;
                   break;
                 case 1: // 1. Kart metin/değer yazıcı
+                  iconKind = "type";
                   tx = card1X + 25 + wave * 14;
                   ty = midY + 12;
                   break;
                 case 2: // 2. Kartı 1. karttan sürükleyen sol tutucu
+                  iconKind = localP < 0.45 ? "clone" : "grab";
                   tx = card2X - 55;
                   ty = midY - 38;
                   break;
                 case 3: // 2. Kartın başlığını ve verisini değiştiren yazıcı
+                  iconKind = "type";
                   tx = card2X + 20 + wave * 16;
                   ty = midY + 14;
                   break;
                 case 4: // 3. Kartı 1. karttan en sağa sürükleyen tutucu
+                  iconKind = localP < 0.45 ? "clone" : "grab";
                   tx = card3X - 55;
                   ty = midY - 38;
                   break;
                 case 5: // 3. Kartın başlığını ve verisini değiştiren yazıcı
+                  iconKind = "type";
                   tx = card3X + 20 + cosW * 16;
                   ty = midY + 14;
                   break;
                 case 6: // Kartlar arası boşlukları (gap) kalibre eden imleç
+                  iconKind = "resize-x";
                   tx = b.left + b.width * 0.33;
                   ty = midY;
                   break;
                 case 7: // 2. ve 3. kart arası boşluğu kalibre eden imleç
+                  iconKind = "resize-x";
                   tx = b.left + b.width * 0.66;
                   ty = midY;
                   break;
                 default:
+                  iconKind = "check";
                   tx = card3X + 60;
                   ty = midY + 42;
                   break;
@@ -1275,11 +1604,13 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             switch (idx) {
               case 0:
                 // Ekip A - İmleç 0: 1. Ana CTA butonunu sabit tutar
+                iconKind = "grab";
                 tx = ctaRect.left + 48;
                 ty = ctaRect.top + ctaRect.height * 0.5;
                 break;
               case 1:
                 // Ekip A - İmleç 1: 2. CTA butonunu 1.'den sağa çoğaltır ve adını "İletişim" yapar
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx =
                   ctaRect.left +
                   60 +
@@ -1289,35 +1620,42 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
                 break;
               case 2:
                 // Ekip A - İmleç 2: Sağ ekran seçici / ikincil aksiyon butonlarını çoğaltır
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx = ctaRect.right - 65 + cosW * 12;
                 ty = ctaRect.top + ctaRect.height * 0.5;
                 break;
               case 3:
                 // Ekip B - İmleç 3: Rozetlerin / alt barın SOL 1/3'lük dilimini çoğaltıp adlandırır
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx = badgesRect.left + badgesRect.width * (0.08 + 0.22 * localP);
                 ty = badgesRect.top + badgesRect.height * 0.5;
                 break;
               case 4:
                 // Ekip B - İmleç 4: Rozetlerin / alt barın ORTA 1/3'lük dilimini çoğaltıp adlandırır
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx = badgesRect.left + badgesRect.width * (0.36 + 0.25 * localP);
                 ty = badgesRect.top + badgesRect.height * 0.5;
                 break;
               case 5:
                 // Ekip B - İmleç 5: Rozetlerin / alt barın SAĞ 1/3'lük dilimini çoğaltıp adlandırır
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx = badgesRect.left + badgesRect.width * (0.66 + 0.28 * localP);
                 ty = badgesRect.top + badgesRect.height * 0.5;
                 break;
               case 6:
                 // Ekip C - İmleç 6: Metriklerin sol/orta kutusunu çoğaltır ve değerini yazar
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx = qaRect.left + qaRect.width * (0.15 + 0.32 * localP);
                 ty = qaRect.top + qaRect.height * 0.5;
                 break;
               case 7:
                 // Ekip C - İmleç 7: Metriklerin sağ kutusunu çoğaltır ve değerini yazar
+                iconKind = localP < 0.45 ? "clone" : "type";
                 tx = qaRect.left + qaRect.width * (0.55 + 0.35 * localP);
                 ty = qaRect.top + qaRect.height * 0.5;
                 break;
               default:
+                iconKind = "check";
                 tx = badgesRect.right - 24;
                 ty = badgesRect.bottom;
                 break;
@@ -1332,6 +1670,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
           ty = Math.max(24, Math.min(window.innerHeight - 36, ty));
         } else {
           // 2. HEPSİ AYNI YÖNDE, DENGELİ VE AKICI SÜZÜLEN DAĞINIK BULUT DÖNÜŞÜ
+          iconKind = "arrow";
           const constantSpeed = 0.28;
           const theta = agent.angleOffset + t * constantSpeed;
           const radius = 55 + ((idx * 29) % 45);
@@ -1352,7 +1691,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             (Math.atan2(tangentVy + anchorVy, tangentVx + anchorVx) * 180) / Math.PI + 90;
         }
 
-        targets.push({ tx, ty, orbitTangentAngle });
+        targets.push({ tx, ty, orbitTangentAngle, iconKind });
       });
 
       // İNŞA ESNASINDA İMLEÇLERİN ÜST ÜSTE BİNMESİNİ ÖNLEYEN FİZİKSEL AYRIŞMA (ANTI-CLUMPING)
@@ -1381,7 +1720,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
       // Yay Fiziğiyle Konum ve Yön Güncelleme
       SWARM_AGENTS.forEach((_, idx) => {
         const p = agentPosRef.current[idx];
-        const { tx, ty, orbitTangentAngle } = targets[idx];
+        const { tx, ty, orbitTangentAngle, iconKind } = targets[idx];
 
         // İnşa sırasında biraz daha sakin, yumuşak ve okunaklı süzülme
         const stiffness = building ? 0.11 : 0.12;
@@ -1395,13 +1734,21 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
         const speed = Math.hypot(p.vx, p.vy);
         let desiredAngle = p.angle;
 
-        if (!building && orbitTangentAngle !== null) {
-          desiredAngle =
-            speed > 1.2
-              ? (Math.atan2(p.vy, p.vx) * 180) / Math.PI + 90
-              : orbitTangentAngle;
-        } else if (speed > 0.35) {
-          desiredAngle = (Math.atan2(p.vy, p.vx) * 180) / Math.PI + 90;
+        if (iconKind === "arrow") {
+          if (!building && orbitTangentAngle !== null) {
+            desiredAngle =
+              speed > 1.2
+                ? (Math.atan2(p.vy, p.vx) * 180) / Math.PI + 90
+                : orbitTangentAngle;
+          } else if (speed > 0.35) {
+            desiredAngle = (Math.atan2(p.vy, p.vx) * 180) / Math.PI + 90;
+          }
+        } else if (iconKind === "pencil" || iconKind === "brush") {
+          // Kalem ve fırça doğal tutuş açısıyla hafifçe eğilir
+          desiredAngle = Math.max(-18, Math.min(18, p.vx * 1.4 - 8));
+        } else {
+          // Ölçü (↔/↕), yazım (I), klon, silgi, tutma ve onay ikonları dik (0°) kalır
+          desiredAngle = 0;
         }
 
         const angleDiff = ((desiredAngle - p.angle + 540) % 360) - 180;
@@ -1410,6 +1757,10 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
         const el = cursorElsRef.current[idx];
         if (el) {
           el.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) rotate(${p.angle.toFixed(1)}deg)`;
+          if (lastIconsRef.current[idx] !== iconKind) {
+            lastIconsRef.current[idx] = iconKind;
+            el.setAttribute("data-cursor-icon", iconKind);
+          }
         }
       });
 
@@ -1492,7 +1843,9 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
             key={agent.id}
             ref={(el) => {
               cursorElsRef.current[idx] = el;
+              if (!el) lastIconsRef.current[idx] = "arrow";
             }}
+            data-cursor-icon="arrow"
             className="fixed left-0 top-0 -ml-4 -mt-4 h-8 w-8"
             style={{
               willChange: "transform",
@@ -1500,51 +1853,7 @@ export function LiveBuilderProvider({ children }: { children: React.ReactNode })
               transform: "translate3d(-120px, -120px, 0)",
             }}
           >
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              style={{
-                filter: `drop-shadow(0 6px 12px rgba(0,0,0,0.75)) drop-shadow(0 0 6px ${agent.glow}44)`,
-              }}
-            >
-              <defs>
-                <linearGradient
-                  id={`cursor-grad-${agent.id}`}
-                  x1="16"
-                  y1="2"
-                  x2="16"
-                  y2="28"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="38%" stopColor={agent.color} />
-                  <stop offset="100%" stopColor={agent.glow} />
-                </linearGradient>
-              </defs>
-
-              <path
-                d="M16 2.5L26.5 26.5L16 21.2L5.5 26.5L16 2.5Z"
-                fill={`url(#cursor-grad-${agent.id})`}
-                stroke="#050811"
-                strokeWidth="1.6"
-                strokeLinejoin="round"
-              />
-
-              <path
-                d="M16 4.8L16 20.2L7.8 24.4L16 4.8Z"
-                fill="rgba(255,255,255,0.32)"
-              />
-
-              <path
-                d="M16 4.5L16 20.5"
-                stroke="#ffffff"
-                strokeWidth="1.1"
-                strokeLinecap="round"
-                strokeOpacity="0.85"
-              />
-            </svg>
+            <AgentCursorIcons agent={agent} />
           </div>
         ))}
 

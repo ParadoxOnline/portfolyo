@@ -424,3 +424,26 @@ html.tool-cursor-on textarea {
     transform: translateY(86px);
   }
 }
+
+/* Ana sayfa animasyon durumuna göre ikon değiştiren imleç katmanları */
+.agent-cursor-glyph {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.65);
+  transition: opacity 150ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-cursor-icon="arrow"] .agent-cursor-glyph[data-glyph="arrow"],
+[data-cursor-icon="pencil"] .agent-cursor-glyph[data-glyph="pencil"],
+[data-cursor-icon="grab"] .agent-cursor-glyph[data-glyph="grab"],
+[data-cursor-icon="clone"] .agent-cursor-glyph[data-glyph="clone"],
+[data-cursor-icon="resize-x"] .agent-cursor-glyph[data-glyph="resize-x"],
+[data-cursor-icon="resize-y"] .agent-cursor-glyph[data-glyph="resize-y"],
+[data-cursor-icon="type"] .agent-cursor-glyph[data-glyph="type"],
+[data-cursor-icon="eraser"] .agent-cursor-glyph[data-glyph="eraser"],
+[data-cursor-icon="brush"] .agent-cursor-glyph[data-glyph="brush"],
+[data-cursor-icon="check"] .agent-cursor-glyph[data-glyph="check"] {
+  opacity: 1;
+  transform: scale(1);
+}
