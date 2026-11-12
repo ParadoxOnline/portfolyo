@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 type Mode = "lab" | "recruiter";
 
@@ -12,22 +12,15 @@ interface ModeContextType {
 
 const ModeContext = createContext<ModeContextType | undefined>(undefined);
 
-function ModeUrlSync({ onParam }: { onParam: (modeParam: string | null) => void }) {
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    onParam(searchParams.get("mode"));
-  }, [searchParams, onParam]);
-
-  return null;
-}
-
 export function ModeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setModeState] = useState<Mode>("lab");
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleModeParam = useCallback((modeParam: string | null) => {
+  useEffect(() => {
+    // Check URL param via native window.location (zero SSR bailout, 100% clean HTML)
+    const urlParams = new URLSearchParams(window.location.search);
+    const modeParam = urlParams.get("mode");
     if (modeParam === "recruiter" || modeParam === "lab") {
       setModeState(modeParam);
       localStorage.setItem("portfolio_mode", modeParam);
@@ -47,9 +40,7 @@ export function ModeProvider({ children }: { children: React.ReactNode }) {
     setModeState(newMode);
     localStorage.setItem("portfolio_mode", newMode);
 
-    const current = new URLSearchParams(
-      typeof window !== "undefined" ? window.location.search : ""
-    );
+    const current = new URLSearchParams(window.location.search);
     if (newMode === "recruiter") {
       current.set("mode", "recruiter");
     } else {
@@ -62,9 +53,6 @@ export function ModeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ModeContext.Provider value={{ mode, setMode }}>
-      <React.Suspense fallback={null}>
-        <ModeUrlSync onParam={handleModeParam} />
-      </React.Suspense>
       {children}
     </ModeContext.Provider>
   );
