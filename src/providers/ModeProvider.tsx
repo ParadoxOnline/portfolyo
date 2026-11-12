@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 type Mode = "lab" | "recruiter";
@@ -12,46 +12,44 @@ interface ModeContextType {
 
 const ModeContext = createContext<ModeContextType | undefined>(undefined);
 
-export function ModeProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <React.Suspense fallback={null}>
-      <ModeProviderInner>{children}</ModeProviderInner>
-    </React.Suspense>
-  );
+function ModeUrlSync({ onParam }: { onParam: (modeParam: string | null) => void }) {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    onParam(searchParams.get("mode"));
+  }, [searchParams, onParam]);
+
+  return null;
 }
 
-function ModeProviderInner({ children }: { children: React.ReactNode }) {
+export function ModeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setModeState] = useState<Mode>("lab");
-  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Check URL param first
-    const modeParam = searchParams.get("mode");
+  const handleModeParam = useCallback((modeParam: string | null) => {
     if (modeParam === "recruiter" || modeParam === "lab") {
-      setModeState(modeParam as Mode);
+      setModeState(modeParam);
       localStorage.setItem("portfolio_mode", modeParam);
     } else {
-      // Fallback to localStorage
       const savedMode = localStorage.getItem("portfolio_mode") as Mode;
       if (savedMode === "recruiter" || savedMode === "lab") {
         setModeState(savedMode);
       }
     }
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
-    // Apply data attribute for CSS scoping
     document.body.setAttribute("data-mode", mode);
   }, [mode]);
 
   const setMode = (newMode: Mode) => {
     setModeState(newMode);
     localStorage.setItem("portfolio_mode", newMode);
-    
-    // Update URL without reloading page
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
+
+    const current = new URLSearchParams(
+      typeof window !== "undefined" ? window.location.search : ""
+    );
     if (newMode === "recruiter") {
       current.set("mode", "recruiter");
     } else {
@@ -64,6 +62,9 @@ function ModeProviderInner({ children }: { children: React.ReactNode }) {
 
   return (
     <ModeContext.Provider value={{ mode, setMode }}>
+      <React.Suspense fallback={null}>
+        <ModeUrlSync onParam={handleModeParam} />
+      </React.Suspense>
       {children}
     </ModeContext.Provider>
   );
